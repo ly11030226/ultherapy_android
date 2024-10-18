@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.aimyskin.miscmodule'
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 34
+        multiDexEnabled true  //true 开启多dex，解除65k限制 Excel
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    buildTypes {
+        release {
+//            consumerProguardFiles "consumer-rules.pro"
+        }
+        debug {
+//            consumerProguardFiles "consumer-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api files('libs\\zckjAPI-2.1.jar')
+    api "com.blankj:utilcodex:1.31.1"
+    api 'com.parse.bolts:bolts-tasks:1.4.0'
+    api "org.greenrobot:eventbus:3.3.1"
+    api 'com.elvishew:xlog:1.11.0'
+    implementation 'com.github.lihangleo2:ShadowLayout:3.3.3'
+    api files('libs\\poi-3.12-android-a.jar')
+    api files('libs\\poi-ooxml-schemas-3.12-20150511-a.jar')
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+}

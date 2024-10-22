@@ -3,7 +3,6 @@ package com.aimyskin.ultherapy_android.ui
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,6 +11,7 @@ import android.widget.Toast
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivitySplashBinding
+import com.blankj.utilcode.util.LogUtils
 
 class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -25,12 +25,12 @@ class SplashActivity : BaseActivity() {
         try {
             initVideo()
             initAudio()
-            Handler(Looper.getMainLooper()).postDelayed({
-                videoMediaPlayer.release()
-                stopAudio()
-                startActivity(Intent(this@SplashActivity, AwaitActivity::class.java))
-                finish()
-            }, 8000)
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                videoMediaPlayer.release()
+//                stopAudio()
+//                startActivity(Intent(this@SplashActivity, AwaitActivity::class.java))
+//                finish()
+//            }, 8000)
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -58,7 +58,16 @@ class SplashActivity : BaseActivity() {
         }
 
         binding.vvSplash.setOnCompletionListener {
-//            stopAudio()
+            try {
+                stopAudio()
+                binding.vvSplash.stopPlayback();
+                Handler(Looper.getMainLooper()).postDelayed({
+                    startActivity(Intent(this@SplashActivity, AwaitActivity::class.java))
+                    finish()
+                }, 50)
+            } catch (e: IllegalStateException) {
+                LogUtils.e("VideoView", "Error releasing VideoView: " + e.message);
+            }
         }
     }
 
@@ -85,4 +94,5 @@ class SplashActivity : BaseActivity() {
         audioMediaPlayer.stop()
         audioMediaPlayer.release()
     }
+
 }

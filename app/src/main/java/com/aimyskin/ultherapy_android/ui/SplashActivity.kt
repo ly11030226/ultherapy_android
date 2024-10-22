@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivitySplashBinding
+import com.aimyskin.ultherapy_android.util.pxToDp
 import com.blankj.utilcode.util.LogUtils
 
 class SplashActivity : BaseActivity() {

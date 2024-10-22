@@ -1,6 +1,7 @@
 package com.aimyskin.ultherapy_android.util
 
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
 import com.aimyskin.ultherapy_android.MyApplication
 import com.aimyskin.ultherapy_android.pojo.Position
 import com.aimyskin.ultherapy_android.pojo.Type
@@ -43,3 +44,15 @@ fun loadDrawableListFromFolder(folderName: String): MutableList<Drawable> {
     return drawables
 }
 
+
+fun dpToPx(dp: Float): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, dp, MyApplication.INSTANCE.resources.displayMetrics
+    )
+}
+
+fun pxToDp(px: Float): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_PX, px, MyApplication.INSTANCE.resources.displayMetrics
+    )
+}

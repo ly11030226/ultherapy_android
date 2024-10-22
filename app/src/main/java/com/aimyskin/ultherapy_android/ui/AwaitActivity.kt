@@ -87,10 +87,10 @@ class AwaitActivity : BaseActivity() {
             .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivLeft)
 
         Glide.with(this).asGif().load(R.drawable.knife_15).skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivRight)
+            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivMiddle)
 
         Glide.with(this).asGif().load(R.drawable.knife_30).skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivMiddle)
+            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivRight)
     }
 
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--治疗界面刀头logo距离左右两侧logo的距离-->
+    <dimen name="distance_knife_logo">64dp</dimen>
+    <!--治疗界面Remain 和 Current 与其他小logo的距离-->
+    <dimen name="margin_top_logo">64dp</dimen>
+    <!--治疗界面显示Remain 和 Current数值TextView的宽度-->
+    <dimen name="width_remain_current">110dp</dimen>
+    <!--治疗界面控制能量大小按钮的宽高-->
+    <dimen name="length_up_and_down">75dp</dimen>
+    <!--治疗界面距离能量值左右的距离-->
+    <dimen name="distance_energy">160dp</dimen>
+    <!--治疗界面距离进度条左右的距离-->
+    <dimen name="distance_progressbar">100dp</dimen>
+    <dimen name="padding_bottom_totalused">32dp</dimen>
+</resources>

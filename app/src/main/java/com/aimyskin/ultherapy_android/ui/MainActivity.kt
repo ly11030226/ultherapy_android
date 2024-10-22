@@ -12,7 +12,7 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         try {
-
+            binding.miv.initImage()
         }catch (e: Exception){
             e.printStackTrace()
         }

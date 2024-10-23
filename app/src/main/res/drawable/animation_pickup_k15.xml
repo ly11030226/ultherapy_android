@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+<item android:drawable="@drawable/k151" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k152" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k153" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k154" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k155" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k156" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k157" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k158" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k159" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1510" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1511" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1512" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1513" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1514" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1515" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1516" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1517" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1518" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1519" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1520" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1521" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1522" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1523" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1524" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1525" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1526" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1527" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1528" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1529" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1530" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1531" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1532" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1533" android:duration="@integer/pickup_duration"/>
+<item android:drawable="@drawable/k1534" android:duration="@integer/pickup_duration"/>
+</animation-list>

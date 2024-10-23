@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Ultherapy_Android</string>
+    <string name="str_remain">Remain</string>
+    <string name="str_current">Current</string>
+    <string name="default_current_num">0</string>
+    <string name="default_remain_num">0</string>
+    <string name="unit_j">J</string>
+    <string name="default_energy_value">0.1</string>
+    <string name="str_totalused">Totalused</string>
+    <string name="default_totalused_num">0</string>
+    <string name="default_need_num">300</string>
+    <string name="default_start_num">0</string>
+    <string name="default_single">Single</string>
+    <string name="default_length">25</string>
+    <string name="str_length">Length</string>
+    <string name="unit_mm">mm</string>
+    <string name="str_memory">Memory 3</string>
+    <string name="default_normal">Normal</string>
+    <string name="str_pitch">Pitch</string>
+    <string name="default_pitch">1.5</string>
+    <string name="str_setup">Setup/Info</string>
+    <string name="default_standby"><u>STANDBY</u></string>
+    <string name="default_ready"><u>READY</u></string>
 </resources>

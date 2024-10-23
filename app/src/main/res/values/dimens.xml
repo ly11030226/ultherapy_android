@@ -13,4 +13,5 @@
     <!--治疗界面距离进度条左右的距离-->
     <dimen name="distance_progressbar">100dp</dimen>
     <dimen name="padding_bottom_totalused">32dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

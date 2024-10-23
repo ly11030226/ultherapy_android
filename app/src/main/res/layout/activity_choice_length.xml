@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_black"
+    tools:context=".ui.ChoiceLengthActivity">
+
+    <TextView
+        android:id="@+id/tv_length_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/str_choice_length"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/remind_choice"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_length_title" />
+
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_length_1"
+        style="@style/style_ctv"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ctv_length_2" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_length_2"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_length_1"
+        app:layout_constraintRight_toLeftOf="@id/ctv_length_3" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_length_3"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_length_2"
+        app:layout_constraintRight_toLeftOf="@id/ctv_length_4" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_length_4"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_length_3"
+        app:layout_constraintRight_toLeftOf="@id/ctv_length_5" />
+
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_length_5"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_length_4"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_length_close"
+        style="@style/style_choice_close"
+        app:layout_constraintTop_toBottomOf="@+id/ctv_length_5" />
+</androidx.constraintlayout.widget.ConstraintLayout>

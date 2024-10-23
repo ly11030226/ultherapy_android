@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_black"
+    tools:context=".ui.ChoiceRepeatActivity">
+
+    <TextView
+        android:id="@+id/tv_interval_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/str_interval"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/remind_choice"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_interval_title" />
+
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_1"
+        style="@style/style_ctv"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_2" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_2"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_1"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_3" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_3"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_2"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_4" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_4"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_3"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_5" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_5"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_4"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_6" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_6"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_5"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_7" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_7"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_6"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_8" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_8"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_7"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_9" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_9"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_8"
+        app:layout_constraintRight_toLeftOf="@id/ctv_repeat_10" />
+
+    <com.aimyskin.ultherapy_android.view.ChoiceTabView
+        android:id="@+id/ctv_repeat_10"
+        style="@style/style_ctv"
+        app:layout_constraintLeft_toRightOf="@id/ctv_repeat_9"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_repeat_close"
+        style="@style/style_choice_close"
+        app:layout_constraintTop_toBottomOf="@+id/ctv_repeat_10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

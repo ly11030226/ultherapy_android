@@ -29,31 +29,31 @@
         <ImageView
             android:layout_width="41dp"
             android:layout_height="40dp"
-            android:src="@drawable/icon_left_setting" />
+            android:background="@drawable/icon_left_setting" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/icon_left_info" />
+            android:background="@drawable/icon_left_info" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/icon_left_attachment" />
+            android:background="@drawable/icon_left_attachment" />
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/icon_left_music" />
+            android:background="@drawable/icon_left_music" />
 
         <ImageView
             android:layout_width="47dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/icon_left_user" />
+            android:background="@drawable/icon_left_user" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -127,18 +127,18 @@
             android:layout_width="47dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/icon_right_finger" />
+            android:background="@drawable/icon_right_finger" />
 
         <ImageView
             android:layout_width="29dp"
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/icon_right_record" />
+            android:background="@drawable/icon_right_record" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/icon_right_save" />
+            android:background="@drawable/icon_right_save" />
 
     </LinearLayout>
 
@@ -162,7 +162,7 @@
         android:layout_width="@dimen/length_up_and_down"
         android:layout_height="@dimen/length_up_and_down"
         android:layout_marginEnd="@dimen/distance_energy"
-        android:src="@drawable/icon_up"
+        android:background="@drawable/icon_up"
         app:layout_constraintBottom_toBottomOf="@+id/tv_main_energy"
         app:layout_constraintRight_toLeftOf="@+id/tv_main_energy"
         app:layout_constraintTop_toTopOf="@+id/tv_main_energy" />
@@ -171,7 +171,7 @@
         android:layout_width="@dimen/length_up_and_down"
         android:layout_height="@dimen/length_up_and_down"
         android:layout_marginStart="@dimen/distance_energy"
-        android:src="@drawable/icon_up"
+        android:background="@drawable/icon_up"
         app:layout_constraintBottom_toBottomOf="@+id/tv_main_energy"
         app:layout_constraintLeft_toRightOf="@+id/tv_main_energy"
         app:layout_constraintTop_toTopOf="@+id/tv_main_energy" />
@@ -190,7 +190,7 @@
     <ImageView
         android:layout_width="91dp"
         android:layout_height="80dp"
-        android:src="@drawable/icon_main_back"
+        android:background="@drawable/icon_main_back"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -212,7 +212,7 @@
         android:layout_width="@dimen/length_up_and_down"
         android:layout_height="@dimen/length_up_and_down"
         android:layout_marginEnd="@dimen/distance_progressbar"
-        android:src="@drawable/icon_decrease"
+        android:background="@drawable/icon_decrease"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/clpb"
         app:layout_constraintTop_toTopOf="parent" />
@@ -222,7 +222,7 @@
         android:layout_width="@dimen/length_up_and_down"
         android:layout_height="@dimen/length_up_and_down"
         android:layout_marginStart="@dimen/distance_progressbar"
-        android:src="@drawable/icon_increase"
+        android:background="@drawable/icon_increase"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/clpb"
         app:layout_constraintTop_toTopOf="parent" />
@@ -268,7 +268,7 @@
             android:layout_width="31dp"
             android:layout_height="31dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/icon_time" />
+            android:background="@drawable/icon_time" />
 
         <TextView
             android:layout_width="@dimen/width_remain_current"
@@ -321,11 +321,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/iv_single_or_repeat"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:src="@drawable/icon_single" />
+                android:background="@drawable/icon_single" />
 
             <TextView
+                android:id="@+id/tv_single_or_repeat"
                 style="@style/main_text"
                 android:paddingStart="16dp"
                 android:text="@string/default_single" />
@@ -346,16 +348,19 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tv_length"
                 style="@style/main_text"
                 android:text="@string/str_length" />
 
             <TextView
+                android:id="@+id/tv_length_num"
                 style="@style/main_text"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:text="@string/default_length" />
 
             <TextView
+                android:id="@+id/tv_length_unit"
                 style="@style/main_text"
                 android:text="@string/unit_mm" />
 
@@ -377,7 +382,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="35dp"
-                android:src="@drawable/icon_three" />
+                android:background="@drawable/icon_three" />
 
             <TextView
                 style="@style/main_text"
@@ -414,7 +419,7 @@
             <ImageView
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:src="@drawable/icon_point" />
+                android:background="@drawable/icon_point" />
 
             <TextView
                 style="@style/main_text"
@@ -441,6 +446,7 @@
                 android:text="@string/str_pitch" />
 
             <TextView
+                android:id="@+id/tv_choice_pitch"
                 style="@style/main_text"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -468,7 +474,7 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/icon_left_setting" />
+                android:background="@drawable/icon_left_setting" />
 
             <TextView
                 style="@style/main_text"

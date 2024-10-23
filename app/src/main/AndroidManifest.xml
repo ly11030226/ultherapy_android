@@ -48,6 +48,18 @@
         android:theme="@style/Theme.Ultherapy_Android"
         tools:targetApi="34">
         <activity
+            android:name=".ui.IndexActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ChoiceLengthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ChoicePitchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ChoiceRepeatActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.PickupActivity"
             android:exported="false" />
         <activity

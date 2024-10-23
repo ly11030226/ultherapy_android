@@ -14,4 +14,9 @@
     <dimen name="distance_progressbar">100dp</dimen>
     <dimen name="padding_bottom_totalused">32dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <!--Index界面图标大小-->
+    <dimen name="index_icon_length">220dp</dimen>
+    <!--Index界面边侧图标到两边的距离-->
+    <dimen name="index_icon_margin">160dp</dimen>
+    <dimen name="index_icon_margin_top">48dp</dimen>
 </resources>

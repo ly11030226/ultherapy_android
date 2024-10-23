@@ -5,6 +5,189 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_index"
     tools:context=".ui.IndexActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/index_title"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_index_home"
+            android:layout_width="80dp"
+            android:visibility="gone"
+            android:layout_height="73dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/icon_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_index_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="64dp"
+            android:textColor="@color/text_time"
+            android:textSize="45sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2024/10/19 22:08 PM" />
+
+        <ImageView
+            android:id="@+id/iv_index_output"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="64dp"
+            android:background="@drawable/icon_output"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_index_time"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_index_setting"
+            android:layout_width="75dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/icon_setting"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_index_output"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_index_wifi"
+            android:layout_width="88dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/icon_wifi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_index_setting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_index_ime"
+            android:layout_width="75dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/icon_ime"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_index_wifi"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_index_memory"
+            android:layout_width="93dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/icon_memory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/iv_index_ime"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_index_treatment"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:layout_marginStart="@dimen/index_icon_margin"
+        android:background="@drawable/icon_treatment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_index_user"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+
+    <ImageView
+        android:id="@+id/iv_index_user"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:background="@drawable/icon_user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_index_treatment"
+        app:layout_constraintRight_toLeftOf="@+id/iv_index_video"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+
+    <ImageView
+        android:id="@+id/iv_index_video"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:background="@drawable/icon_video"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_index_user"
+        app:layout_constraintRight_toLeftOf="@+id/iv_index_browser"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/iv_index_browser"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:background="@drawable/icon_browser"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_index_video"
+        app:layout_constraintRight_toLeftOf="@+id/iv_index_gallery"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/iv_index_gallery"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:layout_marginEnd="@dimen/index_icon_margin"
+        android:background="@drawable/icon_gallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/iv_index_browser"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+
+    <ImageView
+        android:id="@+id/iv_index_music"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:layout_marginTop="@dimen/index_icon_margin_top"
+        android:background="@drawable/icon_music"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_treatment"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_treatment" />
+
+    <ImageView
+        android:id="@+id/iv_index_downloads"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:layout_marginTop="@dimen/index_icon_margin_top"
+        android:background="@drawable/icon_downloads"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_user"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_user" />
+
+    <ImageView
+        android:id="@+id/iv_index_fileexplorer"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:layout_marginTop="@dimen/index_icon_margin_top"
+        android:background="@drawable/icon_fileexplorer"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_video"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_video" />
+
+    <ImageView
+        android:id="@+id/iv_index_increase"
+        android:layout_width="@dimen/index_icon_length"
+        android:layout_height="@dimen/index_icon_length"
+        android:layout_marginTop="@dimen/index_icon_margin_top"
+        android:background="@drawable/icon_index_increase"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_browser"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_browser" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

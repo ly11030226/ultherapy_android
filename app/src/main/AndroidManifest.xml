@@ -48,6 +48,9 @@
         android:theme="@style/Theme.Ultherapy_Android"
         tools:targetApi="34">
         <activity
+            android:name=".ui.SetupAndInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.IndexActivity"
             android:exported="false" />
         <activity

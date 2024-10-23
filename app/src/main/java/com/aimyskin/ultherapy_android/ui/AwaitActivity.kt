@@ -66,7 +66,8 @@ class AwaitActivity : BaseActivity() {
         }
 
         binding.ivHome.setOnClickListener {
-            startCircle()
+            startActivity(Intent(this@AwaitActivity, IndexActivity::class.java))
+            finish()
         }
         binding.ivSetting.setOnClickListener {
 
@@ -76,10 +77,10 @@ class AwaitActivity : BaseActivity() {
     /**
      * 跳转到摘机界面或者治疗界面
      */
-    private fun jumpToPickupOrMainActivity(){
-        if(Profile.isHaveAnimation){
+    private fun jumpToPickupOrMainActivity() {
+        if (Profile.isHaveAnimation) {
             startActivity(Intent(this@AwaitActivity, PickupActivity::class.java))
-        }else{
+        } else {
             startActivity(Intent(this@AwaitActivity, PickupActivity::class.java))
         }
         finish()

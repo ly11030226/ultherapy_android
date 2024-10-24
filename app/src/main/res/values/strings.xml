@@ -70,4 +70,9 @@
     <string name="str_choice_pitch">Pitch</string>
     <string name="str_choice_length">Length</string>
     <string name="choice_close">X Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_setup_fragment">SetupFragment</string>
+    <string name="label_info_fragment">InfoFragment</string>
+    <string name="str_back">Back</string>
 </resources>

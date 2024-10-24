@@ -188,6 +188,7 @@
         app:layout_constraintLeft_toRightOf="@+id/tv_main_energy" />
 
     <ImageView
+        android:id="@+id/iv_main_back"
         android:layout_width="91dp"
         android:layout_height="80dp"
         android:background="@drawable/icon_main_back"

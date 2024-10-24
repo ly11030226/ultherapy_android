@@ -7,9 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.aimyskin.ultherapy_android.R
+import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityIndexBinding
 
-class IndexActivity : AppCompatActivity() {
+class IndexActivity : BaseActivity() {
     private lateinit var binding: ActivityIndexBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

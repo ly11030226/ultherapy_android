@@ -89,7 +89,7 @@ class ChoiceLengthActivity : BaseActivity() {
     private fun initView() {
         binding.ctvLength1.initData("5", "mm", R.drawable.length_5, false)
         binding.ctvLength2.initData("10", "mm", R.drawable.length_10, false)
-        binding.ctvLength3.initData("15`", "mm", R.drawable.length_15, false)
+        binding.ctvLength3.initData("15", "mm", R.drawable.length_15, false)
         binding.ctvLength4.initData("20", "mm", R.drawable.length_20, false)
         binding.ctvLength5.initData("25", "mm", R.drawable.length_25, false)
 

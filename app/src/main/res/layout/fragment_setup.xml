@@ -1,17 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_black"
+    android:orientation="vertical"
+    android:paddingLeft="300dp"
+    android:paddingRight="300dp"
     tools:context=".ui.SetupFragment">
-
-    <TextView
-        android:textColor="@color/white"
-        android:textSize="60sp"
-        android:gravity="center"
+    <!--调节音量-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_setup_volume"
+            android:layout_width="25dp"
+            android:layout_height="22dp"
+            android:background="@drawable/icon_volume"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_volume"
+            style="@style/style_setup_textview"
+            android:text="@string/str_volume"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_volume" />
+
+        <TextView
+            android:id="@+id/tv_volume_value"
+            style="@style/style_setup_textview"
+            android:text="@string/str_volume"
+            app:layout_constraintLeft_toRightOf="@+id/tv_volume"
+            tools:text="5" />
+
+
+        <ImageView
+            android:id="@+id/iv_volume_value"
+            android:layout_width="672dp"
+            android:layout_height="78dp"
+            android:background="@drawable/icon_volume_4"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="672dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_volume_value"
+            app:layout_constraintRight_toRightOf="@+id/iv_volume_value"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/style_setup_volume_textview"
+                android:text="0" />
+
+            <TextView
+                style="@style/style_setup_volume_textview"
+                android:text="1" />
+
+            <TextView
+                style="@style/style_setup_volume_textview"
+                android:text="2" />
+
+            <TextView
+                style="@style/style_setup_volume_textview"
+                android:text="3" />
+
+            <TextView
+                style="@style/style_setup_volume_textview"
+                android:text="4" />
+
+            <TextView
+                style="@style/style_setup_volume_textview"
+                android:text="5" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--设置操作源-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/iv_setup_operate"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:background="@drawable/icon_sourcer"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_volume_operate"
+            style="@style/style_setup_textview"
+            android:text="@string/str_operate"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_operate" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_setting_foot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/icon_setting_unchoice" />
+
+            <TextView
+                style="@style/style_setup_textview"
+                android:paddingStart="4dp"
+                android:text="Foot" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_setting_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/ll_setting_foot"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/icon_setting_choice" />
+
+            <TextView
+                style="@style/style_setup_textview"
+                android:paddingLeft="4dp"
+                android:text="Hand" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_setting_both"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/ll_setting_hand"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/icon_setting_unchoice" />
+
+            <TextView
+                style="@style/style_setup_textview"
+                android:paddingLeft="4dp"
+                android:text="Both" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--设置自动感应-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/iv_setup_recognition"
+            android:layout_width="22dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_recognition"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setup_recognition"
+            style="@style/style_setup_textview"
+            android:text="@string/str_recognition"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_recognition" />
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="32dp"
+            android:background="@drawable/icon_off"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--设置摘手柄动画-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/iv_setup_animation"
+            android:layout_width="22dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_animation"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setup_animation"
+            style="@style/style_setup_textview"
+            android:text="@string/str_animation"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_animation" />
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="32dp"
+            android:background="@drawable/icon_on"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--设置时间-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/iv_setup_date"
+            android:layout_width="22dp"
+            android:layout_height="25dp"
+            android:background="@drawable/icon_date"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setup_date"
+            style="@style/style_setup_textview"
+            android:text="@string/str_date"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_date" />
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_setting_date"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--设置密码-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/iv_setup_password"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:background="@drawable/icon_password"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setup_password"
+            style="@style/style_setup_textview"
+            android:text="@string/str_password"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_password" />
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_setting_date"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--重置-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <ImageView
+            android:id="@+id/iv_setup_reset"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:background="@drawable/icon_reset"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setup_reset"
+            style="@style/style_setup_textview"
+            android:text="@string/str_factory_default"
+            app:layout_constraintLeft_toRightOf="@+id/iv_setup_reset" />
+
+        <ImageView
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_do_reset"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

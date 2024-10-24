@@ -70,9 +70,14 @@
     <string name="str_choice_pitch">Pitch</string>
     <string name="str_choice_length">Length</string>
     <string name="choice_close">X Close</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_setup_fragment">SetupFragment</string>
     <string name="label_info_fragment">InfoFragment</string>
     <string name="str_back">Back</string>
+    <string name="str_volume">Volume</string>
+    <string name="str_operate">H.P Cperating Source</string>
+    <string name="str_recognition">H.P Auto Recognition</string>
+    <string name="str_animation">Intro Animation</string>
+    <string name="str_date">Date</string>
+    <string name="str_password">Password</string>
+    <string name="str_factory_default">Factory Default</string>
 </resources>

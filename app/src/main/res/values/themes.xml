@@ -11,4 +11,9 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+
+
+    <style name="splash_theme" parent="Theme.Ultherapy_Android">
+        <item name="android:windowBackground">@drawable/bg_logo</item>
+    </style>
 </resources>

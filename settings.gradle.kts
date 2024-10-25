@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 rootProject.name = "Ultherapy_Android"
 include(":app")
 include(":MiscModule")
+include(":LaserSerialModule")
+include(":SerialAsciiCRLFImpl")
+include(":SerialModule")

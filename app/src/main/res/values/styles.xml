@@ -50,4 +50,35 @@
         <item name="android:paddingTop">70dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
+    <style name="style_info_text_view">
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="style_info_taiet_image">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_width">@dimen/info_taiet_width</item>
+        <item name="android:layout_height">@dimen/info_taiet_height</item>
+        <item name="layout_constraintLeft_toLeftOf">parent</item>
+    </style>
+
+    <style name="style_info_taiet_shotcount_text">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/info_taiet_height</item>
+    </style>
+
+    <style name="style_index_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

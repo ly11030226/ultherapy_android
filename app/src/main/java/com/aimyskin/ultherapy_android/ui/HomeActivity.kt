@@ -9,5 +9,10 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        try {
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

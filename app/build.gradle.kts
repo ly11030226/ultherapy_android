@@ -62,6 +62,7 @@ android {
 dependencies {
 
     implementation("androidx.activity:activity:1.8.0")
+    implementation(project(mapOf("path" to ":LaserSerialModule")))
     val lifeCycleVersion = "2.7.0"
     val materialVersion = "1.4.0"
     val fragmentVersion = "1.7.0"
@@ -70,7 +71,6 @@ dependencies {
     val pagingVersion = "3.3.0"
 
     implementation(project(":MiscModule"))
-
     //Base
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

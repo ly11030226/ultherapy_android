@@ -20,10 +20,10 @@
         <ImageView
             android:id="@+id/iv_index_home"
             android:layout_width="80dp"
-            android:visibility="gone"
             android:layout_height="73dp"
             android:layout_marginStart="32dp"
             android:background="@drawable/icon_home"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/tv_index_time"
-            android:layout_width="wrap_content"
+            android:layout_width="520dp"
             android:layout_height="wrap_content"
             android:paddingEnd="64dp"
             android:textColor="@color/text_time"
@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/iv_index_output"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="64dp"
             android:background="@drawable/icon_output"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,8 +53,8 @@
 
         <ImageView
             android:id="@+id/iv_index_setting"
-            android:layout_width="75dp"
-            android:layout_height="70dp"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/icon_setting"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -63,8 +63,8 @@
 
         <ImageView
             android:id="@+id/iv_index_wifi"
-            android:layout_width="88dp"
-            android:layout_height="70dp"
+            android:layout_width="63dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/icon_wifi"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,8 +73,8 @@
 
         <ImageView
             android:id="@+id/iv_index_ime"
-            android:layout_width="75dp"
-            android:layout_height="70dp"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/icon_ime"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,8 +83,8 @@
 
         <ImageView
             android:id="@+id/iv_index_memory"
-            android:layout_width="93dp"
-            android:layout_height="70dp"
+            android:layout_width="66dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/icon_memory"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +103,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/iv_index_user"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_treatment"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_treatment"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_treatment"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_treatment" />
 
 
     <ImageView
@@ -115,8 +122,14 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_index_treatment"
         app:layout_constraintRight_toLeftOf="@+id/iv_index_video"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.35" />
 
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_user_manager"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_user"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_user"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_user" />
 
     <ImageView
         android:id="@+id/iv_index_video"
@@ -127,7 +140,14 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_index_user"
         app:layout_constraintRight_toLeftOf="@+id/iv_index_browser"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_video"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_video"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_video"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_video" />
 
     <ImageView
         android:id="@+id/iv_index_browser"
@@ -138,7 +158,15 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_index_video"
         app:layout_constraintRight_toLeftOf="@+id/iv_index_gallery"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_browser"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_browser"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_browser"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_browser" />
+
 
     <ImageView
         android:id="@+id/iv_index_gallery"
@@ -150,7 +178,14 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_index_browser"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_gallery"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_gallery"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_gallery"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_gallery" />
 
 
     <ImageView
@@ -162,6 +197,14 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_index_treatment"
         app:layout_constraintTop_toBottomOf="@+id/iv_index_treatment" />
 
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_music"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_music"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_music"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_music" />
+
+
     <ImageView
         android:id="@+id/iv_index_downloads"
         android:layout_width="@dimen/index_icon_length"
@@ -170,6 +213,14 @@
         android:background="@drawable/icon_downloads"
         app:layout_constraintLeft_toLeftOf="@+id/iv_index_user"
         app:layout_constraintTop_toBottomOf="@+id/iv_index_user" />
+
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_downloads"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_downloads"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_downloads"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_downloads" />
+
 
     <ImageView
         android:id="@+id/iv_index_fileexplorer"
@@ -180,6 +231,13 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_index_video"
         app:layout_constraintTop_toBottomOf="@+id/iv_index_video" />
 
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_fileexplorer"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_fileexplorer"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_fileexplorer"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_fileexplorer" />
+
     <ImageView
         android:id="@+id/iv_index_increase"
         android:layout_width="@dimen/index_icon_length"
@@ -188,6 +246,14 @@
         android:background="@drawable/icon_index_increase"
         app:layout_constraintLeft_toLeftOf="@+id/iv_index_browser"
         app:layout_constraintTop_toBottomOf="@+id/iv_index_browser" />
+    <TextView
+        style="@style/style_index_text"
+        android:text="@string/str_increase"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_index_increase"
+        app:layout_constraintRight_toRightOf="@+id/iv_index_increase"
+        app:layout_constraintTop_toBottomOf="@+id/iv_index_increase" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

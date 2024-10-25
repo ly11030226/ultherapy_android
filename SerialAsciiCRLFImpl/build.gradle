@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.aimyskin.serialasciicrlfimpl'
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 34
+    }
+
+    buildTypes {
+        release {
+//            if (rootProject.ext.appMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+        debug {
+            jniDebuggable true
+//            if (rootProject.ext.appDebugMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(path: ':SerialModule')
+    api project(path: ':MiscModule')
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    testImplementation 'junit:junit:4.12'
+}

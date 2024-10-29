@@ -60,7 +60,7 @@ object DataBean {
     /**
      * 将数据包装成data
      */
-    fun packageAsData() {
+    fun packageAsData(): ByteArray {
         val data = version +
                 byteArrayOf(writeProtect.byteValue) +
                 uniqueCode +
@@ -74,8 +74,14 @@ object DataBean {
                 byteArrayOf(operatingSource.byteValue) +
                 byteArrayOf(standbyOrReady.byteValue) +
 
+                byteArrayOf(leftHIFU.getByteArrayFromRemainNumber()[0])+
+                byteArrayOf(leftHIFU.getByteArrayFromRemainNumber()[1])+
                 byteArrayOf(leftHIFU.type.byteValue) +
+                byteArrayOf(middleHIFU.getByteArrayFromRemainNumber()[0])+
+                byteArrayOf(middleHIFU.getByteArrayFromRemainNumber()[1])+
                 byteArrayOf(middleHIFU.type.byteValue) +
+                byteArrayOf(rightHIFU.getByteArrayFromRemainNumber()[0])+
+                byteArrayOf(rightHIFU.getByteArrayFromRemainNumber()[1])+
                 byteArrayOf(rightHIFU.type.byteValue) +
 
                 byteArrayOf(leftHIFU.knifeState.byteValue) +
@@ -89,14 +95,15 @@ object DataBean {
                 byteArrayOf(leftHIFU.press.byteValue) +
                 byteArrayOf(middleHIFU.press.byteValue) +
                 byteArrayOf(rightHIFU.press.byteValue) +
-                byteArrayOf(footPress.byteValue)+
+                byteArrayOf(footPress.byteValue) +
 
-                byteArrayOf(isAutoRecognition.byteValue)+
-                byteArrayOf(energyCoefficient)+
+                byteArrayOf(isAutoRecognition.byteValue) +
+                byteArrayOf(energyCoefficient) +
 
                 byteArrayOf(leftHIFU.clientId) +
                 byteArrayOf(middleHIFU.clientId) +
                 byteArrayOf(rightHIFU.clientId)
+        return data
     }
 }
 
@@ -155,10 +162,12 @@ enum class Pitch(val intValue: Int, val byteValue: Byte) {
 
 /**
  * 间隔时间
+ * 00: single模式下默认此值
  * 01: 0.1S    02: 0.2S    03: 0.3S    04: 0.4S    05: 0.5S
  * 06: 0.6S    07: 0.7S    08: 0.8S    09: 0.9S    10: 1.0S
  */
 enum class RepeatTime(val intValue: Int, val byteValue: Byte) {
+    S0_0(0x00, 0x00),
     S0_1(0x01, 0x01),
     S0_2(0x02, 0x02),
     S0_3(0x03, 0x03),

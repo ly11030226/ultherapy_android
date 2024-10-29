@@ -1,27 +1,54 @@
 package com.aimyskin.ultherapy_android.ui
 
+import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.IntentFilter
+import android.content.ServiceConnection
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
+import android.os.IBinder
+import com.aimyskin.laserserialmodule.LaserSerialService
 import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
+import com.aimyskin.ultherapy_android.base.DataReceiver
 import com.aimyskin.ultherapy_android.databinding.ActivityAwaitBinding
+import com.aimyskin.ultherapy_android.inter.ReceiveDataCallback
 import com.aimyskin.ultherapy_android.pojo.AutoRecognition
+import com.aimyskin.ultherapy_android.pojo.Command
 import com.aimyskin.ultherapy_android.pojo.DataBean
-import com.aimyskin.ultherapy_android.pojo.Position
-import com.aimyskin.ultherapy_android.pojo.Type
+import com.aimyskin.ultherapy_android.pojo.FrameBean
+import com.aimyskin.ultherapy_android.pojo.getFrameDataString
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnife
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnifePosition
+import com.aimyskin.ultherapy_android.util.createFrameData
+import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class AwaitActivity : BaseActivity() {
     private lateinit var binding: ActivityAwaitBinding
+    var laserSerialService: LaserSerialService? = null
+    private var bound: Boolean = false
+    private lateinit var receiver: DataReceiver
 
+    private val serviceConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            LogUtils.d("onServiceConnected")
+            laserSerialService = (service as LaserSerialService.MyBinder).service
+            bound = true
+            with(laserSerialService) {
+                val result = getFrameDataString(createFrameData())
+                this?.sendData(result, 0)
+            }
+        }
+
+        override fun onServiceDisconnected(name: ComponentName) {
+            bound = false
+        }
+    }
+
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAwaitBinding.inflate(layoutInflater)
@@ -30,9 +57,41 @@ class AwaitActivity : BaseActivity() {
             startCircle()
             initData()
             addListener()
+
+            receiver = DataReceiver(object : ReceiveDataCallback {
+                override fun parseSuccess(frameBean: FrameBean) {
+                    LogUtils.d("frameBean ... $frameBean")
+                    LogUtils.d("dataBean ... $DataBean")
+                }
+
+                override fun parseFail(message: String) {
+                    LogUtils.e("************** parseFail **************")
+                }
+
+            })
+            val fileIntentFilter = IntentFilter()
+            fileIntentFilter.addAction("ACTION_SEND_DATA")
+            registerReceiver(receiver, fileIntentFilter)
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        LaserSerialService.action(this@AwaitActivity, serviceConnection)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unbindService(serviceConnection)
+        bound = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     private fun initData() {

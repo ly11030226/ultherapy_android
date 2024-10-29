@@ -22,11 +22,8 @@ public class ResponseControl {
         //处理超声刀
         else if(deviceType == DeviceType.DEVICE_ULTHERAPY){
             if (classify == null) {
-                classify = new Response808(context);
+                classify = new ResponseUltherapy(context);
             }
-        }
-        if (!(classify instanceof ResponseCommon)) {
-            classify = new ResponseCommon();
         }
         return classify;
     }

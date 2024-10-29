@@ -13,9 +13,9 @@ class SerialPortHandler {
             val serialPath: String
             val platform = Platform().build(context)
             serialPath = if (platform is PlatformRK3399) {
-                "/dev/ttyXRUSB0"
+                "/dev/ttyS0"
             } else {
-                "/dev/ttyXRUSB0"
+                "/dev/ttyS0"
             }
             return serialPath
         }

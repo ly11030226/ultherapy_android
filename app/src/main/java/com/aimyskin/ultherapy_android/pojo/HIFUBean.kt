@@ -11,7 +11,7 @@ data class HIFUBean(
     var clientId: Byte
 ) {
     fun getByteArrayFromRemainNumber(): ByteArray {
-        val result = byteArrayOf(2)
+        val result = ByteArray(2)
         result[0] = (remain shr 8).toByte()
         result[1] = remain.toByte()
         return result

@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import com.aimyskin.laserserialmodule.responseClassify.ResponseClassify;
 import com.aimyskin.laserserialmodule.responseClassify.ResponseControl;
 import com.aimyskin.laserserialmodule.responseClassify.device808.OnButtonListener;
+import com.blankj.utilcode.util.LogUtils;
 
 
 public class LaserSerialService extends Service {
@@ -31,6 +32,7 @@ public class LaserSerialService extends Service {
 
     public static void action(Context context, ServiceConnection coon) {
         Intent intent = new Intent(context, LaserSerialService.class);
+        intent.putExtra("deviceClassify",DeviceType.DEVICE_ULTHERAPY.getValue());
         context.bindService(intent, coon, Context.BIND_AUTO_CREATE);
     }
 
@@ -53,8 +55,9 @@ public class LaserSerialService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        startNotification();
+//        startNotification();
     }
+
 
     private void startNotification() {
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -73,6 +76,13 @@ public class LaserSerialService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        LogUtils.i("onBind");
+        int deviceClassify = intent.getIntExtra("deviceClassify", -1);
+        if (deviceClassify == DeviceType.DEVICE_808.getValue()) {
+            startSerialPort(DeviceType.DEVICE_808);
+        } else if (deviceClassify == DeviceType.DEVICE_ULTHERAPY.getValue()) {
+            startSerialPort(DeviceType.DEVICE_ULTHERAPY);
+        }
         return binder;
     }
 
@@ -83,11 +93,12 @@ public class LaserSerialService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        LogUtils.d("LaserSerialService onStartCommand");
         if (intent != null) {
             int deviceClassify = intent.getIntExtra("deviceClassify", -1);
-            if(deviceClassify == DeviceType.DEVICE_808.getValue()){
+            if (deviceClassify == DeviceType.DEVICE_808.getValue()) {
                 startSerialPort(DeviceType.DEVICE_808);
-            }else if(deviceClassify == DeviceType.DEVICE_ULTHERAPY.getValue()){
+            } else if (deviceClassify == DeviceType.DEVICE_ULTHERAPY.getValue()) {
                 startSerialPort(DeviceType.DEVICE_ULTHERAPY);
             }
         }
@@ -106,6 +117,8 @@ public class LaserSerialService extends Service {
 
 
     public static final String SERIAL_BROADCAST = "com.example.SERIAL_BROADCAST_RECEIVER";
+    public static final String SEND_DATA = "SEND_DATA";
+    public static final String KEY_SEND_DATA = "KEY_SEND_DATA";
 
     public class MySerialBroadcastReceiver extends BroadcastReceiver {
         @Override
@@ -121,17 +134,20 @@ public class LaserSerialService extends Service {
                         responseClassify = null;
                     }
                     ResponseControl.classify = null;
-                    if(deviceClassify == DeviceType.DEVICE_808.getValue()){
+                    if (deviceClassify == DeviceType.DEVICE_808.getValue()) {
                         startSerialPort(DeviceType.DEVICE_808);
-                    }else if(deviceClassify == DeviceType.DEVICE_ULTHERAPY.getValue()){
+                    } else if (deviceClassify == DeviceType.DEVICE_ULTHERAPY.getValue()) {
                         startSerialPort(DeviceType.DEVICE_ULTHERAPY);
                     }
+                } else if (action.equals(SEND_DATA)) {
+                    String data = intent.getStringExtra(KEY_SEND_DATA);
+                    sendData(data, 0);
                 }
             }
         }
     }
 
-    public void startSerialPort(DeviceType deviceType ) {
+    public void startSerialPort(DeviceType deviceType) {
         responseClassify = ResponseControl.getResponseControl(getApplicationContext(), deviceType);
     }
 
@@ -140,6 +156,7 @@ public class LaserSerialService extends Service {
             responseClassify.sendData(data, delay);
         }
     }
+
     public void setOnButtonListener(OnButtonListener listener) {
         if (responseClassify != null) {
             responseClassify.setOnButtonListener(listener);

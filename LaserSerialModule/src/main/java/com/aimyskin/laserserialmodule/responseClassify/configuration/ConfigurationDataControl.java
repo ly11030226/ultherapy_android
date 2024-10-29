@@ -1,6 +1,5 @@
 package com.aimyskin.laserserialmodule.responseClassify.configuration;
 
-import com.aimyskin.laserserialmodule.BuildConfig;
 
 
 public class ConfigurationDataControl {
@@ -9,13 +8,14 @@ public class ConfigurationDataControl {
     private static int handType = -1;
 
     public static ConfigurationDataClassify getConfigurationDataControl() {
-        if (BuildConfig.defaultDataAllocation == 1) {
-            classify = new ConfigurationDataNiuAnMei800W();
-        } else if (BuildConfig.defaultDataAllocation == 2) {
-            classify = new ConfigurationDataHome300W();
-        } else {
-            classify = new ConfigurationDataDefault800W();
-        }
+        classify = new ConfigurationDataNiuAnMei800W();
+//        if (BuildConfig.defaultDataAllocation == 1) {
+//
+//        } else if (BuildConfig.defaultDataAllocation == 2) {
+//            classify = new ConfigurationDataHome300W();
+//        } else {
+//            classify = new ConfigurationDataDefault800W();
+//        }
         return classify;
     }
 

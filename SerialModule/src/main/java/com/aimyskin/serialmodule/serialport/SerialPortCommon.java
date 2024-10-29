@@ -27,15 +27,19 @@ public class SerialPortCommon implements SerialPort {
         if (isOpen()) {
             return;
         }
-        Log.e("SerialPortCommon",serialPath+baudrate+"---"+dataBits+"----"+parity+"----"+stopBits);
+        Log.e("SerialPortCommon", serialPath + baudrate + "---" + dataBits + "----" + parity + "----" + stopBits);
         serialPort = new android.serialport.SerialPort(new File(serialPath), baudrate, dataBits, parity, stopBits);
     }
 
     @Override
     public void close() throws Exception {
         try {
-            serialPort.getInputStream().close();
-            serialPort.getOutputStream().close();
+            if (serialPort != null && serialPort.getInputStream() != null) {
+                serialPort.getInputStream().close();
+            }
+            if (serialPort != null && serialPort.getOutputStream() != null) {
+                serialPort.getOutputStream().close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

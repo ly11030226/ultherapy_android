@@ -19,6 +19,6 @@ class MyApplication : Application() {
         //初始化SharePreference工具类
         Kotpref.init(this)
         LogUtils.getConfig().globalTag = GLOBAL_TAG
-        LaserSerialService.startLaserSerialService(this,DeviceType.DEVICE_ULTHERAPY)
+//        LaserSerialService.startLaserSerialService(this,DeviceType.DEVICE_ULTHERAPY)
     }
 }

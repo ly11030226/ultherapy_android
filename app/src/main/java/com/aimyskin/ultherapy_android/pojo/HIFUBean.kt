@@ -73,5 +73,5 @@ enum class KnifeUsable(val intValue: Int, val byteValue: Byte) {
  * 注：脚踏的标识在DataBean里封装
  */
 enum class PRESS(val intValue: Int, val byteValue: Byte) {
-    TRUE(0x01, 0x01), FALSE(0x02, 0x02)
+    TRUE(0x01, 0x01), FALSE(0x02, 0x02), EMPTY(0x00, 0x00)
 }

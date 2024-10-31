@@ -81,7 +81,7 @@ class ResponseUltherapy(context: Context) : ResponseClassify {
                             dataArray[i] = response.data[i]
                         }
                         val intent = Intent(ACTION_SEND_DATA)
-                        intent.putExtra(KEY_SEND_DATA,dataArray)
+                        intent.putExtra(KEY_SEND_DATA, dataArray)
                         context.sendBroadcast(intent)
 //                        val frame = Frame7E7EStruct()
 //                        frame.setByteBuffer(ByteBuffer.wrap(buffer), 0)
@@ -124,6 +124,7 @@ class ResponseUltherapy(context: Context) : ResponseClassify {
                 it.close()
                 pipeline = null
             }
+            LogUtils.d("SerialClient or RealPipeline close success")
         } catch (e: Exception) {
             e.printStackTrace()
             LogUtils.e("SerialClient or RealPipeline close exception!!!")

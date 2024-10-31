@@ -48,6 +48,9 @@
         android:theme="@style/Theme.Ultherapy_Android"
         tools:targetApi="34">
         <activity
+            android:name=".ui.NoCartidgeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SetupAndInfoActivity"
             android:exported="false" />
         <activity
@@ -95,7 +98,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".base.DataReceiver"
             android:exported="true">

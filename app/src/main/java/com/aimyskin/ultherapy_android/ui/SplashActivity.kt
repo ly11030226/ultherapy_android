@@ -1,16 +1,29 @@
 package com.aimyskin.ultherapy_android.ui
 
+import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.ServiceConnection
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.IBinder
 import android.os.Looper
 import android.widget.MediaController
 import android.widget.Toast
+import com.aimyskin.laserserialmodule.LaserSerialService
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
+import com.aimyskin.ultherapy_android.base.DataReceiver
 import com.aimyskin.ultherapy_android.databinding.ActivitySplashBinding
+import com.aimyskin.ultherapy_android.inter.ReceiveDataCallback
+import com.aimyskin.ultherapy_android.pojo.Command
+import com.aimyskin.ultherapy_android.pojo.DataBean
+import com.aimyskin.ultherapy_android.pojo.FrameBean
+import com.aimyskin.ultherapy_android.pojo.getFrameDataString
+import com.aimyskin.ultherapy_android.util.createFrameData
 import com.aimyskin.ultherapy_android.util.pxToDp
 import com.blankj.utilcode.util.LogUtils
 
@@ -18,6 +31,25 @@ class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
     private lateinit var videoMediaPlayer: MediaPlayer
     private lateinit var audioMediaPlayer: MediaPlayer
+    private lateinit var receiver: DataReceiver
+    var laserSerialService: LaserSerialService? = null
+    private var bound: Boolean = false
+
+    private val serviceConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            LogUtils.d("onServiceConnected")
+            laserSerialService = (service as LaserSerialService.MyBinder).service
+            bound = true
+            with(laserSerialService) {
+                val result = getFrameDataString(createFrameData(command = Command.WRITE.byteValue.toByte()))
+                this?.sendData(result, 0)
+            }
+        }
+
+        override fun onServiceDisconnected(name: ComponentName) {
+            bound = false
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +58,26 @@ class SplashActivity : BaseActivity() {
         try {
             initVideo()
             initAudio()
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                videoMediaPlayer.release()
-//                stopAudio()
-//                startActivity(Intent(this@SplashActivity, AwaitActivity::class.java))
-//                finish()
-//            }, 8000)
-
+            registerReceiver()
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private fun registerReceiver() {
+        receiver = DataReceiver(object : ReceiveDataCallback {
+            override fun parseSuccess(frameBean: FrameBean) {
+                LogUtils.d("frameBean ... $frameBean")
+                LogUtils.d("dataBean ... $DataBean")
+            }
+            override fun parseFail(message: String) {
+                LogUtils.e("************** parseFail **************")
+            }
+        })
+        val fileIntentFilter = IntentFilter()
+        fileIntentFilter.addAction("ACTION_SEND_DATA")
+        registerReceiver(receiver, fileIntentFilter)
     }
 
     private fun initVideo() {
@@ -94,6 +136,22 @@ class SplashActivity : BaseActivity() {
     private fun stopAudio() {
         audioMediaPlayer.stop()
         audioMediaPlayer.release()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        LaserSerialService.action(this@SplashActivity, serviceConnection)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unbindService(serviceConnection)
+        bound = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
 }

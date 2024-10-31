@@ -6,18 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.aimyskin.ultherapy_android.R
+import com.aimyskin.ultherapy_android.base.BaseFragment
+import com.aimyskin.ultherapy_android.databinding.FragmentSetupBinding
 
 
-class SetupFragment : Fragment() {
+class SetupFragment : BaseFragment() {
+    private var _binding: FragmentSetupBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setup, container, false)
+        _binding = FragmentSetupBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun initView() {
+    }
+
+    override fun addListener() {
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

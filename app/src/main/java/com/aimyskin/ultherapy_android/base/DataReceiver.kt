@@ -23,6 +23,7 @@ import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.pojo.WriteProtect
 import com.blankj.utilcode.util.LogUtils
 import java.lang.Exception
+import java.nio.ByteBuffer
 import java.util.Date
 
 /**
@@ -57,6 +58,12 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
      * 一共64个字节，11个帧数据说明字节，53个data字节
      */
     private fun parserData(byteArray: ByteArray): FrameBean {
+        LogUtils.d("************* start parser data *************")
+        for (i in byteArray.indices) {
+            print(i)
+            print("")
+        }
+
         // ================= 帧数据中用到的11给固定字节 ================= //
         val header = getIntFromTwoByte(byteArray[0], byteArray[1])
         val length = getIntFromTwoByte(byteArray[2], byteArray[3])
@@ -120,6 +127,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
         DataBean.leftHIFU.clientId = byteArray[61]
         DataBean.middleHIFU.clientId = byteArray[62]
         DataBean.rightHIFU.clientId = byteArray[63]
+        LogUtils.d("************* end parser data *************")
         return FrameBean(header, length, frameId, command, deviceAddress, functionAddress, DataBean)
     }
 
@@ -132,9 +140,11 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             WriteProtect.OPEN.byteValue -> {
                 DataBean.writeProtect = WriteProtect.OPEN
             }
+
             WriteProtect.CLOSE.byteValue -> {
                 DataBean.writeProtect = WriteProtect.CLOSE
             }
+
             else -> {
                 throw MyException("写保护数据异常 current value ... $byte")
             }
@@ -146,18 +156,23 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             DistanceLength.MM5.byteValue -> {
                 DataBean.distanceLength = DistanceLength.MM5
             }
+
             DistanceLength.MM10.byteValue -> {
                 DataBean.distanceLength = DistanceLength.MM10
             }
+
             DistanceLength.MM15.byteValue -> {
                 DataBean.distanceLength = DistanceLength.MM15
             }
+
             DistanceLength.MM20.byteValue -> {
                 DataBean.distanceLength = DistanceLength.MM20
             }
+
             DistanceLength.MM25.byteValue -> {
                 DataBean.distanceLength = DistanceLength.MM25
             }
+
             else -> {
                 throw MyException("打点或直线的长度异常 current value ... $byte")
             }
@@ -169,9 +184,11 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             PointOrLine.POINT.byteValue -> {
                 DataBean.pointOrLine = PointOrLine.POINT
             }
+
             PointOrLine.LINE.byteValue -> {
                 DataBean.pointOrLine = PointOrLine.LINE
             }
+
             else -> {
                 throw MyException("打点或直线的数据异常 current value ... $byte")
             }
@@ -183,9 +200,11 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             SingleOrRepeat.SINGLE.byteValue -> {
                 DataBean.singleOrRepeat = SingleOrRepeat.SINGLE
             }
+
             SingleOrRepeat.REPEAT.byteValue -> {
                 DataBean.singleOrRepeat = SingleOrRepeat.REPEAT
             }
+
             else -> {
                 throw MyException("单向或重复的数据异常 current value ... $byte")
             }
@@ -197,21 +216,27 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             Pitch.MM1_5.byteValue -> {
                 DataBean.pitch = Pitch.MM1_5
             }
+
             Pitch.MM1_6.byteValue -> {
                 DataBean.pitch = Pitch.MM1_6
             }
+
             Pitch.MM1_7.byteValue -> {
                 DataBean.pitch = Pitch.MM1_7
             }
+
             Pitch.MM1_8.byteValue -> {
                 DataBean.pitch = Pitch.MM1_8
             }
+
             Pitch.MM1_9.byteValue -> {
                 DataBean.pitch = Pitch.MM1_9
             }
+
             Pitch.MM2_0.byteValue -> {
                 DataBean.pitch = Pitch.MM2_0
             }
+
             else -> {
                 throw MyException("点距的数据异常 current value ... $byte")
             }
@@ -223,36 +248,47 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             RepeatTime.S0_0.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_0
             }
+
             RepeatTime.S0_1.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_1
             }
+
             RepeatTime.S0_2.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_2
             }
+
             RepeatTime.S0_3.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_3
             }
+
             RepeatTime.S0_4.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_4
             }
+
             RepeatTime.S0_5.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_5
             }
+
             RepeatTime.S0_6.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_6
             }
+
             RepeatTime.S0_7.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_7
             }
+
             RepeatTime.S0_8.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_8
             }
+
             RepeatTime.S0_9.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S0_9
             }
+
             RepeatTime.S1_0.byteValue -> {
                 DataBean.repeatTime = RepeatTime.S1_0
             }
+
             else -> {
                 throw MyException("往返时长的数据异常 current value ... $byte")
             }
@@ -306,39 +342,51 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             Type.KNIFE_15.byteValue -> {
                 return Type.KNIFE_15
             }
+
             Type.KNIFE_20.byteValue -> {
                 return Type.KNIFE_20
             }
+
             Type.KNIFE_30.byteValue -> {
                 return Type.KNIFE_30
             }
+
             Type.KNIFE_45.byteValue -> {
                 return Type.KNIFE_45
             }
+
             Type.KNIFE_60.byteValue -> {
                 return Type.KNIFE_60
             }
+
             Type.KNIFE_90.byteValue -> {
                 return Type.KNIFE_90
             }
+
             Type.KNIFE_130.byteValue -> {
                 return Type.KNIFE_130
             }
+
             Type.CIRCLE_15.byteValue -> {
                 return Type.CIRCLE_15
             }
+
             Type.CIRCLE_30.byteValue -> {
                 return Type.CIRCLE_30
             }
+
             Type.CIRCLE_45.byteValue -> {
                 return Type.CIRCLE_45
             }
+
             Type.NONE.byteValue -> {
                 return Type.NONE
             }
+
             Type.EMPTY.byteValue -> {
                 return Type.EMPTY
             }
+
             else -> {
                 throw MyException("刀头类型的数据异常 current value ... $byte")
             }
@@ -350,9 +398,11 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             KnifeState.DOWN.byteValue -> {
                 KnifeState.DOWN
             }
+
             KnifeState.UP.byteValue -> {
                 KnifeState.UP
             }
+
             else -> {
                 throw MyException("手柄摘挂机状态的数据异常 current value ... $byte")
             }
@@ -380,35 +430,47 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             PRESS.FALSE.byteValue -> {
                 PRESS.FALSE
             }
+
             PRESS.TRUE.byteValue -> {
                 PRESS.TRUE
             }
+
+            PRESS.EMPTY.byteValue->{
+                PRESS.EMPTY
+            }
+
             else -> {
                 throw MyException("按键状态的数据异常 current value ... $byte")
             }
         }
     }
+
     private fun checkFootPressState(byte: Byte): FootPress {
         return when (byte) {
             FootPress.FALSE.byteValue -> {
                 FootPress.FALSE
             }
+
             FootPress.TRUE.byteValue -> {
                 FootPress.TRUE
             }
+
             else -> {
                 throw MyException("脚踏状态的数据异常 current value ... $byte")
             }
         }
     }
+
     private fun checkAutoRecognitionState(byte: Byte): AutoRecognition {
         return when (byte) {
             AutoRecognition.OPEN.byteValue -> {
                 AutoRecognition.OPEN
             }
+
             AutoRecognition.CLOSE.byteValue -> {
                 AutoRecognition.CLOSE
             }
+
             else -> {
                 throw MyException("自动感应状态的数据异常 current value ... $byte")
             }

@@ -1,10 +1,14 @@
 package com.aimyskin.ultherapy_android.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
 import com.aimyskin.ultherapy_android.R
+import com.aimyskin.ultherapy_android.WHERE_FROM_AWAIT
+import com.aimyskin.ultherapy_android.WHERE_FROM_MAIN
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivitySetupAndInfoBinding
 
@@ -30,8 +34,31 @@ class SetupAndInfoActivity : BaseActivity() {
 
     private fun addListener() {
         binding.llSettingBack.setOnClickListener {
-            setResult(RESULT_OK)
-            finish()
+            intent?.let {
+                if (it.hasExtra(KEY_FROM_WHERE_TO_SETUP)) {
+                    when (it.getStringExtra(KEY_FROM_WHERE_TO_SETUP)) {
+                        WHERE_FROM_AWAIT -> {
+                            startActivity(
+                                Intent(
+                                    this@SetupAndInfoActivity,
+                                    AwaitActivity::class.java
+                                )
+                            )
+                            finish()
+                        }
+
+                        WHERE_FROM_MAIN -> {
+                            startActivity(
+                                Intent(
+                                    this@SetupAndInfoActivity,
+                                    MainActivity::class.java
+                                )
+                            )
+                            finish()
+                        }
+                    }
+                }
+            }
         }
         binding.tvSettingSetup.setOnClickListener {
             if (!isShowSetupFragment) {
@@ -41,9 +68,9 @@ class SetupAndInfoActivity : BaseActivity() {
             }
         }
         binding.tvSettingInfo.setOnClickListener {
-            if(isShowSetupFragment){
+            if (isShowSetupFragment) {
                 binding.ivSettingLine.setBackgroundResource(R.drawable.icon_info_light)
-                isShowSetupFragment =false
+                isShowSetupFragment = false
                 navController.navigate(R.id.action_setupFragment_to_infoFragment)
             }
         }

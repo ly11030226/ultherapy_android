@@ -16,8 +16,7 @@ object DataBean {
     var pointOrLine: PointOrLine = PointOrLine.POINT
     var singleOrRepeat: SingleOrRepeat = SingleOrRepeat.SINGLE
     var pitch: Pitch = Pitch.MM1_5
-    var repeatTime: RepeatTime = RepeatTime.S0_1
-
+    var repeatTime: RepeatTime = RepeatTime.S0_0
     //能量大小 0.1 ~ 3.0
     var energy: Byte = 0x01
     var operatingSource: OperatingSource = OperatingSource.BOTH

@@ -107,4 +107,5 @@
     <string name="str_downloads">Downloads</string>
     <string name="str_fileexplorer">File Explorer</string>
     <string name="str_increase">Increase</string>
+    <string name="totalused_number">Totalused %s</string>
 </resources>

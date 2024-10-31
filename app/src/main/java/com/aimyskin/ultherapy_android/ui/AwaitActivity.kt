@@ -7,9 +7,15 @@ import android.content.IntentFilter
 import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
+import android.view.View
 import com.aimyskin.laserserialmodule.LaserSerialService
+import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
+import com.aimyskin.ultherapy_android.KEY_NO_CARTIDGE_TYPE
+import com.aimyskin.ultherapy_android.NO_CARTIDGE_BOOSTER
+import com.aimyskin.ultherapy_android.NO_CARTIDGE_HIFU
 import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
+import com.aimyskin.ultherapy_android.WHERE_FROM_AWAIT
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.base.DataReceiver
 import com.aimyskin.ultherapy_android.databinding.ActivityAwaitBinding
@@ -18,10 +24,14 @@ import com.aimyskin.ultherapy_android.pojo.AutoRecognition
 import com.aimyskin.ultherapy_android.pojo.Command
 import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.FrameBean
+import com.aimyskin.ultherapy_android.pojo.KnifeState
+import com.aimyskin.ultherapy_android.pojo.KnifeUsable
+import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.pojo.getFrameDataString
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnife
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnifePosition
 import com.aimyskin.ultherapy_android.util.createFrameData
+import com.aimyskin.ultherapy_android.util.getDrawableIdByType
 import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -37,10 +47,11 @@ class AwaitActivity : BaseActivity() {
             LogUtils.d("onServiceConnected")
             laserSerialService = (service as LaserSerialService.MyBinder).service
             bound = true
-            with(laserSerialService) {
-                val result = getFrameDataString(createFrameData())
-                this?.sendData(result, 0)
-            }
+            //Await页面上来不进行获取下位机数据，因为Splash已经获取了
+//            with(laserSerialService) {
+//                val result = getFrameDataString(createFrameData())
+//                this?.sendData(result, 0)
+//            }
         }
 
         override fun onServiceDisconnected(name: ComponentName) {
@@ -54,28 +65,29 @@ class AwaitActivity : BaseActivity() {
         binding = ActivityAwaitBinding.inflate(layoutInflater)
         setContentView(binding.root)
         try {
-            startCircle()
             initData()
             addListener()
-
-            receiver = DataReceiver(object : ReceiveDataCallback {
-                override fun parseSuccess(frameBean: FrameBean) {
-                    LogUtils.d("frameBean ... $frameBean")
-                    LogUtils.d("dataBean ... $DataBean")
-                }
-
-                override fun parseFail(message: String) {
-                    LogUtils.e("************** parseFail **************")
-                }
-
-            })
-            val fileIntentFilter = IntentFilter()
-            fileIntentFilter.addAction("ACTION_SEND_DATA")
-            registerReceiver(receiver, fileIntentFilter)
-
+            registerReceiver()
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private fun registerReceiver() {
+        receiver = DataReceiver(object : ReceiveDataCallback {
+            override fun parseSuccess(frameBean: FrameBean) {
+                LogUtils.d("frameBean ... $frameBean")
+                initData()
+            }
+
+            override fun parseFail(message: String) {
+                LogUtils.e("************** parseFail **************")
+            }
+        })
+        val fileIntentFilter = IntentFilter()
+        fileIntentFilter.addAction("ACTION_SEND_DATA")
+        registerReceiver(receiver, fileIntentFilter)
     }
 
     override fun onStart() {
@@ -100,37 +112,66 @@ class AwaitActivity : BaseActivity() {
         } else {
             DataBean.isAutoRecognition = AutoRecognition.CLOSE
         }
+        initLeft()
+        initMiddle()
+        initRight()
     }
 
-    private fun addListener() {
-        //自动感应关闭才能进行点击
-        if (!Profile.isAutoRecognition) {
-            binding.ivLeft.setOnClickListener {
+    private fun initLeft() {
+        if (DataBean.leftHIFU.knifeUsable == KnifeUsable.USABLE) {
+            binding.flLeft.visibility = View.VISIBLE
+            if (DataBean.leftHIFU.knifeState == KnifeState.UP && DataBean.isAutoRecognition == AutoRecognition.OPEN) {
                 currentUseKnife = DataBean.leftHIFU.type
                 currentUseKnifePosition = DataBean.leftHIFU.position
-                jumpToPickupOrMainActivity()
+                jumpToNext()
             }
+            val leftDrawableId = getDrawableIdByType(DataBean.leftHIFU.type)
+            Glide.with(this).asGif().load(leftDrawableId).skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivLeft)
+        } else {
+            binding.flLeft.visibility = View.GONE
+        }
+    }
 
-            binding.ivMiddle.setOnClickListener {
+    private fun initMiddle() {
+        if (DataBean.middleHIFU.knifeUsable == KnifeUsable.USABLE) {
+            binding.flMiddle.visibility = View.VISIBLE
+            if (DataBean.middleHIFU.knifeState == KnifeState.UP && DataBean.isAutoRecognition == AutoRecognition.OPEN) {
                 currentUseKnife = DataBean.middleHIFU.type
                 currentUseKnifePosition = DataBean.middleHIFU.position
-                jumpToPickupOrMainActivity()
+                jumpToNext()
             }
+            val middleDrawableId = getDrawableIdByType(DataBean.middleHIFU.type)
+            Glide.with(this).asGif().load(middleDrawableId).skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivMiddle)
+        } else {
+            binding.flMiddle.visibility = View.GONE
+        }
+    }
 
-            binding.ivRight.setOnClickListener {
+    private fun initRight() {
+        if (DataBean.rightHIFU.knifeUsable == KnifeUsable.USABLE) {
+            binding.flRight.visibility = View.VISIBLE
+            if (DataBean.rightHIFU.knifeState == KnifeState.UP && DataBean.isAutoRecognition == AutoRecognition.OPEN) {
                 currentUseKnife = DataBean.rightHIFU.type
                 currentUseKnifePosition = DataBean.rightHIFU.position
-                jumpToPickupOrMainActivity()
+                jumpToNext()
             }
+            val rightDrawableId = getDrawableIdByType(DataBean.rightHIFU.type)
+            Glide.with(this).asGif().load(rightDrawableId).skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivRight)
+        } else {
+            binding.flRight.visibility = View.GONE
         }
+    }
 
-        binding.ivHome.setOnClickListener {
-            startActivity(Intent(this@AwaitActivity, IndexActivity::class.java))
-            finish()
+    private fun jumpToNext() {
+        if (Profile.isHaveAnimation) {
+            startActivity(Intent(this@AwaitActivity, PickupActivity::class.java))
+        } else {
+            startActivity(Intent(this@AwaitActivity, MainActivity::class.java))
         }
-        binding.ivSetting.setOnClickListener {
-
-        }
+        finish()
     }
 
     /**
@@ -140,20 +181,76 @@ class AwaitActivity : BaseActivity() {
         if (Profile.isHaveAnimation) {
             startActivity(Intent(this@AwaitActivity, PickupActivity::class.java))
         } else {
-            startActivity(Intent(this@AwaitActivity, PickupActivity::class.java))
+            startActivity(Intent(this@AwaitActivity, MainActivity::class.java))
         }
         finish()
     }
 
-    private fun startCircle() {
-        Glide.with(this).asGif().load(R.drawable.circle_15).skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivLeft)
+    private fun addListener() {
+        //自动感应关闭才能进行点击
+        if (!Profile.isAutoRecognition) {
+            binding.flLeft.setOnClickListener {
+                currentUseKnife = DataBean.leftHIFU.type
+                currentUseKnifePosition = DataBean.leftHIFU.position
+                if (DataBean.leftHIFU.type == Type.NONE || DataBean.leftHIFU.type == Type.EMPTY) {
+                    //TODO: 这里如果是没刀头状态，目前是Left为炮头 进入无刀头页面显示炮头的闪烁图片，Middle和Right为刀头，进入无刀头页面显示刀头的闪烁图片
+                    val intent = Intent(this@AwaitActivity, NoCartidgeActivity::class.java)
+                    intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_BOOSTER)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    //无感应模式手动填写相应的值
+                    DataBean.leftHIFU.knifeState = KnifeState.UP
+                    DataBean.middleHIFU.knifeState = KnifeState.DOWN
+                    DataBean.rightHIFU.knifeState = KnifeState.DOWN
+                    jumpToPickupOrMainActivity()
+                }
+            }
 
-        Glide.with(this).asGif().load(R.drawable.knife_15).skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivMiddle)
+            binding.flMiddle.setOnClickListener {
+                currentUseKnife = DataBean.middleHIFU.type
+                currentUseKnifePosition = DataBean.middleHIFU.position
+                if (DataBean.middleHIFU.type == Type.NONE || DataBean.middleHIFU.type == Type.EMPTY) {
+                    val intent = Intent(this@AwaitActivity, NoCartidgeActivity::class.java)
+                    intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_HIFU)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    //无感应模式手动填写相应的值
+                    DataBean.leftHIFU.knifeState = KnifeState.DOWN
+                    DataBean.middleHIFU.knifeState = KnifeState.UP
+                    DataBean.rightHIFU.knifeState = KnifeState.DOWN
+                    jumpToPickupOrMainActivity()
+                }
+            }
 
-        Glide.with(this).asGif().load(R.drawable.knife_30).skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivRight)
+            binding.flRight.setOnClickListener {
+                currentUseKnife = DataBean.rightHIFU.type
+                currentUseKnifePosition = DataBean.rightHIFU.position
+                if (DataBean.rightHIFU.type == Type.NONE || DataBean.rightHIFU.type == Type.EMPTY) {
+                    val intent = Intent(this@AwaitActivity, NoCartidgeActivity::class.java)
+                    intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_HIFU)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    //无感应模式手动填写相应的值
+                    DataBean.leftHIFU.knifeState = KnifeState.DOWN
+                    DataBean.middleHIFU.knifeState = KnifeState.DOWN
+                    DataBean.rightHIFU.knifeState = KnifeState.UP
+                    jumpToPickupOrMainActivity()
+                }
+            }
+        }
+
+        binding.ivHome.setOnClickListener {
+            startActivity(Intent(this@AwaitActivity, IndexActivity::class.java))
+            finish()
+        }
+        binding.ivSetting.setOnClickListener {
+            val intent = Intent(this@AwaitActivity, SetupAndInfoActivity::class.java)
+            intent.putExtra(KEY_FROM_WHERE_TO_SETUP, WHERE_FROM_AWAIT)
+            startActivity(intent)
+            finish()
+        }
     }
-
 }

@@ -2,13 +2,29 @@ package com.aimyskin.ultherapy_android.util
 
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
+import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.MyApplication
+import com.aimyskin.ultherapy_android.Profile.circle15
+import com.aimyskin.ultherapy_android.Profile.circle30
+import com.aimyskin.ultherapy_android.Profile.circle45
+import com.aimyskin.ultherapy_android.Profile.knife130
+import com.aimyskin.ultherapy_android.Profile.knife15
+import com.aimyskin.ultherapy_android.Profile.knife20
+import com.aimyskin.ultherapy_android.Profile.knife30
+import com.aimyskin.ultherapy_android.Profile.knife45
+import com.aimyskin.ultherapy_android.Profile.knife60
+import com.aimyskin.ultherapy_android.Profile.knife90
+import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.pojo.Command
 import com.aimyskin.ultherapy_android.pojo.DataBean
+import com.aimyskin.ultherapy_android.pojo.DistanceLength
 import com.aimyskin.ultherapy_android.pojo.FrameBean
+import com.aimyskin.ultherapy_android.pojo.Pitch
 import com.aimyskin.ultherapy_android.pojo.Position
 import com.aimyskin.ultherapy_android.pojo.Type
 import com.blankj.utilcode.util.LogUtils
+import com.chibatching.kotpref.Kotpref
+import com.chibatching.kotpref.KotprefModel
 import java.io.File
 
 /**
@@ -17,9 +33,14 @@ import java.io.File
 object GlobalVariable {
     //当前用的刀头类型
     var currentUseKnife = Type.NONE
-
     //当前用的刀头位置
     var currentUseKnifePosition = Position.LEFT
+    //治疗页面开始打点的数值
+    var startNum = 100
+    //治疗页面当前打点的数值
+    var currentNum = 0
+    //治疗页面需要共打点的数量
+    var needNum = DEFAULT_NEED_POINT_NUMBER
 }
 
 fun loadDrawableListFromFolder(folderName: String): MutableList<Drawable> {
@@ -76,7 +97,7 @@ fun Byte.toHexString(withPrefix: Boolean = false, minLength: Int = 2): String {
 fun createFrameData(
     frameId: Int = 0x8000,
     command: Byte = Command.READ.byteValue.toByte(),
-    deviceAddress: Int = 0x0000,
+    deviceAddress: Int = 0x0001,
     functionAddress: Int = 0x0000
 ): FrameBean {
     val length = 2 + 1 + 2 + 2 + DataBean.packageAsData().size
@@ -100,4 +121,129 @@ fun hexStringToByteArray(hexString: String): ByteArray {
         byteArray[i] = hex.toInt(16).toByte()
     }
     return byteArray
+}
+
+fun getDrawableIdByType(type: Type): Int {
+    return when (type) {
+        Type.KNIFE_15 -> {
+            R.drawable.knife_15
+        }
+
+        Type.KNIFE_20 -> {
+            R.drawable.knife_20
+        }
+
+        Type.KNIFE_30 -> {
+            R.drawable.knife_30
+        }
+
+        Type.KNIFE_45 -> {
+            R.drawable.knife_45
+        }
+
+        Type.KNIFE_60 -> {
+            R.drawable.knife_60
+        }
+
+        Type.KNIFE_90 -> {
+            R.drawable.knife_90
+        }
+
+        Type.KNIFE_130 -> {
+            R.drawable.knife_130
+        }
+
+        Type.CIRCLE_15 -> {
+            R.drawable.circle_15
+        }
+
+        Type.CIRCLE_30 -> {
+            R.drawable.circle_30
+        }
+
+        Type.CIRCLE_45 -> {
+            R.drawable.circle_45
+        }
+
+        else -> {
+            R.drawable.knife_no_cartidge
+        }
+    }
+}
+
+fun getPitchValue(): Float {
+    return when (DataBean.pitch) {
+        Pitch.MM1_5 -> {
+            1.5f
+        }
+
+        Pitch.MM1_6 -> {
+            1.6f
+        }
+
+        Pitch.MM1_7 -> {
+            1.7f
+        }
+
+        Pitch.MM1_8 -> {
+            1.8f
+        }
+
+        Pitch.MM1_9 -> {
+            1.9f
+        }
+
+        Pitch.MM2_0 -> {
+            2.0f
+        }
+    }
+}
+
+fun getLengthValue(): Int {
+    //更新Length
+    return when (DataBean.distanceLength) {
+        DistanceLength.MM5 -> 5
+        DistanceLength.MM10 -> 10
+        DistanceLength.MM15 -> 15
+        DistanceLength.MM20 -> 20
+        DistanceLength.MM25 -> 25
+    }
+}
+
+fun getTotalusedByType(type:Type):Int{
+    return when (type) {
+        Type.KNIFE_15 -> {
+            knife15
+        }
+        Type.KNIFE_20 -> {
+           knife20
+        }
+        Type.KNIFE_30 -> {
+            knife30
+        }
+        Type.KNIFE_45 -> {
+            knife45
+        }
+        Type.KNIFE_60 -> {
+            knife60
+        }
+        Type.KNIFE_90 -> {
+            knife90
+        }
+        Type.KNIFE_130 -> {
+            knife130
+        }
+        Type.CIRCLE_15 -> {
+            circle15
+        }
+        Type.CIRCLE_30 -> {
+            circle30
+        }
+        Type.CIRCLE_45 -> {
+            circle45
+        }
+        else -> {
+            0
+        }
+    }
 }

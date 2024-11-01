@@ -7,25 +7,22 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.ServiceConnection
 import android.content.res.ColorStateList
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.aimyskin.laserserialmodule.LaserSerialService
 import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
 import com.aimyskin.ultherapy_android.LIMIT_DIFFERENCE_POINT
+import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.REMINDER_CAN_NOT_CLICK
 import com.aimyskin.ultherapy_android.REMINDER_STANdBY_STATE
 import com.aimyskin.ultherapy_android.STR_READY
 import com.aimyskin.ultherapy_android.STR_STANDBY
-import com.aimyskin.ultherapy_android.WHERE_FROM_AWAIT
 import com.aimyskin.ultherapy_android.WHERE_FROM_MAIN
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.base.DataReceiver
@@ -164,6 +161,20 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setNumber() {
+        val remainValue = when (GlobalVariable.currentUseKnifePosition) {
+            Position.LEFT -> {
+                DataBean.leftHIFU.remain
+            }
+
+            Position.MIDDLE -> {
+                DataBean.middleHIFU.remain
+            }
+
+            else -> {
+                DataBean.rightHIFU.remain
+            }
+        }
+        binding.tvMainRemain.text = remainValue.toString()
         binding.tvMainStart.text = GlobalVariable.startNum.toString()
         binding.tvMainCurrent.text = GlobalVariable.currentNum.toString()
         binding.tvMainTotalused.text = getTotalusedByType(GlobalVariable.currentUseKnife).toString()
@@ -177,7 +188,7 @@ class MainActivity : BaseActivity() {
         receiver = DataReceiver(object : ReceiveDataCallback {
             override fun parseSuccess(frameBean: FrameBean) {
                 LogUtils.d("frameBean ... $frameBean")
-                if (frameBean.frameId and 0x8000 == 0) {
+                if (frameBean.frameId and 0x7fff == 0x7fff) {
                     //设置手柄图标是否点亮
                     if (DataBean.leftHIFU.press == PRESS.TRUE ||
                         DataBean.middleHIFU.press == PRESS.TRUE ||
@@ -196,22 +207,22 @@ class MainActivity : BaseActivity() {
                     //处理刀头数据
                     when (GlobalVariable.currentUseKnifePosition) {
                         Position.LEFT -> {
-                            setStateByDAta(DataBean.leftHIFU)
+                            setStateByData(DataBean.leftHIFU)
                         }
 
                         Position.MIDDLE -> {
-                            setStateByDAta(DataBean.middleHIFU)
+                            setStateByData(DataBean.middleHIFU)
                         }
 
                         else -> {
-                            setStateByDAta(DataBean.rightHIFU)
+                            setStateByData(DataBean.rightHIFU)
                         }
                     }
                 }
             }
 
             override fun parseFail(message: String) {
-                LogUtils.e("************** parseFail **************")
+                LogUtils.e("**************MainActivity parseFail **************")
             }
         })
         val fileIntentFilter = IntentFilter()
@@ -402,6 +413,24 @@ class MainActivity : BaseActivity() {
                 needValue += 10
                 GlobalVariable.needNum = needValue
                 binding.tvMainNeed.text = needValue.toString()
+
+                val hifuBean = when (GlobalVariable.currentUseKnifePosition) {
+                    Position.LEFT -> {
+                        DataBean.leftHIFU
+                    }
+
+                    Position.MIDDLE -> {
+                        DataBean.middleHIFU
+                    }
+
+                    else -> {
+                        DataBean.rightHIFU
+                    }
+                }
+                //设置是否可以进入准备状态
+                if (GlobalVariable.startNum < GlobalVariable.needNum && hifuBean.remain > 0) {
+                    isCanClickBtn = true
+                }
                 binding.pbMain.progress =
                     ((GlobalVariable.startNum.toFloat() / GlobalVariable.needNum.toFloat()) * 100).toInt()
             } else {
@@ -421,7 +450,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun setStateByDAta(hifuBean: HIFUBean) {
+    private fun setStateByData(hifuBean: HIFUBean) {
         //当前手柄可用
         if (hifuBean.knifeUsable == KnifeUsable.USABLE) {
             //手柄处于摘起状态
@@ -437,8 +466,7 @@ class MainActivity : BaseActivity() {
                         val differenceValue = previousRemainNum - hifuBean.remain
                         GlobalVariable.startNum += differenceValue
                         GlobalVariable.currentNum += differenceValue
-                        var totalUsed = getTotalusedByType(GlobalVariable.currentUseKnife)
-                        totalUsed += differenceValue
+                        addTotalusedByType(differenceValue)
                         setNumber()
                     }
                     previousRemainNum = hifuBean.remain
@@ -501,5 +529,53 @@ class MainActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(receiver)
+    }
+
+    private fun addTotalusedByType(num: Int) {
+        when (GlobalVariable.currentUseKnife) {
+            Type.KNIFE_15 -> {
+                Profile.knife15 += num
+            }
+
+            Type.KNIFE_20 -> {
+                Profile.knife20 += num
+            }
+
+            Type.KNIFE_30 -> {
+                Profile.knife30 += num
+            }
+
+            Type.KNIFE_45 -> {
+                Profile.knife45 += num
+            }
+
+            Type.KNIFE_60 -> {
+                Profile.knife60 += num
+            }
+
+            Type.KNIFE_90 -> {
+                Profile.knife90 += num
+            }
+
+            Type.KNIFE_130 -> {
+                Profile.knife130 += num
+            }
+
+            Type.CIRCLE_15 -> {
+                Profile.circle15 += num
+            }
+
+            Type.CIRCLE_30 -> {
+                Profile.circle30 += num
+            }
+
+            Type.CIRCLE_45 -> {
+                Profile.circle45 += num
+            }
+
+            else -> {
+
+            }
+        }
     }
 }

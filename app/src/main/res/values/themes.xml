@@ -5,6 +5,7 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="md_color_button_text">@color/md_color_button_text</item>
     </style>
     <!-- Base application theme. -->
     <style name="Base.Theme.Ultherapy_Android" parent="Theme.Material3.DayNight.NoActionBar">

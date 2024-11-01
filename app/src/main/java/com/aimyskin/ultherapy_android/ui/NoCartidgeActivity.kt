@@ -28,6 +28,8 @@ import com.aimyskin.ultherapy_android.pojo.Position
 import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.util.GlobalVariable
 import com.blankj.utilcode.util.LogUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 /**
  * 提示无刀头页面
@@ -67,14 +69,15 @@ class NoCartidgeActivity : BaseActivity() {
             if (it.hasExtra(KEY_NO_CARTIDGE_TYPE)) {
                 when (it.getStringExtra(KEY_NO_CARTIDGE_TYPE)) {
                     NO_CARTIDGE_HIFU -> {
-                        binding.ivNoCartidge.setBackgroundResource(R.drawable.animation_nocartidge_hifu)
+                        Glide.with(this).asGif().load(R.drawable.knife_gif).skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivNoCartidge)
                     }
 
                     NO_CARTIDGE_BOOSTER -> {
-                        binding.ivNoCartidge.setBackgroundResource(R.drawable.animation_nocartidge_booster)
+                        Glide.with(this).asGif().load(R.drawable.circle_gif).skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivNoCartidge)
                     }
                 }
-                startAnimation()
             }
         }
     }
@@ -105,7 +108,7 @@ class NoCartidgeActivity : BaseActivity() {
             }
 
             override fun parseFail(message: String) {
-                LogUtils.e("************** parseFail **************")
+                LogUtils.e("**************NoCartidgeActivity parseFail **************")
             }
         })
         val fileIntentFilter = IntentFilter()

@@ -36,7 +36,6 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             val dataArray = intent.getByteArrayExtra("KEY_SEND_DATA")
             dataArray?.let {
                 try {
-                    LogUtils.d("dataArray ... ${dataArray.size}")
                     callback.parseSuccess(parserData(it))
                 } catch (me: MyException) {
                     me.printStackTrace()
@@ -59,15 +58,11 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
      */
     private fun parserData(byteArray: ByteArray): FrameBean {
         LogUtils.d("************* start parser data *************")
-        for (i in byteArray.indices) {
-            print(i)
-            print("")
-        }
-
         // ================= 帧数据中用到的11给固定字节 ================= //
         val header = getIntFromTwoByte(byteArray[0], byteArray[1])
         val length = getIntFromTwoByte(byteArray[2], byteArray[3])
         val frameId = getIntFromTwoByte(byteArray[4], byteArray[5])
+//        LogUtils.d("frameId ... $frameId")
         val command = byteArray[6]
         val deviceAddress = getIntFromTwoByte(byteArray[7], byteArray[8])
         val functionAddress = getIntFromTwoByte(byteArray[9], byteArray[10])
@@ -132,7 +127,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
     }
 
     private fun getIntFromTwoByte(first: Byte, second: Byte): Int {
-        return first.toInt().shl(8) or second.toInt()
+        return (first.toInt() shl 8) or (second.toInt() and 0xFF)
     }
 
     private fun checkWriteProject(byte: Byte) {
@@ -146,7 +141,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             }
 
             else -> {
-                throw MyException("写保护数据异常 current value ... $byte")
+//                throw MyException("写保护数据异常 current value ... $byte")
             }
         }
     }
@@ -316,7 +311,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
             }
 
             else -> {
-                throw MyException("操作源的数据异常 current value ... $byte")
+//                throw MyException("操作源的数据异常 current value ... $byte")
             }
         }
     }
@@ -435,7 +430,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
                 PRESS.TRUE
             }
 
-            PRESS.EMPTY.byteValue->{
+            PRESS.EMPTY.byteValue -> {
                 PRESS.EMPTY
             }
 
@@ -453,6 +448,10 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
 
             FootPress.TRUE.byteValue -> {
                 FootPress.TRUE
+            }
+
+            FootPress.EMPTY.byteValue -> {
+                FootPress.EMPTY
             }
 
             else -> {

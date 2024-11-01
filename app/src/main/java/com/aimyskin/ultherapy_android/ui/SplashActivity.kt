@@ -72,7 +72,7 @@ class SplashActivity : BaseActivity() {
                 LogUtils.d("dataBean ... $DataBean")
             }
             override fun parseFail(message: String) {
-                LogUtils.e("************** parseFail **************")
+                LogUtils.e("**************SplashActivity parseFail **************")
             }
         })
         val fileIntentFilter = IntentFilter()

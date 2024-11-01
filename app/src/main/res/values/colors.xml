@@ -13,4 +13,5 @@
     <color name="text_time">#9fa3bf</color>
     <color name="progressbar_tint">#8b96df</color>
     <color name="progressbar_bg_tint">#9fa3bf</color>
+    <color name="md_color_button_text">#8b96df</color>
 </resources>

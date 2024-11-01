@@ -108,4 +108,12 @@
     <string name="str_fileexplorer">File Explorer</string>
     <string name="str_increase">Increase</string>
     <string name="totalused_number">Totalused %s</string>
+
+    <string name="dialog_reminder">Warning</string>
+    <string name="dialog_commit">YES</string>
+    <string name="dialog_cancel">NO</string>
+    <string name="dialog_is_zero">Whether the count becomes 0"</string>
+    <string name="str_both">Both</string>
+    <string name="str_hand">Hand</string>
+    <string name="str_foot">Foot</string>
 </resources>

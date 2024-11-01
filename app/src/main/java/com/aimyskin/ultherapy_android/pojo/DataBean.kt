@@ -204,7 +204,8 @@ enum class StandbyOrReady(val intValue: Int, val byteValue: Byte) {
  */
 enum class FootPress(val intValue: Int, val byteValue: Byte) {
     TRUE(0x01, 0x01),
-    FALSE(0x02, 0x02)
+    FALSE(0x02, 0x02),
+    EMPTY(0x00,0x00)
 }
 
 /**

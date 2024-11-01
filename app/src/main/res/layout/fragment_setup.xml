@@ -112,14 +112,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:id="@+id/iv_setup_foot"
+                android:layout_width="@dimen/setup_operating_source_size"
+                android:layout_height="@dimen/setup_operating_source_size"
                 android:background="@drawable/icon_setting_unchoice" />
 
             <TextView
                 style="@style/style_setup_textview"
                 android:paddingStart="4dp"
-                android:text="Foot" />
+                android:text="@string/str_foot" />
 
         </LinearLayout>
 
@@ -135,14 +136,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:id="@+id/iv_setup_hand"
+                android:layout_width="@dimen/setup_operating_source_size"
+                android:layout_height="@dimen/setup_operating_source_size"
                 android:background="@drawable/icon_setting_choice" />
 
             <TextView
                 style="@style/style_setup_textview"
                 android:paddingLeft="4dp"
-                android:text="Hand" />
+                android:text="@string/str_hand" />
 
         </LinearLayout>
 
@@ -158,14 +160,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:id="@+id/iv_setup_both"
+                android:layout_width="@dimen/setup_operating_source_size"
+                android:layout_height="@dimen/setup_operating_source_size"
                 android:background="@drawable/icon_setting_unchoice" />
 
             <TextView
                 style="@style/style_setup_textview"
                 android:paddingLeft="4dp"
-                android:text="Both" />
+                android:text="@string/str_both" />
 
         </LinearLayout>
 
@@ -193,6 +196,7 @@
             app:layout_constraintLeft_toRightOf="@+id/iv_setup_recognition" />
 
         <ImageView
+            android:id="@+id/iv_setup_recognition_btn"
             android:layout_width="95dp"
             android:layout_height="32dp"
             android:background="@drawable/icon_off"
@@ -222,6 +226,7 @@
             app:layout_constraintLeft_toRightOf="@+id/iv_setup_animation" />
 
         <ImageView
+            android:id="@+id/iv_setup_animation_btn"
             android:layout_width="95dp"
             android:layout_height="32dp"
             android:background="@drawable/icon_on"

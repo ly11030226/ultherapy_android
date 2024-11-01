@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.MaterialDialog
 import com.aimyskin.ultherapy_android.Profile.circle15
 import com.aimyskin.ultherapy_android.Profile.circle30
 import com.aimyskin.ultherapy_android.Profile.circle45
@@ -48,22 +49,65 @@ class InfoFragment : BaseFragment() {
         binding.tvInfoBooster30Shotcount.text = circle30.toString()
         binding.tvInfoBooster45Shotcount.text = circle45.toString()
 
-        binding.tvInfoUltrafTotalusedValue.text = (knife15 + knife20 + knife30 + knife45 + knife60 + knife90 + knife130).toString()
-        binding.tvInfoBoosterTotalusedValue.text = (circle15 + circle30 + circle45).toString()
+        binding.tvInfoUltrafTotalusedValue.text = hifuTotal().toString()
+        binding.tvInfoBoosterTotalusedValue.text = boosterTotal().toString()
 
-        val totalUsed = (knife15 + knife20 + knife30 + knife45 + knife60 + knife90 + knife130 + circle15 + circle30 + circle45).toString()
-        val str = getString(R.string.totalused_number)
-        str.format(totalUsed)
-        binding.tvInfoTotalusedValue.text = str
+        refreshTotalUsed()
     }
 
     override fun addListener() {
         binding.llLeftReset.setOnClickListener {
+            context?.let {
+                MaterialDialog(it).show {
+                    title(R.string.dialog_reminder)
+                    message(res = R.string.dialog_is_zero)
+                    positiveButton(R.string.dialog_commit) {
+                        knife15 = 0
+                        knife20 = 0
+                        knife30 = 0
+                        knife45 = 0
+                        knife60 = 0
+                        knife90 = 0
+                        knife130 = 0
+                        binding.tvInfoUltrafTotalusedValue.text = hifuTotal().toString()
+                        refreshTotalUsed()
+                    }
+                    negativeButton(R.string.dialog_cancel)
+                }
+            }
         }
         binding.llRightReset.setOnClickListener {
+            context?.let {
+                MaterialDialog(it).show {
+                    title(R.string.dialog_reminder)
+                    message(res = R.string.dialog_is_zero)
+                    positiveButton(R.string.dialog_commit) {
+                        circle15 = 0
+                        circle30 = 0
+                        circle45 = 0
+                        binding.tvInfoBoosterTotalusedValue.text = boosterTotal().toString()
+                        refreshTotalUsed()
+                    }
+                    negativeButton(R.string.dialog_cancel)
+                }
+            }
         }
     }
 
+    private fun hifuTotal(): Int {
+        return knife15 + knife20 + knife30 + knife45 + knife60 + knife90 + knife130
+    }
+
+    private fun boosterTotal(): Int {
+        return circle15 + circle30 + circle45
+    }
+
+    private fun refreshTotalUsed() {
+        val totalUsed = (hifuTotal() + boosterTotal()).toString()
+        val str = getString(R.string.totalused_number)
+        val result = String.format(str, totalUsed)
+        binding.tvInfoTotalusedValue.text = result
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -27,4 +27,5 @@
     <dimen name="info_title_padding_top">8dp</dimen>
     <dimen name="info_title_padding_bottom">8dp</dimen>
     <dimen name="info_main_padding_top">4dp</dimen>
+    <dimen name="setup_operating_source_size">40dp</dimen>
 </resources>

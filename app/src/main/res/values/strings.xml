@@ -116,4 +116,5 @@
     <string name="str_both">Both</string>
     <string name="str_hand">Hand</string>
     <string name="str_foot">Foot</string>
+    <string name="authentication_failure">Authentication Failure</string>
 </resources>

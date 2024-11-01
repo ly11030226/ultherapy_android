@@ -1,15 +1,16 @@
 package com.aimyskin.ultherapy_android.base
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.WindowInsetsController
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.aimyskin.miscmodule.utils.ActivityStackUtils
 import com.aimyskin.miscmodule.utils.ActivityUtil
+import com.blankj.utilcode.util.LogUtils
+import org.greenrobot.eventbus.EventBus
 
 
 open class BaseActivity : AppCompatActivity() {
@@ -19,6 +20,12 @@ open class BaseActivity : AppCompatActivity() {
         val windowInsetsController = WindowInsetsControllerCompat(window,window.decorView)
         windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars())
+        ActivityStackUtils.getmInstance().addActivity(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivityStackUtils.getmInstance().finishActivity(this)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

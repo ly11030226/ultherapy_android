@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.aimyskin.asentinel'
+
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+//            if (rootProject.ext.appMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+        debug {
+            jniDebuggable true
+//            if (rootProject.ext.appDebugMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path file('src/main/cpp/Android.mk')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    ndkVersion "21.0.6113669"
+}
+
+dependencies {
+    api project(path: ':SerialAsciiCRLFImpl')
+    api project(path: ':MiscModule')
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "androidx.appcompat:appcompat:1.6.1"
+}

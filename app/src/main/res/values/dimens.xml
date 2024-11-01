@@ -28,4 +28,9 @@
     <dimen name="info_title_padding_bottom">8dp</dimen>
     <dimen name="info_main_padding_top">4dp</dimen>
     <dimen name="setup_operating_source_size">40dp</dimen>
+    <dimen name="register_right_margin_left">64dp</dimen>
+    <dimen name="register_right_margin_top">16dp</dimen>
+    <dimen name="register_right_padding_left">16dp</dimen>
+    <dimen name="register_right_et_height">60dp</dimen>
+
 </resources>

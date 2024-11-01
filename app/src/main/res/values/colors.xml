@@ -14,4 +14,9 @@
     <color name="progressbar_tint">#8b96df</color>
     <color name="progressbar_bg_tint">#9fa3bf</color>
     <color name="md_color_button_text">#8b96df</color>
+    <color name="register_title_text">#9FA3BF</color>
+    <color name="register_content_text">#8B96DF</color>
+    <color name="register_right_item_bg">#25262E</color>
+    <color name="register_edit_text_focus">#98f1cd</color>
+    <color name="register_edit_text_hint">#C4C4C4</color>
 </resources>

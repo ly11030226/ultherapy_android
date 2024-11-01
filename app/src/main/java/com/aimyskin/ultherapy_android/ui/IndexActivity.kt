@@ -27,10 +27,12 @@ class IndexActivity : BaseActivity() {
             e.printStackTrace()
         }
     }
+
     private fun initView() {
         //开始更新时间
         getCurrentTime()
     }
+
     private fun getCurrentTime() {
         // 获取当前时间
         val currentTimeMillis = System.currentTimeMillis()
@@ -55,9 +57,8 @@ class IndexActivity : BaseActivity() {
             finish()
         }
         binding.ivIndexUser.setOnClickListener {
-
+            startActivity(Intent(this@IndexActivity, RegisterActivity::class.java))
+            finish()
         }
     }
-
-
 }

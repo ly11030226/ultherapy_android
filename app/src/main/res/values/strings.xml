@@ -117,4 +117,10 @@
     <string name="str_hand">Hand</string>
     <string name="str_foot">Foot</string>
     <string name="authentication_failure">Authentication Failure</string>
+    <string name="str_new_user">New User</string>
+    <string name="str_name">Name</string>
+    <string name="str_gender">Gender</string>
+    <string name="str_birthday">Birthday</string>
+    <string name="remind_input_name">Please enter your name</string>
+
 </resources>

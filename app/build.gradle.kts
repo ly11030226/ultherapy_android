@@ -82,8 +82,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     //Dialog
-    implementation("com.afollestad.material-dialogs:core:3.2.1")
+    implementation("com.afollestad.material-dialogs:core:3.3.0")
     implementation("com.afollestad.material-dialogs:input:3.3.0")
+    implementation ("com.afollestad.material-dialogs:datetime:3.3.0")
+
     //Display
     implementation("com.github.JessYanCoding:AndroidAutoSize:v1.2.1")
     //Lifecycle

@@ -19,4 +19,7 @@
     <color name="register_right_item_bg">#25262E</color>
     <color name="register_edit_text_focus">#98f1cd</color>
     <color name="register_edit_text_hint">#C4C4C4</color>
+    <color name="search_stroke">#C4C4C4</color>
+    <color name="increase_text_color">#9FA3BF</color>
+    <color name="increase_bg">#2A2C31</color>
 </resources>

@@ -238,7 +238,7 @@ class MainActivity : BaseActivity() {
                 finish()
             } else {
                 Toasty.warning(this@MainActivity, REMINDER_STANdBY_STATE, Toast.LENGTH_SHORT, true)
-                    .show();
+                    .show()
             }
         }
 

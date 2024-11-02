@@ -120,7 +120,15 @@
     <string name="str_new_user">New User</string>
     <string name="str_name">Name</string>
     <string name="str_gender">Gender</string>
-    <string name="str_birthday">Birthday</string>
+    <string name="str_birthday">Birth Date</string>
+    <string name="str_telephone">Telephone</string>
+    <string name="str_email">Email</string>
     <string name="remind_input_name">Please enter your name</string>
-
+    <string name="remind_choice_birthday">Please select a date of birth</string>
+    <string name="remind_input_telephone">Please input your mobile number</string>
+    <string name="remind_input_gender">Please select your gender</string>
+    <string name="remind_input_email">Please input your email</string>
+    <string name="str_registered_users">Registered Users</string>
+    <string name="choice_birthday">%d/%d/%d</string>
+    <string name="str_show_users_increase">increase</string>
 </resources>

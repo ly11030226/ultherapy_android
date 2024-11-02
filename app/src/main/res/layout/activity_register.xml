@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_percent="0.85" />
 
     <ImageView
@@ -63,15 +64,10 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
         app:layout_constraintTop_toBottomOf="@+id/et_register_name" />
 
-    <com.aimyskin.ultherapy_android.view.MySpinner
-        android:id="@+id/sp_register_gender"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/register_right_et_height"
-        android:layout_marginStart="@dimen/register_right_margin_left"
-        android:layout_marginEnd="@dimen/register_right_margin_left"
-        android:layout_marginTop="@dimen/register_right_margin_top"
-        style="@style/style_myspinner"
-        android:background="@drawable/shape_register_edittext_bg"
+    <TextView
+        android:id="@+id/tv_register_gender_value"
+        style="@style/style_register_edittext"
+        android:hint="@string/remind_input_gender"
         app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
         app:layout_constraintRight_toRightOf="@+id/iv_register_right_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_register_gender" />
@@ -82,7 +78,57 @@
         android:layout_marginTop="16dp"
         android:text="@string/str_birthday"
         app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
-        app:layout_constraintTop_toBottomOf="@+id/sp_register_gender" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_gender_value" />
 
+    <TextView
+        android:id="@+id/tv_register_birthday_value"
+        style="@style/style_register_edittext"
+        android:hint="@string/remind_choice_birthday"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
+        app:layout_constraintRight_toRightOf="@+id/iv_register_right_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_birthday" />
+
+
+    <TextView
+        android:id="@+id/tv_register_telephone"
+        style="@style/style_register_textview"
+        android:layout_marginTop="16dp"
+        android:text="@string/str_telephone"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_birthday_value" />
+
+    <com.aimyskin.ultherapy_android.view.MyEditText
+        android:id="@+id/et_register_telephone"
+        style="@style/style_register_edittext"
+        android:hint="@string/remind_input_telephone"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
+        app:layout_constraintRight_toRightOf="@+id/iv_register_right_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_telephone" />
+
+    <TextView
+        android:id="@+id/tv_register_email"
+        style="@style/style_register_textview"
+        android:layout_marginTop="16dp"
+        android:text="@string/str_email"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
+        app:layout_constraintTop_toBottomOf="@+id/et_register_telephone" />
+
+    <com.aimyskin.ultherapy_android.view.MyEditText
+        android:id="@+id/et_register_email"
+        style="@style/style_register_edittext"
+        android:hint="@string/remind_input_email"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
+        app:layout_constraintRight_toRightOf="@+id/iv_register_right_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_email" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="180dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/register_enter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_register_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

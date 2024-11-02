@@ -13,7 +13,8 @@ import com.blankj.utilcode.util.LogUtils
 class MySpinner @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyleInt: Int = 0) : androidx.appcompat.widget.AppCompatSpinner(context, attributeSet, defStyleInt) {
     init {
         val genderList = arrayOf(Gender.FEMALE, Gender.MALE)
-        adapter = ArrayAdapter(context, R.layout.layout_spinner_item, genderList)
+        val mAdapter: ArrayAdapter<Gender> = ArrayAdapter(context,R.layout.layout_spinner_item,genderList)
+        mAdapter.setDropDownViewResource(R.layout.layout_spinner_dropdown_item)
         setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus()) {
                 setBackgroundResource(R.drawable.shape_register_edittext_bg_focus)

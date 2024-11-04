@@ -24,7 +24,7 @@ android {
 
     buildTypes {
         release {
-            isPseudoLocalesEnabled  = true
+            isPseudoLocalesEnabled = true
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -32,8 +32,8 @@ android {
             )
         }
 
-        debug{
-            isPseudoLocalesEnabled  = true
+        debug {
+            isPseudoLocalesEnabled = true
         }
     }
     compileOptions {
@@ -84,7 +84,7 @@ dependencies {
     //Dialog
     implementation("com.afollestad.material-dialogs:core:3.3.0")
     implementation("com.afollestad.material-dialogs:input:3.3.0")
-    implementation ("com.afollestad.material-dialogs:datetime:3.3.0")
+    implementation("com.afollestad.material-dialogs:datetime:3.3.0")
 
     //Display
     implementation("com.github.JessYanCoding:AndroidAutoSize:v1.2.1")
@@ -121,4 +121,9 @@ dependencies {
     implementation("androidx.paging:paging-runtime:$pagingVersion")
     // alternatively - without Android dependencies for tests
     testImplementation("androidx.paging:paging-common:$pagingVersion")
+    // 上拉刷新，下拉加载更多
+    implementation("io.github.scwang90:refresh-layout-kernel:2.1.0")      //核心必须依赖
+    implementation("io.github.scwang90:refresh-header-classics:2.1.0")    //经典刷新头
+    implementation("io.github.scwang90:refresh-footer-classics:2.1.0")     //经典加载
+
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:id="@+id/item_show_users_id"
+        style="@style/style_show_users_main_title"
+        android:layout_weight="0.5"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/item_show_users_registertime"
+        style="@style/style_show_users_main_title"
+        tools:text="2024/12/01" />
+
+    <TextView
+        android:id="@+id/item_show_users_name"
+        style="@style/style_show_users_main_title"
+        android:layout_weight="1.5"
+        android:ellipsize="middle"
+        android:lines="1"
+        tools:text="David" />
+
+    <TextView
+        android:id="@+id/item_show_users_telephone"
+        style="@style/style_show_users_main_title"
+        android:layout_weight="1.3"
+        android:ellipsize="middle"
+        android:lines="1"
+        tools:text="18613227613" />
+
+    <TextView
+        android:id="@+id/item_show_users_therapist"
+        style="@style/style_show_users_main_title"
+        android:layout_weight="0.7"
+        android:ellipsize="middle"
+        android:lines="1"
+        tools:text="admin" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/item_show_users_save"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/show_users_save" />
+
+        <ImageView
+            android:id="@+id/item_show_users_delete"
+            android:layout_width="28dp"
+            android:layout_height="30dp"
+            android:background="@drawable/show_users_delete" />
+
+    </LinearLayout>
+
+</LinearLayout>

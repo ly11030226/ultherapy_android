@@ -17,4 +17,10 @@
     <style name="splash_theme" parent="Theme.Ultherapy_Android">
         <item name="android:windowBackground">@color/bg_black</item>
     </style>
+
+    <style name="show_users_theme" parent="Theme.Ultherapy_Android">
+        <item name="md_background_color">@android:color/transparent</item>
+        <item name="android:background">@drawable/shape_dialog_search</item>
+    </style>
+
 </resources>

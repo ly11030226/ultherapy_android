@@ -231,7 +231,6 @@ public class ConfigurationDataNiuAnMei1000W extends ConfigurationDataBean implem
     }
 
     /**
-     * todo 待核对
      *
      * @return
      */

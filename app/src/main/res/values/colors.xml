@@ -22,4 +22,9 @@
     <color name="search_stroke">#C4C4C4</color>
     <color name="increase_text_color">#9FA3BF</color>
     <color name="increase_bg">#2A2C31</color>
+    <color name="dialog_bg">#1D1B2C</color>
+    <color name="dialog_stroke">#323438</color>
+    <color name="dialog_btn_cancel_bg">#2A2C31</color>
+    <color name="dialog_btn_apply_bg">#96EFCA</color>
+    <color name="dialog_search_user_text">#8b96df</color>
 </resources>

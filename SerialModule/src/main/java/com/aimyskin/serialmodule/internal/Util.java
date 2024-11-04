@@ -414,7 +414,6 @@ public final class Util {
             if (containsInvalidHostnameAsciiCodes(result)) {
                 return null;
             }
-            // TODO: implement all label limits.
             return result;
         } catch (IllegalArgumentException e) {
             return null;

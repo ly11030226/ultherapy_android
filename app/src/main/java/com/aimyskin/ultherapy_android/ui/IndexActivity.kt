@@ -60,5 +60,10 @@ class IndexActivity : BaseActivity() {
             startActivity(Intent(this@IndexActivity, RegisterActivity::class.java))
             finish()
         }
+        binding.ivIndexVideo.setOnClickListener {
+            // FIXME: 2024/11/4 这里暂时用来测试ShowUsersActivity页面
+            startActivity(Intent(this@IndexActivity, ShowUsersActivity::class.java))
+            finish()
+        }
     }
 }

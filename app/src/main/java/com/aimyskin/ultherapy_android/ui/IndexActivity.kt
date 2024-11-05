@@ -65,5 +65,10 @@ class IndexActivity : BaseActivity() {
             startActivity(Intent(this@IndexActivity, ShowUsersActivity::class.java))
             finish()
         }
+        binding.ivIndexBrowser.setOnClickListener {
+            // FIXME: 2024/11/5 这里暂时用来测试UserManagerActivity页面
+            startActivity(Intent(this@IndexActivity, UserManagerActivity::class.java))
+            finish()
+        }
     }
 }

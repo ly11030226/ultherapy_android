@@ -94,6 +94,12 @@ class InfoFragment : BaseFragment() {
         }
     }
 
+    override fun createObserver() {
+    }
+
+    override fun initData() {
+    }
+
     private fun hifuTotal(): Int {
         return knife15 + knife20 + knife30 + knife45 + knife60 + knife90 + knife130
     }

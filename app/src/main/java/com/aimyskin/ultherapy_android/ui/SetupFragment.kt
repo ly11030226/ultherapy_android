@@ -114,6 +114,12 @@ class SetupFragment : BaseFragment() {
         }
     }
 
+    override fun createObserver() {
+    }
+
+    override fun initData() {
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

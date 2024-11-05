@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/UserGridFragment">
+
+    <fragment
+        android:id="@+id/UserListFragment"
+        android:name="com.aimyskin.ultherapy_android.ui.UserListFragment"
+        android:label="@string/label_list_fragment"
+        tools:layout="@layout/fragment_user_list">
+        <action
+            android:id="@+id/action_listFragment_to_gridFragment"
+            app:destination="@id/UserGridFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_recordFragment"
+            app:destination="@id/UserRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/UserGridFragment"
+        android:name="com.aimyskin.ultherapy_android.ui.UserGridFragment"
+        android:label="@string/label_grid_fragment"
+        tools:layout="@layout/fragment_user_grid">
+        <action
+            android:id="@+id/action_gridFragment_to_listFragment"
+            app:destination="@id/UserListFragment" />
+        <action
+            android:id="@+id/action_gridFragment_to_recordFragment"
+            app:destination="@id/UserRecordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/UserRecordFragment"
+        android:name="com.aimyskin.ultherapy_android.ui.UserRecordFragment"
+        android:label="@string/label_record_fragment"
+        tools:layout="@layout/fragment_user_record">
+        <action
+            android:id="@+id/action_recordFragment_to_gridFragment"
+            app:destination="@id/UserGridFragment" />
+    </fragment>
+</navigation>

@@ -72,6 +72,9 @@
     <string name="choice_close">X Close</string>
     <string name="label_setup_fragment">SetupFragment</string>
     <string name="label_info_fragment">InfoFragment</string>
+    <string name="label_list_fragment">UserListFragment</string>
+    <string name="label_grid_fragment">UserGridFragment</string>
+    <string name="label_record_fragment">UserRecordFragment</string>
     <string name="str_back">Back</string>
     <string name="str_volume">Volume</string>
     <string name="str_operate">H.P Cperating Source</string>
@@ -133,4 +136,9 @@
     <string name="str_show_users_increase">increase</string>
     <string name="dialog_reminder_search">Please enter user phone number</string>
     <string name="dialog_delete_user_reminder">Whether you want to delete user 【%s】?</string>
+    <string name="str_remake">Remake</string>
+    <string name="str_user_manager_increase">Increase</string>
+    <string name="str_refresh">Refresh</string>
+    <string name="registered_users_user_manager">Registered Users</string>
+    <string name="user_information">User Information</string>
 </resources>

@@ -22,6 +22,7 @@ import com.aimyskin.ultherapy_android.pojo.FrameBean
 import com.aimyskin.ultherapy_android.pojo.Pitch
 import com.aimyskin.ultherapy_android.pojo.Position
 import com.aimyskin.ultherapy_android.pojo.Type
+import com.aimyskin.ultherapy_android.pojo.User
 import com.blankj.utilcode.util.LogUtils
 import com.chibatching.kotpref.Kotpref
 import com.chibatching.kotpref.KotprefModel
@@ -33,14 +34,21 @@ import java.io.File
 object GlobalVariable {
     //当前用的刀头类型
     var currentUseKnife = Type.NONE
+
     //当前用的刀头位置
     var currentUseKnifePosition = Position.LEFT
+
     //治疗页面开始打点的数值
     var startNum = 100
+
     //治疗页面当前打点的数值
     var currentNum = 0
+
     //治疗页面需要共打点的数量
     var needNum = DEFAULT_NEED_POINT_NUMBER
+
+    //当前选中的用户
+    var currentUser: User? = null
 }
 
 fun loadDrawableListFromFolder(folderName: String): MutableList<Drawable> {
@@ -210,38 +218,48 @@ fun getLengthValue(): Int {
     }
 }
 
-fun getTotalusedByType(type:Type):Int{
+fun getTotalusedByType(type: Type): Int {
     return when (type) {
         Type.KNIFE_15 -> {
             knife15
         }
+
         Type.KNIFE_20 -> {
-           knife20
+            knife20
         }
+
         Type.KNIFE_30 -> {
             knife30
         }
+
         Type.KNIFE_45 -> {
             knife45
         }
+
         Type.KNIFE_60 -> {
             knife60
         }
+
         Type.KNIFE_90 -> {
             knife90
         }
+
         Type.KNIFE_130 -> {
             knife130
         }
+
         Type.CIRCLE_15 -> {
             circle15
         }
+
         Type.CIRCLE_30 -> {
             circle30
         }
+
         Type.CIRCLE_45 -> {
             circle45
         }
+
         else -> {
             0
         }

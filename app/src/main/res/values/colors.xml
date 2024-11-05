@@ -27,4 +27,7 @@
     <color name="dialog_btn_cancel_bg">#2A2C31</color>
     <color name="dialog_btn_apply_bg">#96EFCA</color>
     <color name="dialog_search_user_text">#8b96df</color>
+    <color name="user_manager_text">#9FA3BF</color>
+    <color name="user_manager_check_bg">#474D54</color>
+    <color name="record_user_bg">#242C30</color>
 </resources>

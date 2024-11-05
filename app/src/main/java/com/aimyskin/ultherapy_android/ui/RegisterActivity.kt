@@ -9,21 +9,29 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.afollestad.date.dayOfMonth
 import com.afollestad.date.month
 import com.afollestad.date.year
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
 import com.afollestad.materialdialogs.list.listItems
+import com.aimyskin.ultherapy_android.DEFAULT_THERAPIST
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.REMINDER_COMPLETE_CONTENT
 import com.aimyskin.ultherapy_android.REMINDER_STANdBY_STATE
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityRegisterBinding
 import com.aimyskin.ultherapy_android.pojo.Gender
+import com.aimyskin.ultherapy_android.pojo.User
+import com.aimyskin.ultherapy_android.viewmodel.AddUserViewModel
 import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
 import es.dmoral.toasty.Toasty
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 /**
  * 注册用户页面
@@ -32,21 +40,32 @@ import es.dmoral.toasty.Toasty
 class RegisterActivity : BaseActivity() {
     private lateinit var binding: ActivityRegisterBinding
     val genderList = arrayOf(Gender.FEMALE, Gender.MALE)
+    private val addUserViewModel: AddUserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         try {
-            initView()
             addListener()
+            initObserver()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    private fun initView() {
-
+    private fun initObserver() {
+        addUserViewModel.run {
+            addUserLiveData.observe(this@RegisterActivity, Observer {
+                if (it.isSuccess) {
+                    Toasty.success(this@RegisterActivity, it.message).show()
+                    setResult(RESULT_OK)
+                    finish()
+                } else {
+                    Toasty.error(this@RegisterActivity, it.message).show()
+                }
+            })
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -72,13 +91,19 @@ class RegisterActivity : BaseActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val name = binding.etRegisterName.text
-            val gender = binding.tvRegisterGenderValue.text
-            val birth = binding.tvRegisterBirthdayValue.text
-            val telephone = binding.etRegisterTelephone.text
-            val email = binding.etRegisterEmail.text
-            if (name!!.isNotEmpty() && gender!!.isNotEmpty() && birth!!.isNotEmpty() && telephone!!.isNotEmpty() && email!!.isNotEmpty()) {
-
+            val name = binding.etRegisterName.text.toString()
+            val gender = binding.tvRegisterGenderValue.text.toString()
+            val birth = binding.tvRegisterBirthdayValue.text.toString()
+            val telephone = binding.etRegisterTelephone.text.toString()
+            val email = binding.etRegisterEmail.text.toString()
+            if (name.isNotEmpty() && gender.isNotEmpty() && birth.isNotEmpty() && telephone.isNotEmpty() && email.isNotEmpty()) {
+                val calendar = Calendar.getInstance()
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH) + 1
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
+                val rDate = "$year/$month/$day"
+                val user = User(name, gender, rDate, birth, telephone, email, DEFAULT_THERAPIST)
+                addUserViewModel.addUserToLocal(user)
             } else {
                 Toasty.warning(this@RegisterActivity, REMINDER_COMPLETE_CONTENT, Toast.LENGTH_SHORT, true).show()
             }

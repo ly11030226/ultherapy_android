@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="32dp"
-    android:layout_marginEnd="32dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingTop="24dp"
@@ -14,7 +12,7 @@
         android:id="@+id/item_show_users_id"
         style="@style/style_show_users_main_title"
         android:layout_weight="0.5"
-        tools:text="1" />
+        tools:text="10000" />
 
     <TextView
         android:id="@+id/item_show_users_registertime"

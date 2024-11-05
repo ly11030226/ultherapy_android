@@ -19,6 +19,9 @@ const val STR_READY = "READY"
 const val DEFAULT_NEED_POINT_NUMBER = 300
 const val LIMIT_DIFFERENCE_POINT = 5
 
+const val DEFAULT_THERAPIST = "admin"
+const val DATA_NUMBER_PER_PAGE = 20
+
 const val REMINDER_STANdBY_STATE  = "Please click on Standby"
 const val REMINDER_CAN_NOT_CLICK  = "The remaining number is 0 Or The progress bar is 100"
 const val REMINDER_COMPLETE_CONTENT  = "Please complete"

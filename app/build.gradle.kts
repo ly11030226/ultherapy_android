@@ -125,5 +125,7 @@ dependencies {
     implementation("io.github.scwang90:refresh-layout-kernel:2.1.0")      //核心必须依赖
     implementation("io.github.scwang90:refresh-header-classics:2.1.0")    //经典刷新头
     implementation("io.github.scwang90:refresh-footer-classics:2.1.0")     //经典加载
+    //
+    implementation("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
 
 }

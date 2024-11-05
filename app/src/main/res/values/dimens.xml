@@ -33,5 +33,6 @@
     <dimen name="register_right_padding_left">16dp</dimen>
     <dimen name="register_right_et_height">60dp</dimen>
     <dimen name="show_users_margin_left_and_right">64dp</dimen>
+    <dimen name="dialog_reminder_radius">16dp</dimen>
 
 </resources>

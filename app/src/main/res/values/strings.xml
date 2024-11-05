@@ -132,4 +132,5 @@
     <string name="choice_birthday">%d/%d/%d</string>
     <string name="str_show_users_increase">increase</string>
     <string name="dialog_reminder_search">Please enter user phone number</string>
+    <string name="dialog_delete_user_reminder">Whether you want to delete user 【%s】?</string>
 </resources>

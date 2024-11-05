@@ -3,7 +3,6 @@ package com.aimyskin.ultherapy_android.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.aimyskin.nodeparser.repository.impl.UserRepositoryImpl
-import com.aimyskin.nodeparser.viewModel.BaseViewModel
 import com.aimyskin.ultherapy_android.pojo.User
 import com.aimyskin.ultherapy_android.stateCallback.DeleteUserUiState
 import kotlinx.coroutines.Dispatchers
@@ -18,11 +17,11 @@ class DeleteUserViewModel : BaseViewModel() {
             try {
                 withContext(Dispatchers.IO) {
                     userRepository.deleteUser(user)
-                    deleteUserLiveData.value = DeleteUserUiState(true, "Delete user success")
+                    deleteUserLiveData.postValue(DeleteUserUiState(true, "Delete user success"))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                deleteUserLiveData.value = DeleteUserUiState(false, "Delete user error")
+                deleteUserLiveData.postValue(DeleteUserUiState(false, "Delete user error"))
             }
         }
     }

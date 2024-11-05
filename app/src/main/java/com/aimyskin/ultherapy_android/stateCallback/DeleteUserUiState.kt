@@ -4,5 +4,5 @@ import java.io.Serializable
 
 data class DeleteUserUiState(
     val isSuccess: Boolean,
-    val errorMessage: String
+    val message: String
 ) : Serializable

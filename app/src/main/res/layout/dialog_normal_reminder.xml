@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="900dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_dialog_reminder_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="@string/dialog_reminder"
+        android:textColor="@color/increase_text_color"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_dialog_reminder_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/tv_dialog_reminder_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="32dp"
+        tools:text="Do you want to delete"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_reminder_title"
+        android:textColor="@color/increase_text_color"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/btn_dialog_reminder_cancel"
+        android:layout_width="150dp"
+        android:layout_height="72dp"
+        android:layout_margin="32dp"
+        android:background="@drawable/shape_dialog_search_btn"
+        android:text="CANCEL"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btn_dialog_reminder_apply"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_reminder_content" />
+
+
+    <Button
+        android:id="@+id/btn_dialog_reminder_apply"
+        android:layout_width="150dp"
+        android:layout_height="72dp"
+        android:layout_margin="32dp"
+        android:background="@drawable/shape_dialog_search_apply_btn"
+        android:text="APPLY"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_dialog_reminder_cancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_reminder_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

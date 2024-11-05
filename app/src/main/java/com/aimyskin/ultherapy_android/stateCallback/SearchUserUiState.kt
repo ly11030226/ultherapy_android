@@ -8,6 +8,6 @@ import java.io.Serializable
  */
 data class SearchUserUiState(
     val isSuccess: Boolean,
-    val errorMessage: String,
+    val message: String,
     var userList: List<User>?
 ) : Serializable

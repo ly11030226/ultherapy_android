@@ -4,6 +4,6 @@ import java.io.Serializable
 
 data class AddUserUiState(
     val isSuccess: Boolean,
-    val errorMessage: String
+    val message: String
 ) : Serializable
 

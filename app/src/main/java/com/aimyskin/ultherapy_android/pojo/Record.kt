@@ -20,20 +20,20 @@ import java.io.Serializable
     indices = [Index("user_id")]
 )
 data class Record(
-    val date: String,
+    var date: String,
     var therapist: String? = null,
     var machine: String? = null,
     var part: String? = null,
-    val knife: String,
-    val point: Int,
+    var knife: String,
+    var point: Int,
     @ColumnInfo(name = "need_point")
-    val needPoint: Int,
+    var needPoint: Int,
     @ColumnInfo(name = "current_point")
-    val currentPoint: Int,
+    var currentPoint: Int,
     @ColumnInfo(name = "user_id")
-    val userId:Long
+    var userId:Long
 ) : Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "record_id")
-    val recordId: Long = 0
+    var recordId: Long = 0
 }

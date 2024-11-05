@@ -1,7 +1,5 @@
-package com.aimyskin.nodeparser.viewModel
-
+package com.aimyskin.ultherapy_android.viewmodel
 import androidx.lifecycle.ViewModel
-import com.aimyskin.nodeparser.EventLiveData
 import com.aimyskin.ultherapy_android.EventLiveData
 
 /**

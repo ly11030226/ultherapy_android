@@ -197,6 +197,9 @@ class MainActivity : BaseActivity() {
         }
         binding.tvMainRemain.text = remainValue.toString()
         binding.tvMainStart.text = GlobalVariable.startNum.toString()
+        binding.tvMainNeed.text = GlobalVariable.needNum.toString()
+        //每次进到MainActivity currentNum都清0
+        GlobalVariable.currentNum = 0
         binding.tvMainCurrent.text = GlobalVariable.currentNum.toString()
         binding.tvMainTotalused.text = getTotalusedByType(GlobalVariable.currentUseKnife).toString()
         //设置进度条
@@ -258,8 +261,7 @@ class MainActivity : BaseActivity() {
                 startActivity(Intent(this@MainActivity, AwaitActivity::class.java))
                 finish()
             } else {
-                Toasty.warning(this@MainActivity, REMINDER_STANdBY_STATE, Toast.LENGTH_SHORT, true)
-                    .show()
+                Toasty.warning(this@MainActivity, REMINDER_STANdBY_STATE, Toast.LENGTH_SHORT, true).show()
             }
         }
 
@@ -557,6 +559,7 @@ class MainActivity : BaseActivity() {
         }
         //当前手柄不可用直接跳转到Await
         else {
+            resetNum()
             jumpToAwait()
         }
     }

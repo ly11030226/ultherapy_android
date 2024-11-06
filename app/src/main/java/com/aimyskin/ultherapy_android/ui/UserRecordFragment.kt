@@ -164,11 +164,9 @@ class UserRecordFragment : BaseFragment(), ShowRecordListClickCallback, ClickRef
         GlobalVariable.currentUser?.let {
             GlobalVariable.startNum = dataList[position].point
             GlobalVariable.needNum = dataList[position].currentPoint
-            GlobalVariable.currentNum = dataList[position].needPoint
         } ?: {
             GlobalVariable.startNum = guestList[position].point
             GlobalVariable.needNum = guestList[position].needPoint
-            GlobalVariable.currentNum = guestList[position].currentPoint
         }
         activity?.let {
             it.startActivity(Intent(it, AwaitActivity::class.java))

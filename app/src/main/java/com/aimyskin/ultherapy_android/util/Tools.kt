@@ -38,7 +38,7 @@ object GlobalVariable {
     var currentUseKnifePosition = Position.LEFT
 
     //治疗页面开始打点的数值
-    var startNum = 100
+    var startNum = 0
 
     //治疗页面当前打点的数值
     var currentNum = 0

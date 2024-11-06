@@ -1,4 +1,4 @@
-package com.aimyskin.nodeparser.database
+package com.aimyskin.ultherapy_android.database
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -11,9 +11,7 @@ import com.aimyskin.ultherapy_android.pojo.User
 import com.aimyskin.ultherapy_android.pojo.UserWithRecordList
 import kotlinx.coroutines.flow.Flow
 
-/**
- * 本地数据库需要用到的 模板Dao
- */
+
 @Dao
 interface UserDataDao {
     /**

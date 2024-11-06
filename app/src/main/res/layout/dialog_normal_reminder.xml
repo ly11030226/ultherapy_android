@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="32dp"
+        android:padding="16dp"
         android:text="@string/dialog_reminder"
         android:textColor="@color/increase_text_color"
         android:textSize="40sp"

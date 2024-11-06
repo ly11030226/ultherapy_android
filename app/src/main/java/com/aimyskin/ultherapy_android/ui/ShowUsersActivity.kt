@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.aimyskin.nodeparser.viewModel.SearchUserViewModel
 import com.aimyskin.ultherapy_android.DATA_NUMBER_PER_PAGE
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.adapter.UserListAdapter
@@ -30,6 +29,7 @@ import com.aimyskin.ultherapy_android.view.MaterialDialogFactory
 import com.aimyskin.ultherapy_android.viewmodel.AddUserViewModel
 import com.aimyskin.ultherapy_android.viewmodel.DeleteUserViewModel
 import com.aimyskin.ultherapy_android.viewmodel.GetUserListViewModel
+import com.aimyskin.ultherapy_android.viewmodel.SearchUserViewModel
 import com.blankj.utilcode.util.LogUtils
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
@@ -116,7 +116,6 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
                 }
             })
         }
-
     }
 
     private fun initRefreshLayout() {

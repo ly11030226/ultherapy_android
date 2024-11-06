@@ -12,9 +12,14 @@ import android.os.IBinder
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.aimyskin.laserserialmodule.LaserSerialService
+import com.aimyskin.ultherapy_android.DEFAULT_MACHINE
 import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
+import com.aimyskin.ultherapy_android.DEFAULT_PART
+import com.aimyskin.ultherapy_android.DEFAULT_THERAPIST
 import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
 import com.aimyskin.ultherapy_android.LIMIT_DIFFERENCE_POINT
 import com.aimyskin.ultherapy_android.Profile
@@ -34,6 +39,7 @@ import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.DistanceLength
 import com.aimyskin.ultherapy_android.pojo.FootPress
 import com.aimyskin.ultherapy_android.pojo.FrameBean
+import com.aimyskin.ultherapy_android.pojo.GuestRecord
 import com.aimyskin.ultherapy_android.pojo.HIFUBean
 import com.aimyskin.ultherapy_android.pojo.KnifeState
 import com.aimyskin.ultherapy_android.pojo.KnifeUsable
@@ -42,6 +48,7 @@ import com.aimyskin.ultherapy_android.pojo.PRESS
 import com.aimyskin.ultherapy_android.pojo.Pitch
 import com.aimyskin.ultherapy_android.pojo.PointOrLine
 import com.aimyskin.ultherapy_android.pojo.Position
+import com.aimyskin.ultherapy_android.pojo.Record
 import com.aimyskin.ultherapy_android.pojo.RepeatTime
 import com.aimyskin.ultherapy_android.pojo.SingleOrRepeat
 import com.aimyskin.ultherapy_android.pojo.StandbyOrReady
@@ -49,14 +56,21 @@ import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.pojo.getFrameDataString
 import com.aimyskin.ultherapy_android.util.GlobalVariable
 import com.aimyskin.ultherapy_android.util.createFrameData
+import com.aimyskin.ultherapy_android.util.getCurrentDateStr
+import com.aimyskin.ultherapy_android.util.getKnifeTypeStr
 import com.aimyskin.ultherapy_android.util.getLengthValue
 import com.aimyskin.ultherapy_android.util.getPitchValue
 import com.aimyskin.ultherapy_android.util.getTotalusedByType
+import com.aimyskin.ultherapy_android.viewmodel.AddGuestRecordViewModel
+import com.aimyskin.ultherapy_android.viewmodel.AddRecordViewModel
+import com.aimyskin.ultherapy_android.viewmodel.AddUserViewModel
 import com.blankj.utilcode.util.LogUtils
 import es.dmoral.toasty.Toasty
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val addRecordViewModel: AddRecordViewModel by viewModels()
+    private val addGuestRecordViewModel: AddGuestRecordViewModel by viewModels()
 
     //如果Remain = 0  就不让点击了
     private var isCanClickBtn = true
@@ -106,6 +120,7 @@ class MainActivity : BaseActivity() {
             initView()
             addListener()
             registerReceiver()
+            initObserver()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -437,6 +452,39 @@ class MainActivity : BaseActivity() {
                 Toasty.warning(this@MainActivity, REMINDER_STANdBY_STATE, Toast.LENGTH_SHORT, true).show()
             }
         }
+
+        //保存打点记录
+        binding.ivMainSave.setOnClickListener {
+            //添加游客记录
+            if (GlobalVariable.currentUser == null) {
+                val guestRecord = GuestRecord(
+                    getCurrentDateStr(),
+                    DEFAULT_THERAPIST,
+                    DEFAULT_MACHINE,
+                    DEFAULT_PART,
+                    getKnifeTypeStr(GlobalVariable.currentUseKnife),
+                    GlobalVariable.startNum,
+                    GlobalVariable.needNum,
+                    GlobalVariable.currentNum
+                )
+                addGuestRecordViewModel.addRecordToLocal(guestRecord)
+            }
+            //添加绑定用户记录
+            else {
+                val record = Record(
+                    getCurrentDateStr(),
+                    DEFAULT_THERAPIST,
+                    DEFAULT_MACHINE,
+                    DEFAULT_PART,
+                    getKnifeTypeStr(GlobalVariable.currentUseKnife),
+                    GlobalVariable.startNum,
+                    GlobalVariable.needNum,
+                    GlobalVariable.currentNum,
+                    GlobalVariable.currentUser!!.userId
+                )
+                addRecordViewModel.addRecordToLocal(record)
+            }
+        }
     }
 
     /**
@@ -576,6 +624,28 @@ class MainActivity : BaseActivity() {
             else -> {
 
             }
+        }
+    }
+
+    private fun initObserver() {
+        addRecordViewModel.run {
+            addRecordLiveData.observe(this@MainActivity, Observer {
+                if (it.isSuccess) {
+                    Toasty.success(this@MainActivity, it.message).show()
+                } else {
+                    Toasty.error(this@MainActivity, it.message).show()
+                }
+            })
+        }
+
+        addGuestRecordViewModel.run {
+            addGuestRecordLiveData.observe(this@MainActivity, Observer {
+                if (it.isSuccess) {
+                    Toasty.success(this@MainActivity, it.message).show()
+                } else {
+                    Toasty.error(this@MainActivity, it.message).show()
+                }
+            })
         }
     }
 }

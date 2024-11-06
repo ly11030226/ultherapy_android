@@ -2,7 +2,7 @@ package com.aimyskin.ultherapy_android.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aimyskin.nodeparser.repository.impl.UserRepositoryImpl
+import com.aimyskin.ultherapy_android.repository.impl.UserRepositoryImpl
 import com.aimyskin.ultherapy_android.stateCallback.GetUserListUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch

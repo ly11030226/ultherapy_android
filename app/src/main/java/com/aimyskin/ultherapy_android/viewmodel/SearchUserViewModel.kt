@@ -1,9 +1,8 @@
-package com.aimyskin.nodeparser.viewModel
-
+package com.aimyskin.ultherapy_android.viewmodel
 import android.os.TokenWatcher
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aimyskin.nodeparser.repository.impl.UserRepositoryImpl
+import com.aimyskin.ultherapy_android.repository.impl.UserRepositoryImpl
 import com.aimyskin.ultherapy_android.stateCallback.SearchUserUiState
 import com.aimyskin.ultherapy_android.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers

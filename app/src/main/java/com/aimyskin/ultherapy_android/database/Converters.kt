@@ -1,4 +1,4 @@
-package com.aimyskin.nodeparser.database
+package com.aimyskin.ultherapy_android.database
 
 import androidx.room.TypeConverter
 import java.sql.Date

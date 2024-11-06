@@ -11,10 +11,13 @@ import com.aimyskin.ultherapy_android.databinding.ActivityUserManagerBinding
 import com.aimyskin.ultherapy_android.inter.ChoiceUserCallback
 import com.aimyskin.ultherapy_android.pojo.User
 import com.aimyskin.ultherapy_android.util.GlobalVariable
+import com.blankj.utilcode.util.LogUtils
+import es.dmoral.toasty.Toasty
 
 class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
     private lateinit var binding: ActivityUserManagerBinding
     private lateinit var navController: NavController
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +40,7 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
     }
 
     private fun initNav() {
-        val navHostFragment = supportFragmentManager.findFragmentById(
-            R.id.nav_host_fragment_user_manager
-        ) as NavHostFragment
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_user_manager) as NavHostFragment
         navController = navHostFragment.navController
     }
 
@@ -96,10 +97,26 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
         }
         //点击Refresh
         binding.llUserManagerRefresh.setOnClickListener {
-
+            //当前有绑定用户，这里解除绑定并提示
+            GlobalVariable.currentUser?.let {
+                GlobalVariable.currentUser = null
+                val message = getString(R.string.unbind_user)
+                navController.currentDestination?.id?.let {
+                    when (it) {
+                        R.id.UserRecordFragment -> {
+                            Toasty.normal(this@UserManagerActivity, message).show()
+                            val currentFragment = navHostFragment.childFragmentManager.primaryNavigationFragment
+                            currentFragment?.let { f ->
+                                (f as UserRecordFragment).clickRefresh()
+                            }
+                        }
+                        else -> {}
+                    }
+                }
+            }
         }
         binding.ivUserManagerBack.setOnClickListener {
-            startActivity(Intent(this@UserManagerActivity,MainActivity::class.java))
+            startActivity(Intent(this@UserManagerActivity, MainActivity::class.java))
             finish()
         }
     }

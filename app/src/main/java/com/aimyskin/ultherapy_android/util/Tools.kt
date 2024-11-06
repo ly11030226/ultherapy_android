@@ -24,9 +24,8 @@ import com.aimyskin.ultherapy_android.pojo.Position
 import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.pojo.User
 import com.blankj.utilcode.util.LogUtils
-import com.chibatching.kotpref.Kotpref
-import com.chibatching.kotpref.KotprefModel
 import java.io.File
+import java.util.Calendar
 
 /**
  * 保存一些全局变量
@@ -264,4 +263,60 @@ fun getTotalusedByType(type: Type): Int {
             0
         }
     }
+}
+
+fun getKnifeTypeStr(type: Type): String {
+    return when (type) {
+        Type.KNIFE_15 -> {
+            "HIFU-1.5"
+        }
+
+        Type.KNIFE_20 -> {
+            "HIFU-2.0"
+        }
+
+        Type.KNIFE_30 -> {
+            "HIFU-3.0"
+        }
+
+        Type.KNIFE_45 -> {
+            "HIFU-4.5"
+        }
+
+        Type.KNIFE_60 -> {
+            "HIFU-6.0"
+        }
+
+        Type.KNIFE_90 -> {
+            "HIFU-9.0"
+        }
+
+        Type.KNIFE_130 -> {
+            "HIFU-13.0"
+        }
+
+        Type.CIRCLE_15 -> {
+            "BOOSTER-1.5"
+        }
+
+        Type.CIRCLE_30 -> {
+            "BOOSTER-3.0"
+        }
+
+        Type.CIRCLE_45 -> {
+            "BOOSTER-4.5"
+        }
+
+        else -> {
+            ""
+        }
+    }
+}
+
+fun getCurrentDateStr(): String {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH) + 1
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+    return "$year/$month/$day"
 }

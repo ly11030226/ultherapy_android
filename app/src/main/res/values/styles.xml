@@ -120,7 +120,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">30sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/register_content_text</item>
+        <item name="android:textColor">@color/user_manager_text</item>
         <item name="android:layout_weight">1</item>
     </style>
 

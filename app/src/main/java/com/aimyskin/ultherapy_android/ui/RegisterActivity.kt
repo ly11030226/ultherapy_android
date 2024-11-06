@@ -25,6 +25,7 @@ import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityRegisterBinding
 import com.aimyskin.ultherapy_android.pojo.Gender
 import com.aimyskin.ultherapy_android.pojo.User
+import com.aimyskin.ultherapy_android.util.getCurrentDateStr
 import com.aimyskin.ultherapy_android.viewmodel.AddUserViewModel
 import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
@@ -97,12 +98,7 @@ class RegisterActivity : BaseActivity() {
             val telephone = binding.etRegisterTelephone.text.toString()
             val email = binding.etRegisterEmail.text.toString()
             if (name.isNotEmpty() && gender.isNotEmpty() && birth.isNotEmpty() && telephone.isNotEmpty() && email.isNotEmpty()) {
-                val calendar = Calendar.getInstance()
-                val year = calendar.get(Calendar.YEAR)
-                val month = calendar.get(Calendar.MONTH) + 1
-                val day = calendar.get(Calendar.DAY_OF_MONTH)
-                val rDate = "$year/$month/$day"
-                val user = User(name, gender, rDate, birth, telephone, email, DEFAULT_THERAPIST)
+                val user = User(name, gender, getCurrentDateStr(), birth, telephone, email, DEFAULT_THERAPIST)
                 addUserViewModel.addUserToLocal(user)
             } else {
                 Toasty.warning(this@RegisterActivity, REMINDER_COMPLETE_CONTENT, Toast.LENGTH_SHORT, true).show()

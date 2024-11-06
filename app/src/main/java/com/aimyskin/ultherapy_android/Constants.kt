@@ -20,6 +20,14 @@ const val DEFAULT_NEED_POINT_NUMBER = 300
 const val LIMIT_DIFFERENCE_POINT = 5
 
 const val DEFAULT_THERAPIST = "admin"
+const val DEFAULT_MACHINE = ""
+const val DEFAULT_PART = ""
+const val DEFAULT_GUEST_NAME = "Guest"
+const val DEFAULT_GUEST_GENDER = "XXXX"
+const val DEFAULT_GUEST_BIRTHDAY = "xxxx/xx/xx"
+const val DEFAULT_GUEST_TELEPHONE = "xxxxxxxxxxxxx"
+const val DEFAULT_GUEST_EMAIL = "xxxxxxxxxx"
+const val DEFAULT_GUEST_ID = 0L
 const val DATA_NUMBER_PER_PAGE = 20
 const val USER_MANAGER_GRID_COLUMN = 5
 

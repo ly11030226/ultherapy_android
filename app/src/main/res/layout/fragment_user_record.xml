@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="Name"
-                    android:textColor="@color/user_manager_text"
+                    android:textColor="@color/register_content_text"
                     android:textSize="30sp" />
             </LinearLayout>
 
@@ -64,8 +64,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="@dimen/user_manager_detail_padding"
+                android:paddingBottom="@dimen/user_manager_detail_padding"
                 android:textColor="@color/user_manager_text"
                 android:textSize="30sp"
                 tools:text="David hadasadfsd" />
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="Gender"
-                    android:textColor="@color/user_manager_text"
+                    android:textColor="@color/register_content_text"
                     android:textSize="30sp" />
             </LinearLayout>
 
@@ -109,8 +109,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="@dimen/user_manager_detail_padding"
+                android:paddingBottom="@dimen/user_manager_detail_padding"
                 android:textColor="@color/user_manager_text"
                 android:textSize="30sp"
                 tools:text="Female" />
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="Birthday"
-                    android:textColor="@color/user_manager_text"
+                    android:textColor="@color/register_content_text"
                     android:textSize="30sp" />
             </LinearLayout>
 
@@ -154,8 +154,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="@dimen/user_manager_detail_padding"
+                android:paddingBottom="@dimen/user_manager_detail_padding"
                 android:textColor="@color/user_manager_text"
                 android:textSize="30sp"
                 tools:text="2014/10/10" />
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="Telephone"
-                    android:textColor="@color/user_manager_text"
+                    android:textColor="@color/register_content_text"
                     android:textSize="30sp" />
             </LinearLayout>
 
@@ -199,8 +199,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="@dimen/user_manager_detail_padding"
+                android:paddingBottom="@dimen/user_manager_detail_padding"
                 android:textColor="@color/user_manager_text"
                 android:textSize="30sp"
                 tools:text="1314141134" />
@@ -233,7 +233,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     android:text="Email"
-                    android:textColor="@color/user_manager_text"
+                    android:textColor="@color/register_content_text"
                     android:textSize="30sp" />
             </LinearLayout>
 
@@ -243,8 +243,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="@dimen/user_manager_detail_padding"
+                android:paddingBottom="@dimen/user_manager_detail_padding"
                 android:textColor="@color/user_manager_text"
                 android:textSize="30sp"
                 tools:text="XXXXXXXXXXX" />
@@ -257,9 +257,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/shape_record_user_bg"
         android:orientation="vertical"
         android:padding="16dp"
@@ -275,30 +275,36 @@
 
             <TextView
                 style="@style/style_show_users_main_title"
-                android:text="CreateTime" />
+                android:text="CreateTime"
+                android:textColor="@color/register_content_text" />
 
             <TextView
                 style="@style/style_show_users_main_title"
                 android:layout_weight="1.5"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@color/register_content_text" />
 
             <TextView
                 style="@style/style_show_users_main_title"
                 android:layout_weight="1.3"
-                android:text="Telephone" />
+                android:text="Telephone"
+                android:textColor="@color/register_content_text" />
 
             <TextView
                 style="@style/style_show_users_main_title"
-                android:text="Therapist" />
+                android:text="Therapist"
+                android:textColor="@color/register_content_text" />
 
             <TextView
                 style="@style/style_show_users_main_title"
-                android:text="Knife" />
+                android:text="Knife"
+                android:textColor="@color/register_content_text" />
 
             <TextView
                 style="@style/style_show_users_main_title"
                 android:layout_weight="0.7"
-                android:text="Number" />
+                android:text="Number"
+                android:textColor="@color/register_content_text" />
 
             <TextView
                 style="@style/style_show_users_main_title"

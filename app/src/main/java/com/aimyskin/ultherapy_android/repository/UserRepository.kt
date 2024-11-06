@@ -1,4 +1,4 @@
-package com.aimyskin.nodeparser.repository
+package com.aimyskin.ultherapy_android.repository
 
 import com.aimyskin.ultherapy_android.pojo.User
 import com.aimyskin.ultherapy_android.pojo.UserWithRecordList

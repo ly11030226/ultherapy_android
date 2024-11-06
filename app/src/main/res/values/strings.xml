@@ -136,9 +136,11 @@
     <string name="str_show_users_increase">increase</string>
     <string name="dialog_reminder_search">Please enter user phone number</string>
     <string name="dialog_delete_user_reminder">Whether you want to delete user 【%s】?</string>
+    <string name="dialog_delete_record">Whether you want to delete the record ?</string>
     <string name="str_remake">Remake</string>
     <string name="str_user_manager_increase">Increase</string>
     <string name="str_refresh">Refresh</string>
     <string name="registered_users_user_manager">Registered Users</string>
     <string name="user_information">User Information</string>
+    <string name="unbind_user">Unbind User</string>
 </resources>

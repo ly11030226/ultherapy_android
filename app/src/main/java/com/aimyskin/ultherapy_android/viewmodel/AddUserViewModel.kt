@@ -2,8 +2,8 @@ package com.aimyskin.ultherapy_android.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aimyskin.nodeparser.repository.impl.UserRepositoryImpl
 import com.aimyskin.ultherapy_android.pojo.User
+import com.aimyskin.ultherapy_android.repository.impl.UserRepositoryImpl
 import com.aimyskin.ultherapy_android.stateCallback.AddUserUiState
 import com.aimyskin.ultherapy_android.stateCallback.DeleteUserUiState
 import kotlinx.coroutines.Dispatchers

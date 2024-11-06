@@ -1,14 +1,12 @@
 package com.aimyskin.ultherapy_android.ui
 
 import android.content.Intent
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityIndexBinding
-import com.blankj.utilcode.util.LogUtils
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -62,5 +60,12 @@ class IndexActivity : BaseActivity() {
         }
         binding.ivIndexVideo.setOnClickListener {}
         binding.ivIndexBrowser.setOnClickListener {}
+        binding.ivIndexWifi.setOnClickListener {
+            val intentWifi = Intent(Settings.ACTION_WIFI_SETTINGS)
+            intentWifi.putExtra("extra_prefs_show_button_bar", true)
+            intentWifi.putExtra("extra_prefs_set_back_text", null as String?)
+            intentWifi.putExtra("extra_prefs_set_next_text", "Finish")
+            startActivity(intentWifi)
+        }
     }
 }

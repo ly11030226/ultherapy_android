@@ -8,4 +8,5 @@ interface RecordRepository {
     suspend fun addRecord(record: Record)
     suspend fun deleteRecord(record: Record)
     suspend fun getRecordListFromLocalByUserId(userId: Long): Flow<List<Record>>
+    suspend fun deleteRecordsByUserId(userId: Long)
 }

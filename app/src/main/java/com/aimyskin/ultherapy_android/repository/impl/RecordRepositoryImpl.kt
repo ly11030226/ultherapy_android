@@ -25,4 +25,8 @@ class RecordRepositoryImpl : RecordRepository {
         return AppDatabase.instance.recordDataDao().getRecordList(userId)
     }
 
+    override suspend fun deleteRecordsByUserId(userId: Long) {
+        AppDatabase.instance.recordDataDao().deleteRecordsByUserId(userId)
+    }
+
 }

@@ -72,7 +72,7 @@ class RegisterActivity : BaseActivity() {
     @SuppressLint("CheckResult")
     private fun addListener() {
         binding.ivRegisterBack.setOnClickListener {
-            startActivity(Intent(this@RegisterActivity, IndexActivity::class.java))
+            setResult(RESULT_CANCELED)
             finish()
         }
         binding.tvRegisterGenderValue.setOnClickListener {

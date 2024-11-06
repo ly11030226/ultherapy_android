@@ -35,6 +35,7 @@ interface UserDataDao {
 
     /**
      * 通过电话号码搜索User列表
+     * 这里的:telephone 即参数telephone，传过来的内容应该是 %139% 需要携带通配符才能达到模糊查询的目的
      */
     @Transaction
     @Query("SELECT * FROM user WHERE telephone LIKE :telephone ORDER BY user_id DESC LIMIT 20 ")

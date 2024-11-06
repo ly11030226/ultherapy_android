@@ -143,4 +143,5 @@
     <string name="registered_users_user_manager">Registered Users</string>
     <string name="user_information">User Information</string>
     <string name="unbind_user">Unbind User</string>
+    <string name="current_user">"Current User: %s</string>
 </resources>

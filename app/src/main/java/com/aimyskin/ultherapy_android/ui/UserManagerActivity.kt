@@ -110,13 +110,14 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
                                 (f as UserRecordFragment).clickRefresh()
                             }
                         }
+
                         else -> {}
                     }
                 }
             }
         }
         binding.ivUserManagerBack.setOnClickListener {
-            startActivity(Intent(this@UserManagerActivity, MainActivity::class.java))
+            startActivity(Intent(this@UserManagerActivity, AwaitActivity::class.java))
             finish()
         }
     }

@@ -23,6 +23,7 @@ import com.aimyskin.ultherapy_android.inter.ShowUserListClickCallback
 import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.SingleOrRepeat
 import com.aimyskin.ultherapy_android.pojo.User
+import com.aimyskin.ultherapy_android.util.GlobalVariable
 import com.aimyskin.ultherapy_android.util.getLengthValue
 import com.aimyskin.ultherapy_android.util.getPitchValue
 import com.aimyskin.ultherapy_android.view.MaterialDialogFactory
@@ -106,9 +107,10 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
         searchUserViewModel.run {
             searchUserLiveData.observe(this@ShowUsersActivity, Observer {
                 if (it.isSuccess) {
-                    it.userList?.let { it1 ->
+                    it.userList?.let { list ->
+                        LogUtils.d("search result ... $list")
                         dataList.clear()
-                        dataList.addAll(it1)
+                        dataList.addAll(list)
                         userListAdapter.submitList(dataList)
                     }
                 } else {
@@ -150,7 +152,8 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
             val etPhone = customView.findViewById<EditText>(R.id.et_dialog_search_phone)
             btnApply.setOnClickListener {
                 dialog.dismiss()
-                val phone = etPhone.text.toString()
+                //%用于执行模糊查询
+                val phone = "%" + etPhone.text.toString() + "%"
                 isFirstPage = true
                 if (phone.isNotEmpty()) {
                     searchUserViewModel.searchUserByTelephone(phone)
@@ -175,7 +178,9 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
     }
 
     override fun clickSave(position: Int) {
-        LogUtils.d("clickSave position ... $position")
+        GlobalVariable.currentUser = dataList[position]
+        startActivity(Intent(this@ShowUsersActivity, AwaitActivity::class.java))
+        finish()
     }
 
     override fun clickDelete(position: Int) {

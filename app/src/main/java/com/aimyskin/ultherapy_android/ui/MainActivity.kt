@@ -147,6 +147,12 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setDefaultData() {
+        //设置当前用户
+        GlobalVariable.currentUser?.let {
+            binding.tvCurrentUser.text = it.name
+        } ?: run {
+            binding.tvCurrentUser.text = ""
+        }
         //设置单向
         DataBean.singleOrRepeat = SingleOrRepeat.SINGLE
         binding.ivSingleOrRepeat.setBackgroundResource(R.drawable.icon_single)
@@ -483,6 +489,16 @@ class MainActivity : BaseActivity() {
                     GlobalVariable.currentUser!!.userId
                 )
                 addRecordViewModel.addRecordToLocal(record)
+            }
+        }
+
+        binding.ivUserManager.setOnClickListener {
+            GlobalVariable.currentUser?.let {
+                startActivity(Intent(this@MainActivity, UserManagerActivity::class.java))
+                finish()
+            } ?: kotlin.run {
+                startActivity(Intent(this@MainActivity, ShowUsersActivity::class.java))
+                finish()
             }
         }
     }

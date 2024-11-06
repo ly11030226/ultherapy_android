@@ -21,4 +21,7 @@ interface RecordDataDao {
 
     @Delete
     fun deleteRecord(vararg record: Record)
+
+    @Query("DELETE FROM RECORD WHERE user_id=:userId")
+    fun deleteRecordsByUserId(userId:Long)
 }

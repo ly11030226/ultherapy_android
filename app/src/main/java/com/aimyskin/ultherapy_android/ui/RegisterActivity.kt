@@ -17,6 +17,7 @@ import com.afollestad.date.year
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.datetime.datePicker
 import com.afollestad.materialdialogs.list.listItems
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.DEFAULT_THERAPIST
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.REMINDER_COMPLETE_CONTENT
@@ -72,19 +73,24 @@ class RegisterActivity : BaseActivity() {
     @SuppressLint("CheckResult")
     private fun addListener() {
         binding.ivRegisterBack.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             setResult(RESULT_CANCELED)
             finish()
         }
         binding.tvRegisterGenderValue.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             MaterialDialog(this).show {
                 listItems(R.array.gender) { dialog, index, text ->
+                    ClickSoundPoolUtils.play(it.context, R.raw.click)
                     binding.tvRegisterGenderValue.text = text
                 }
             }
         }
         binding.tvRegisterBirthdayValue.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             MaterialDialog(this).show {
                 datePicker { dialog, date ->
+                    ClickSoundPoolUtils.play(it.context, R.raw.click)
                     val date = getString(R.string.choice_birthday).format(date.year, date.month + 1, date.dayOfMonth)
                     binding.tvRegisterBirthdayValue.text = date
                 }
@@ -92,6 +98,7 @@ class RegisterActivity : BaseActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             val name = binding.etRegisterName.text.toString()
             val gender = binding.tvRegisterGenderValue.text.toString()
             val birth = binding.tvRegisterBirthdayValue.text.toString()

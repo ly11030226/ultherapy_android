@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityChoiceRepeatBinding
@@ -34,6 +35,7 @@ class ChoiceRepeatActivity : BaseActivity() {
 
     private fun addListener() {
         binding.ctvRepeat1.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_1) {
                 DataBean.repeatTime = RepeatTime.S0_1
                 setAllChoiceTabUnChoice()
@@ -43,6 +45,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat2.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_2) {
                 DataBean.repeatTime = RepeatTime.S0_2
                 setAllChoiceTabUnChoice()
@@ -52,6 +55,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat3.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_3) {
                 DataBean.repeatTime = RepeatTime.S0_3
                 setAllChoiceTabUnChoice()
@@ -61,6 +65,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat4.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_4) {
                 DataBean.repeatTime = RepeatTime.S0_4
                 setAllChoiceTabUnChoice()
@@ -70,6 +75,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat5.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_5) {
                 DataBean.repeatTime = RepeatTime.S0_5
                 setAllChoiceTabUnChoice()
@@ -79,6 +85,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat6.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_6) {
                 DataBean.repeatTime = RepeatTime.S0_6
                 setAllChoiceTabUnChoice()
@@ -88,6 +95,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat7.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_7) {
                 DataBean.repeatTime = RepeatTime.S0_7
                 setAllChoiceTabUnChoice()
@@ -97,6 +105,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat8.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_8) {
                 DataBean.repeatTime = RepeatTime.S0_8
                 setAllChoiceTabUnChoice()
@@ -106,6 +115,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat9.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S0_9) {
                 DataBean.repeatTime = RepeatTime.S0_9
                 setAllChoiceTabUnChoice()
@@ -115,6 +125,7 @@ class ChoiceRepeatActivity : BaseActivity() {
             }
         }
         binding.ctvRepeat10.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.repeatTime != RepeatTime.S1_0) {
                 DataBean.repeatTime = RepeatTime.S1_0
                 setAllChoiceTabUnChoice()
@@ -125,6 +136,7 @@ class ChoiceRepeatActivity : BaseActivity() {
         }
 
         binding.tvRepeatClose.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             setResult(RESULT_CANCELED)
             finish()
         }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.Profile.circle15
 import com.aimyskin.ultherapy_android.Profile.circle30
 import com.aimyskin.ultherapy_android.Profile.circle45
@@ -56,12 +57,14 @@ class InfoFragment : BaseFragment() {
     }
 
     override fun addListener() {
-        binding.llLeftReset.setOnClickListener {
+        binding.llLeftReset.setOnClickListener { v ->
+            ClickSoundPoolUtils.play(v.context, R.raw.click)
             context?.let {
                 MaterialDialog(it).show {
                     title(R.string.dialog_reminder)
                     message(res = R.string.dialog_is_zero)
                     positiveButton(R.string.dialog_commit) {
+                        ClickSoundPoolUtils.play(v.context, R.raw.click)
                         knife15 = 0
                         knife20 = 0
                         knife30 = 0
@@ -72,23 +75,29 @@ class InfoFragment : BaseFragment() {
 
                         initView()
                     }
-                    negativeButton(R.string.dialog_cancel)
+                    negativeButton(R.string.dialog_cancel) {
+                        ClickSoundPoolUtils.play(v.context, R.raw.click)
+                    }
                 }
             }
         }
-        binding.llRightReset.setOnClickListener {
+        binding.llRightReset.setOnClickListener { v ->
+            ClickSoundPoolUtils.play(v.context, R.raw.click)
             context?.let {
                 MaterialDialog(it).show {
                     title(R.string.dialog_reminder)
                     message(res = R.string.dialog_is_zero)
                     positiveButton(R.string.dialog_commit) {
+                        ClickSoundPoolUtils.play(v.context, R.raw.click)
                         circle15 = 0
                         circle30 = 0
                         circle45 = 0
                         binding.tvInfoBoosterTotalusedValue.text = boosterTotal().toString()
                         refreshTotalUsed()
                     }
-                    negativeButton(R.string.dialog_cancel)
+                    negativeButton(R.string.dialog_cancel) {
+                        ClickSoundPoolUtils.play(v.context, R.raw.click)
+                    }
                 }
             }
         }

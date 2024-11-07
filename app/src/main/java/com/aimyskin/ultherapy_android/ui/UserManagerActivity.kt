@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
@@ -49,6 +50,7 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
     private fun addListener() {
         //点击用户记录
         binding.llUserManagerRecord.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             when (navController.currentDestination?.id) {
                 R.id.UserGridFragment -> {
                     binding.llUserManagerRemake.setBackgroundResource(R.drawable.shape_user_manager_uncheck)
@@ -71,6 +73,7 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
         }
         //点击Remake
         binding.llUserManagerRemake.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             when (navController.currentDestination?.id) {
                 R.id.UserGridFragment -> {
                     binding.llUserManagerRemake.setBackgroundResource(R.drawable.shape_user_manager_check)
@@ -99,6 +102,7 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
         }
         //点击Refresh
         binding.llUserManagerRefresh.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             //当前有绑定用户，这里解除绑定并提示
             GlobalVariable.currentUser?.let {
                 GlobalVariable.currentUser = null
@@ -120,6 +124,7 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
             }
         }
         binding.ivUserManagerBack.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startActivity(Intent(this@UserManagerActivity, AwaitActivity::class.java))
             finish()
         }

@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityChoiceLengthBinding
@@ -31,6 +32,7 @@ class ChoiceLengthActivity : BaseActivity() {
 
     private fun addListener() {
         binding.ctvLength1.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.distanceLength != DistanceLength.MM5) {
                 DataBean.distanceLength = DistanceLength.MM5
                 setAllChoiceTabUnChoice()
@@ -41,6 +43,7 @@ class ChoiceLengthActivity : BaseActivity() {
         }
 
         binding.ctvLength2.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.distanceLength != DistanceLength.MM10) {
                 DataBean.distanceLength = DistanceLength.MM10
                 setAllChoiceTabUnChoice()
@@ -51,6 +54,7 @@ class ChoiceLengthActivity : BaseActivity() {
         }
 
         binding.ctvLength3.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.distanceLength != DistanceLength.MM15) {
                 DataBean.distanceLength = DistanceLength.MM15
                 setAllChoiceTabUnChoice()
@@ -61,6 +65,7 @@ class ChoiceLengthActivity : BaseActivity() {
         }
 
         binding.ctvLength4.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.distanceLength != DistanceLength.MM20) {
                 DataBean.distanceLength = DistanceLength.MM20
                 setAllChoiceTabUnChoice()
@@ -71,6 +76,7 @@ class ChoiceLengthActivity : BaseActivity() {
         }
 
         binding.ctvLength5.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.distanceLength != DistanceLength.MM25) {
                 DataBean.distanceLength = DistanceLength.MM25
                 setAllChoiceTabUnChoice()
@@ -81,6 +87,7 @@ class ChoiceLengthActivity : BaseActivity() {
         }
 
         binding.tvLengthClose.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             setResult(RESULT_CANCELED)
             finish()
         }

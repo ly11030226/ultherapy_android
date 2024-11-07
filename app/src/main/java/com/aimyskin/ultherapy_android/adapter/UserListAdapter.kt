@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.inter.ShowUserListClickCallback
 import com.aimyskin.ultherapy_android.pojo.User
@@ -25,10 +26,12 @@ class UserListAdapter(private val clickButtonCallback: ShowUserListClickCallback
             name.text = it.name
             telephone.text = it.telephone
             therapist.text = it.therapist
-            ivSave.setOnClickListener {
+            ivSave.setOnClickListener { v ->
+                ClickSoundPoolUtils.play(v.context, R.raw.click)
                 clickButtonCallback.clickSave(position)
             }
-            ivDelete.setOnClickListener {
+            ivDelete.setOnClickListener { v ->
+                ClickSoundPoolUtils.play(v.context, R.raw.click)
                 clickButtonCallback.clickDelete(position)
             }
         }

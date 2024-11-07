@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.inter.ReminderDialogClickApplyCallback
 import com.blankj.utilcode.util.LogUtils
@@ -36,10 +37,12 @@ class MaterialDialogFactory {
         tvContent.text = reminder
 
         btnApply.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             dialog.dismiss()
             callback.clickApply()
         }
         btnCancel.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             dialog.dismiss()
         }
         dialog.show()

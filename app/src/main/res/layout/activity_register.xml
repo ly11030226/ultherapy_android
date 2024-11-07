@@ -101,6 +101,7 @@
         android:id="@+id/et_register_telephone"
         style="@style/style_register_edittext"
         android:hint="@string/remind_input_telephone"
+        android:inputType="phone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_register_right_bg"
         app:layout_constraintRight_toRightOf="@+id/iv_register_right_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_register_telephone" />

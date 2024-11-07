@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
+import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityIndexBinding
 import java.text.SimpleDateFormat
@@ -47,20 +49,28 @@ class IndexActivity : BaseActivity() {
 
     private fun addListener() {
         binding.ivIndexHome.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startActivity(Intent(this@IndexActivity, AwaitActivity::class.java))
             finish()
         }
         binding.ivIndexTreatment.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startActivity(Intent(this@IndexActivity, AwaitActivity::class.java))
             finish()
         }
         binding.ivIndexUser.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startActivity(Intent(this@IndexActivity, UserManagerActivity::class.java))
             finish()
         }
-        binding.ivIndexVideo.setOnClickListener {}
-        binding.ivIndexBrowser.setOnClickListener {}
+        binding.ivIndexVideo.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
+        }
+        binding.ivIndexBrowser.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
+        }
         binding.ivIndexWifi.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             val intentWifi = Intent(Settings.ACTION_WIFI_SETTINGS)
             intentWifi.putExtra("extra_prefs_show_button_bar", true)
             intentWifi.putExtra("extra_prefs_set_back_text", null as String?)

@@ -5,14 +5,17 @@ import android.content.ComponentName
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.ServiceConnection
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
 import com.aimyskin.laserserialmodule.LaserSerialService
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
 import com.aimyskin.ultherapy_android.KEY_NO_CARTIDGE_TYPE
 import com.aimyskin.ultherapy_android.NO_CARTIDGE_BOOSTER
 import com.aimyskin.ultherapy_android.NO_CARTIDGE_HIFU
+import com.aimyskin.ultherapy_android.NormalClickListener
 import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.WHERE_FROM_AWAIT
@@ -21,17 +24,14 @@ import com.aimyskin.ultherapy_android.base.DataReceiver
 import com.aimyskin.ultherapy_android.databinding.ActivityAwaitBinding
 import com.aimyskin.ultherapy_android.inter.ReceiveDataCallback
 import com.aimyskin.ultherapy_android.pojo.AutoRecognition
-import com.aimyskin.ultherapy_android.pojo.Command
 import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.FrameBean
 import com.aimyskin.ultherapy_android.pojo.KnifeState
 import com.aimyskin.ultherapy_android.pojo.KnifeUsable
 import com.aimyskin.ultherapy_android.pojo.Type
-import com.aimyskin.ultherapy_android.pojo.getFrameDataString
 import com.aimyskin.ultherapy_android.util.GlobalVariable
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnife
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnifePosition
-import com.aimyskin.ultherapy_android.util.createFrameData
 import com.aimyskin.ultherapy_android.util.getDrawableIdByType
 import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
@@ -42,6 +42,7 @@ class AwaitActivity : BaseActivity() {
     var laserSerialService: LaserSerialService? = null
     private var bound: Boolean = false
     private lateinit var receiver: DataReceiver
+    private lateinit var mediaPlayer: MediaPlayer
 
     private val serviceConnection: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
@@ -66,11 +67,22 @@ class AwaitActivity : BaseActivity() {
         binding = ActivityAwaitBinding.inflate(layoutInflater)
         setContentView(binding.root)
         try {
+            initMediaPlayer()
             initData()
             addListener()
             registerReceiver()
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun initMediaPlayer() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.click)
+    }
+
+    private fun playClickSound() {
+        if (!mediaPlayer.isPlaying) {
+            mediaPlayer.start()
         }
     }
 
@@ -105,10 +117,12 @@ class AwaitActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(receiver)
+        //释放MediaPlayer资源，避免内存泄漏
+        mediaPlayer.release()
     }
 
     private fun initData() {
-        //到了此页面让currNum清0
+        //到了此页面让currentNum清0
         GlobalVariable.currentNum = 0
 
         if (Profile.isAutoRecognition) {
@@ -194,6 +208,7 @@ class AwaitActivity : BaseActivity() {
         //自动感应关闭才能进行点击
         if (!Profile.isAutoRecognition) {
             binding.flLeft.setOnClickListener {
+                ClickSoundPoolUtils.play(it.context, R.raw.tickon)
                 currentUseKnife = DataBean.leftHIFU.type
                 currentUseKnifePosition = DataBean.leftHIFU.position
                 if (DataBean.leftHIFU.type == Type.NONE || DataBean.leftHIFU.type == Type.EMPTY) {
@@ -212,6 +227,7 @@ class AwaitActivity : BaseActivity() {
             }
 
             binding.flMiddle.setOnClickListener {
+                ClickSoundPoolUtils.play(it.context, R.raw.tickon)
                 currentUseKnife = DataBean.middleHIFU.type
                 currentUseKnifePosition = DataBean.middleHIFU.position
                 if (DataBean.middleHIFU.type == Type.NONE || DataBean.middleHIFU.type == Type.EMPTY) {
@@ -219,7 +235,7 @@ class AwaitActivity : BaseActivity() {
                     intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_HIFU)
                     startActivity(intent)
                     finish()
-                }else{
+                } else {
                     //无感应模式手动填写相应的值
                     DataBean.leftHIFU.knifeState = KnifeState.DOWN
                     DataBean.middleHIFU.knifeState = KnifeState.UP
@@ -227,8 +243,8 @@ class AwaitActivity : BaseActivity() {
                     jumpToPickupOrMainActivity()
                 }
             }
-
             binding.flRight.setOnClickListener {
+                ClickSoundPoolUtils.play(it.context, R.raw.tickon)
                 currentUseKnife = DataBean.rightHIFU.type
                 currentUseKnifePosition = DataBean.rightHIFU.position
                 if (DataBean.rightHIFU.type == Type.NONE || DataBean.rightHIFU.type == Type.EMPTY) {
@@ -236,7 +252,7 @@ class AwaitActivity : BaseActivity() {
                     intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_HIFU)
                     startActivity(intent)
                     finish()
-                }else{
+                } else {
                     //无感应模式手动填写相应的值
                     DataBean.leftHIFU.knifeState = KnifeState.DOWN
                     DataBean.middleHIFU.knifeState = KnifeState.DOWN
@@ -245,12 +261,13 @@ class AwaitActivity : BaseActivity() {
                 }
             }
         }
-
         binding.ivHome.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startActivity(Intent(this@AwaitActivity, IndexActivity::class.java))
             finish()
         }
         binding.ivSetting.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             val intent = Intent(this@AwaitActivity, SetupAndInfoActivity::class.java)
             intent.putExtra(KEY_FROM_WHERE_TO_SETUP, WHERE_FROM_AWAIT)
             startActivity(intent)

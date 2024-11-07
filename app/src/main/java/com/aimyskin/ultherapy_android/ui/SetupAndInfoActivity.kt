@@ -11,6 +11,7 @@ import android.os.IBinder
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.aimyskin.laserserialmodule.LaserSerialService
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.WHERE_FROM_AWAIT
@@ -66,6 +67,7 @@ class SetupAndInfoActivity : BaseActivity(),SetupFragment.ChangeSettingCallBack 
 
     private fun addListener() {
         binding.llSettingBack.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             intent?.let {
                 if (it.hasExtra(KEY_FROM_WHERE_TO_SETUP)) {
                     when (it.getStringExtra(KEY_FROM_WHERE_TO_SETUP)) {
@@ -81,6 +83,7 @@ class SetupAndInfoActivity : BaseActivity(),SetupFragment.ChangeSettingCallBack 
             }
         }
         binding.tvSettingSetup.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (!isShowSetupFragment) {
                 binding.ivSettingLine.setBackgroundResource(R.drawable.icon_setup_light)
                 isShowSetupFragment = true
@@ -88,6 +91,7 @@ class SetupAndInfoActivity : BaseActivity(),SetupFragment.ChangeSettingCallBack 
             }
         }
         binding.tvSettingInfo.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (isShowSetupFragment) {
                 binding.ivSettingLine.setBackgroundResource(R.drawable.icon_info_light)
                 isShowSetupFragment = false

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseFragment
@@ -66,6 +67,7 @@ class SetupFragment : BaseFragment() {
 
     override fun addListener() {
         binding.ivSetupRecognitionBtn.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.isAutoRecognition == AutoRecognition.OPEN) {
                 DataBean.isAutoRecognition = AutoRecognition.CLOSE
                 binding.ivSetupRecognitionBtn.setBackgroundResource(R.drawable.icon_off)
@@ -76,6 +78,7 @@ class SetupFragment : BaseFragment() {
             needActivitySendData()
         }
         binding.ivSetupAnimationBtn.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (Profile.isHaveAnimation) {
                 Profile.isHaveAnimation = false
                 binding.ivSetupAnimationBtn.setBackgroundResource(R.drawable.icon_off)
@@ -86,6 +89,7 @@ class SetupFragment : BaseFragment() {
         }
 
         binding.llSettingBoth.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.operatingSource != OperatingSource.BOTH) {
                 binding.ivSetupBoth.setBackgroundResource(R.drawable.icon_setting_choice)
                 binding.ivSetupHand.setBackgroundResource(R.drawable.icon_setting_unchoice)
@@ -95,6 +99,7 @@ class SetupFragment : BaseFragment() {
             }
         }
         binding.llSettingHand.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.operatingSource != OperatingSource.HAND) {
                 binding.ivSetupBoth.setBackgroundResource(R.drawable.icon_setting_unchoice)
                 binding.ivSetupHand.setBackgroundResource(R.drawable.icon_setting_choice)
@@ -104,6 +109,7 @@ class SetupFragment : BaseFragment() {
             }
         }
         binding.llSettingFoot.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.operatingSource != OperatingSource.FOOT) {
                 binding.ivSetupBoth.setBackgroundResource(R.drawable.icon_setting_unchoice)
                 binding.ivSetupHand.setBackgroundResource(R.drawable.icon_setting_unchoice)

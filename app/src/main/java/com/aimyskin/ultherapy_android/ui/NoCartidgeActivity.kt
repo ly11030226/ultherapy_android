@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import com.aimyskin.laserserialmodule.LaserSerialService
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.KEY_NO_CARTIDGE_TYPE
 import com.aimyskin.ultherapy_android.NO_CARTIDGE_BOOSTER
 import com.aimyskin.ultherapy_android.NO_CARTIDGE_HIFU
@@ -60,6 +61,7 @@ class NoCartidgeActivity : BaseActivity() {
             initData()
             registerReceiver()
             binding.ivNocartidgeBack.setOnClickListener {
+                ClickSoundPoolUtils.play(it.context, R.raw.click)
                 startActivity(Intent(this@NoCartidgeActivity, AwaitActivity::class.java))
                 finish()
             }

@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2.Orientation
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.DATA_NUMBER_PER_PAGE
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.USER_MANAGER_GRID_COLUMN
@@ -75,6 +76,7 @@ class UserListFragment : BaseFragment() {
 
     override fun addListener() {
         binding.rlListSearch.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             activity?.let { activity ->
                 val dialog = MaterialDialog(activity).show {
                     activity.setTheme(R.style.show_users_theme)
@@ -84,7 +86,8 @@ class UserListFragment : BaseFragment() {
                 val btnApply = customView.findViewById<Button>(R.id.btn_dialog_search_apply)
                 val btnCancel = customView.findViewById<Button>(R.id.btn_dialog_search_cancel)
                 val etPhone = customView.findViewById<EditText>(R.id.et_dialog_search_phone)
-                btnApply.setOnClickListener {
+                btnApply.setOnClickListener { v ->
+                    ClickSoundPoolUtils.play(v.context, R.raw.click)
                     dialog.dismiss()
                     //%用于执行模糊查询
                     val phone = "%" + etPhone.text.toString() + "%"
@@ -95,7 +98,8 @@ class UserListFragment : BaseFragment() {
                         getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
                     }
                 }
-                btnCancel.setOnClickListener {
+                btnCancel.setOnClickListener { v ->
+                    ClickSoundPoolUtils.play(v.context, R.raw.click)
                     dialog.dismiss()
                 }
                 dialog.show()
@@ -124,7 +128,7 @@ class UserListFragment : BaseFragment() {
         }
 
         searchUserViewModel.run {
-            activity?.let {activity->
+            activity?.let { activity ->
                 searchUserLiveData.observe(activity, Observer {
                     if (it.isSuccess) {
                         it.userList?.let { list ->

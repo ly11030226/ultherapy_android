@@ -69,7 +69,6 @@ class SplashActivity : BaseActivity() {
         receiver = DataReceiver(object : ReceiveDataCallback {
             override fun parseSuccess(frameBean: FrameBean) {
                 LogUtils.d("frameBean ... $frameBean")
-                LogUtils.d("dataBean ... $DataBean")
             }
             override fun parseFail(message: String) {
                 LogUtils.e("**************SplashActivity parseFail **************")

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.DATA_NUMBER_PER_PAGE
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.adapter.UserListAdapter
@@ -141,6 +142,7 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
     private fun addListener() {
         //显示搜索按钮
         binding.rlShowUsersSearch.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             // REFACTOR: 这里用的自定义主题show_users_theme，不能更改背景颜色，后面会研究
             val dialog = MaterialDialog(this).show {
                 setTheme(R.style.show_users_theme)
@@ -151,6 +153,7 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
             val btnCancel = customView.findViewById<Button>(R.id.btn_dialog_search_cancel)
             val etPhone = customView.findViewById<EditText>(R.id.et_dialog_search_phone)
             btnApply.setOnClickListener {
+                ClickSoundPoolUtils.play(it.context, R.raw.click)
                 dialog.dismiss()
                 //%用于执行模糊查询
                 val phone = "%" + etPhone.text.toString() + "%"
@@ -162,16 +165,19 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
                 }
             }
             btnCancel.setOnClickListener {
+                ClickSoundPoolUtils.play(it.context, R.raw.click)
                 dialog.dismiss()
             }
             dialog.show()
         }
         //添加新用户
         binding.llShowUsersIncrease.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startRegisterActivity.launch(Intent(this@ShowUsersActivity, RegisterActivity::class.java))
         }
         //返回
         binding.ivShowUsersBack.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             startActivity(Intent(this@ShowUsersActivity, MainActivity::class.java))
             finish()
         }

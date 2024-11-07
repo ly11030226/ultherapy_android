@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.inter.ShowRecordListClickCallback
 import com.aimyskin.ultherapy_android.inter.ShowUserListClickCallback
@@ -30,10 +31,12 @@ class RecordListAdapter(private val clickButtonCallback: ShowRecordListClickCall
             therapist.text = it.therapist
             knife.text = it.knife
             number.text = it.currentPoint.toString()
-            ivJump.setOnClickListener {
+            ivJump.setOnClickListener { v ->
+                ClickSoundPoolUtils.play(v.context, R.raw.click)
                 clickButtonCallback.clickJump(position)
             }
-            ivDelete.setOnClickListener {
+            ivDelete.setOnClickListener { v ->
+                ClickSoundPoolUtils.play(v.context, R.raw.click)
                 clickButtonCallback.clickDelete(position)
             }
         }

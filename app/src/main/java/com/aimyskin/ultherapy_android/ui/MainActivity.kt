@@ -9,6 +9,7 @@ import android.content.ServiceConnection
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.IBinder
+import android.provider.ContactsContract.Data
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.aimyskin.laserserialmodule.LaserSerialService
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.DEFAULT_MACHINE
 import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.DEFAULT_PART
@@ -263,6 +265,7 @@ class MainActivity : BaseActivity() {
 
     private fun addListener() {
         binding.ivMainBack.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 resetPointNumber()
                 startActivity(Intent(this@MainActivity, AwaitActivity::class.java))
@@ -274,6 +277,7 @@ class MainActivity : BaseActivity() {
 
         //更换 single 或者 repeat
         binding.ivSingleOrRepeat.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 //当前是单向，需转变为重复模式
                 if (DataBean.singleOrRepeat == SingleOrRepeat.SINGLE) {
@@ -300,6 +304,7 @@ class MainActivity : BaseActivity() {
         }
         //设置repeat的时间
         binding.tvSingleOrRepeat.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 //当前是单向，需转变为重复模式
                 if (DataBean.singleOrRepeat == SingleOrRepeat.SINGLE) {
@@ -318,6 +323,7 @@ class MainActivity : BaseActivity() {
         }
         //设置打点或直线长度
         binding.llLength.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 startChoiceActivity.launch(Intent(this@MainActivity, ChoiceLengthActivity::class.java))
             } else {
@@ -326,6 +332,7 @@ class MainActivity : BaseActivity() {
         }
         //设置打点或者直线
         binding.llPointOrLine.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 //当前打点，改成打直线
                 if (DataBean.pointOrLine == PointOrLine.POINT) {
@@ -346,6 +353,7 @@ class MainActivity : BaseActivity() {
         }
         //设置打点间距
         binding.llPitch.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 if (DataBean.pointOrLine == PointOrLine.POINT) {
                     startChoiceActivity.launch(
@@ -361,6 +369,7 @@ class MainActivity : BaseActivity() {
         }
         //进入设置界面
         binding.llSetup.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 val intent = Intent(this@MainActivity, SetupAndInfoActivity::class.java)
                 intent.putExtra(KEY_FROM_WHERE_TO_SETUP, WHERE_FROM_MAIN)
@@ -373,9 +382,11 @@ class MainActivity : BaseActivity() {
         binding.tvStandbyReady.setOnClickListener {
             if (isCanClickBtn) {
                 if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
+                    ClickSoundPoolUtils.play(it.context, R.raw.ready)
                     DataBean.standbyOrReady = StandbyOrReady.READY
                     binding.tvStandbyReady.text = STR_READY
                 } else {
+                    ClickSoundPoolUtils.play(it.context, R.raw.standby)
                     DataBean.standbyOrReady = StandbyOrReady.STANDBY
                     binding.tvStandbyReady.text = STR_STANDBY
                 }
@@ -385,6 +396,7 @@ class MainActivity : BaseActivity() {
             }
         }
         binding.ivMainEnergyDown.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 var currentValue = binding.tvMainEnergy.text.toString().toDouble()
                 if (currentValue > 0.1) {
@@ -399,6 +411,7 @@ class MainActivity : BaseActivity() {
             }
         }
         binding.ivMainEnergyUp.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 var currentValue = binding.tvMainEnergy.text.toString().toDouble()
                 val maxValue = when (GlobalVariable.currentUseKnife) {
@@ -423,6 +436,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.ivMainMinus.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 var needValue = binding.tvMainNeed.text.toString().toInt()
                 val startNum = binding.tvMainStart.text.toString().toInt()
@@ -438,6 +452,7 @@ class MainActivity : BaseActivity() {
             }
         }
         binding.ivMainPlus.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
                 var needValue = binding.tvMainNeed.text.toString().toInt()
                 needValue += 10
@@ -470,6 +485,7 @@ class MainActivity : BaseActivity() {
 
         //保存打点记录
         binding.ivMainSave.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             //添加游客记录
             if (GlobalVariable.currentUser == null) {
                 val guestRecord = GuestRecord(
@@ -502,6 +518,7 @@ class MainActivity : BaseActivity() {
         }
 
         binding.ivUserManager.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             GlobalVariable.currentUser?.let {
                 startActivity(Intent(this@MainActivity, UserManagerActivity::class.java))
                 finish()
@@ -539,6 +556,7 @@ class MainActivity : BaseActivity() {
                         val differenceValue = previousRemainNum - hifuBean.remain
                         GlobalVariable.startNum += differenceValue
                         GlobalVariable.currentNum += differenceValue
+                        startAudio()
                         addTotalusedByType(differenceValue)
                         setNumber()
                     }
@@ -567,6 +585,18 @@ class MainActivity : BaseActivity() {
         else {
             resetPointNumber()
             jumpToAwait()
+        }
+    }
+
+    private fun startAudio() {
+        when (DataBean.pointOrLine) {
+            PointOrLine.POINT -> {
+                ClickSoundPoolUtils.play(this@MainActivity, R.raw.dot)
+            }
+
+            else -> {
+                ClickSoundPoolUtils.play(this@MainActivity, R.raw.line)
+            }
         }
     }
 

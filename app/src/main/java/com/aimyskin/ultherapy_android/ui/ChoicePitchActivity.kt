@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityChoicePitchBinding
@@ -31,6 +32,7 @@ class ChoicePitchActivity : BaseActivity() {
 
     private fun addListener() {
         binding.ctvPitch1.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.pitch != Pitch.MM1_5) {
                 DataBean.pitch = Pitch.MM1_5
                 setAllChoiceTabUnChoice()
@@ -41,6 +43,7 @@ class ChoicePitchActivity : BaseActivity() {
         }
 
         binding.ctvPitch2.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.pitch != Pitch.MM1_6) {
                 DataBean.pitch = Pitch.MM1_6
                 setAllChoiceTabUnChoice()
@@ -51,6 +54,7 @@ class ChoicePitchActivity : BaseActivity() {
         }
 
         binding.ctvPitch3.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.pitch != Pitch.MM1_7) {
                 DataBean.pitch = Pitch.MM1_7
                 setAllChoiceTabUnChoice()
@@ -61,6 +65,7 @@ class ChoicePitchActivity : BaseActivity() {
         }
 
         binding.ctvPitch4.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.pitch != Pitch.MM1_8) {
                 DataBean.pitch = Pitch.MM1_8
                 setAllChoiceTabUnChoice()
@@ -70,6 +75,7 @@ class ChoicePitchActivity : BaseActivity() {
             }
         }
         binding.ctvPitch5.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.pitch != Pitch.MM1_9) {
                 DataBean.pitch = Pitch.MM1_9
                 setAllChoiceTabUnChoice()
@@ -79,6 +85,7 @@ class ChoicePitchActivity : BaseActivity() {
             }
         }
         binding.ctvPitch6.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             if (DataBean.pitch != Pitch.MM2_0) {
                 DataBean.pitch = Pitch.MM2_0
                 setAllChoiceTabUnChoice()
@@ -88,6 +95,7 @@ class ChoicePitchActivity : BaseActivity() {
             }
         }
         binding.tvPitchClose.setOnClickListener {
+            ClickSoundPoolUtils.play(it.context, R.raw.click)
             setResult(RESULT_CANCELED)
             finish()
         }

@@ -14,3 +14,4 @@
 .cxx
 local.properties
 .idea/
+/app/schemas/com.aimyskin.ultherapy_android.database.AppDatabase/1.json

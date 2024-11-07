@@ -65,6 +65,7 @@ import com.aimyskin.ultherapy_android.util.getLengthValue
 import com.aimyskin.ultherapy_android.util.getPitchValue
 import com.aimyskin.ultherapy_android.util.getTotalusedByType
 import com.aimyskin.ultherapy_android.util.printKnifeDataFromDataBean
+import com.aimyskin.ultherapy_android.util.resetPointNumber
 import com.aimyskin.ultherapy_android.viewmodel.AddGuestRecordViewModel
 import com.aimyskin.ultherapy_android.viewmodel.AddRecordViewModel
 import com.aimyskin.ultherapy_android.viewmodel.AddUserViewModel
@@ -263,7 +264,7 @@ class MainActivity : BaseActivity() {
     private fun addListener() {
         binding.ivMainBack.setOnClickListener {
             if (DataBean.standbyOrReady == StandbyOrReady.STANDBY) {
-                resetNum()
+                resetPointNumber()
                 startActivity(Intent(this@MainActivity, AwaitActivity::class.java))
                 finish()
             } else {
@@ -558,21 +559,15 @@ class MainActivity : BaseActivity() {
                 if (DataBean.standbyOrReady == StandbyOrReady.READY) {
                     sendData()
                 }
-                resetNum()
+                resetPointNumber()
                 jumpToAwait()
             }
         }
         //当前手柄不可用直接跳转到Await
         else {
-            resetNum()
+            resetPointNumber()
             jumpToAwait()
         }
-    }
-
-    private fun resetNum() {
-        GlobalVariable.startNum = 0
-        GlobalVariable.needNum = DEFAULT_NEED_POINT_NUMBER
-        GlobalVariable.currentNum = 0
     }
 
     private fun jumpToAwait() {

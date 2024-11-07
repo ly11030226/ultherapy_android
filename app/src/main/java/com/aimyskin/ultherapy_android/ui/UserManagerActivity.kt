@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityUserManagerBinding
 import com.aimyskin.ultherapy_android.inter.ChoiceUserCallback
 import com.aimyskin.ultherapy_android.pojo.User
 import com.aimyskin.ultherapy_android.util.GlobalVariable
+import com.aimyskin.ultherapy_android.util.resetPointNumber
 import com.blankj.utilcode.util.LogUtils
 import es.dmoral.toasty.Toasty
 
@@ -100,6 +102,7 @@ class UserManagerActivity : BaseActivity(), ChoiceUserCallback {
             //当前有绑定用户，这里解除绑定并提示
             GlobalVariable.currentUser?.let {
                 GlobalVariable.currentUser = null
+                resetPointNumber()
                 val message = getString(R.string.unbind_user)
                 navController.currentDestination?.id?.let {
                     when (it) {

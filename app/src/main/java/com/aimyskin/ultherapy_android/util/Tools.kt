@@ -57,6 +57,13 @@ object GlobalVariable {
     var currentUser: User? = null
 }
 
+fun resetPointNumber() {
+    GlobalVariable.startNum = 0
+    GlobalVariable.currentNum = 0
+    GlobalVariable.needNum = DEFAULT_NEED_POINT_NUMBER
+}
+
+
 fun loadDrawableListFromFolder(folderName: String): MutableList<Drawable> {
     val drawables = mutableListOf<Drawable>()
     try {

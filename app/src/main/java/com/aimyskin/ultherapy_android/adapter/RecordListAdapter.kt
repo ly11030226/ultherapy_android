@@ -29,7 +29,7 @@ class RecordListAdapter(private val clickButtonCallback: ShowRecordListClickCall
             telephone.text = mTelephone
             therapist.text = it.therapist
             knife.text = it.knife
-            number.text = it.point.toString()
+            number.text = it.currentPoint.toString()
             ivJump.setOnClickListener {
                 clickButtonCallback.clickJump(position)
             }

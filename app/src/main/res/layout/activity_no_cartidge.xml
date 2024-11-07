@@ -7,6 +7,16 @@
     android:background="@color/bg_black"
     tools:context=".ui.NoCartidgeActivity">
 
+
+    <ImageView
+        android:id="@+id/iv_nocartidge_back"
+        android:layout_width="90dp"
+        android:layout_height="73dp"
+        android:layout_margin="64dp"
+        android:background="@drawable/icon_register_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/iv_no_cartidge"
         android:layout_width="wrap_content"

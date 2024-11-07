@@ -59,6 +59,10 @@ class NoCartidgeActivity : BaseActivity() {
         try {
             initData()
             registerReceiver()
+            binding.ivNocartidgeBack.setOnClickListener {
+                startActivity(Intent(this@NoCartidgeActivity, AwaitActivity::class.java))
+                finish()
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -98,9 +102,11 @@ class NoCartidgeActivity : BaseActivity() {
                     Position.LEFT -> {
                         handleData(DataBean.leftHIFU)
                     }
+
                     Position.MIDDLE -> {
                         handleData(DataBean.middleHIFU)
                     }
+
                     else -> {
                         handleData(DataBean.rightHIFU)
                     }
@@ -132,18 +138,18 @@ class NoCartidgeActivity : BaseActivity() {
         unregisterReceiver(receiver)
     }
 
-    private fun handleData(hifuBean: HIFUBean){
+    private fun handleData(hifuBean: HIFUBean) {
         //手柄不可用，直接跳走
-        if(hifuBean.knifeUsable == KnifeUsable.UNUSABLE){
+        if (hifuBean.knifeUsable == KnifeUsable.UNUSABLE) {
             jumpToAwait()
-        }else{
+        } else {
             //手柄可用 并处于挂机状态
-            if(hifuBean.knifeState == KnifeState.DOWN){
+            if (hifuBean.knifeState == KnifeState.DOWN) {
                 jumpToAwait()
             }
             //手柄可用 并处于摘机状态
-            else{
-                if(hifuBean.type != Type.NONE && hifuBean.type != Type.EMPTY ){
+            else {
+                if (hifuBean.type != Type.NONE && hifuBean.type != Type.EMPTY) {
                     //已插入刀头 重新设置刀头的值
                     GlobalVariable.currentUseKnife = hifuBean.type
                     jumpToPickupOrMainActivity()
@@ -153,10 +159,11 @@ class NoCartidgeActivity : BaseActivity() {
     }
 
 
-    private fun jumpToAwait(){
-        startActivity(Intent(this@NoCartidgeActivity,AwaitActivity::class.java))
+    private fun jumpToAwait() {
+        startActivity(Intent(this@NoCartidgeActivity, AwaitActivity::class.java))
         finish()
     }
+
     private fun jumpToPickupOrMainActivity() {
         if (Profile.isHaveAnimation) {
             startActivity(Intent(this@NoCartidgeActivity, PickupActivity::class.java))

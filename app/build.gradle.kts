@@ -64,6 +64,8 @@ dependencies {
     implementation("androidx.activity:activity:1.8.0")
     implementation(project(mapOf("path" to ":LaserSerialModule")))
     implementation(project(mapOf("path" to ":ASentinel")))
+    implementation(project(mapOf("path" to ":UdiskUpgradeModule")))
+    implementation(project(mapOf("path" to ":ResourceModule")))
     val lifeCycleVersion = "2.7.0"
     val materialVersion = "1.4.0"
     val fragmentVersion = "1.7.0"

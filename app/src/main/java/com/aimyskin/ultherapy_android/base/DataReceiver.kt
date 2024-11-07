@@ -31,7 +31,6 @@ import java.util.Date
  */
 class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        LogUtils.d("onReceive")
         if (intent!!.action == "ACTION_SEND_DATA") {
             val dataArray = intent.getByteArrayExtra("KEY_SEND_DATA")
             dataArray?.let {
@@ -57,7 +56,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
      * 一共64个字节，11个帧数据说明字节，53个data字节
      */
     private fun parserData(byteArray: ByteArray): FrameBean {
-        LogUtils.d("************* start parser data *************")
+//        LogUtils.d("************* start parser data *************")
         // ================= 帧数据中用到的11给固定字节 ================= //
         val header = getIntFromTwoByte(byteArray[0], byteArray[1])
         val length = getIntFromTwoByte(byteArray[2], byteArray[3])
@@ -122,7 +121,7 @@ class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceive
         DataBean.leftHIFU.clientId = byteArray[61]
         DataBean.middleHIFU.clientId = byteArray[62]
         DataBean.rightHIFU.clientId = byteArray[63]
-        LogUtils.d("************* end parser data *************")
+//        LogUtils.d("************* end parser data *************")
         return FrameBean(header, length, frameId, command, deviceAddress, functionAddress, DataBean)
     }
 

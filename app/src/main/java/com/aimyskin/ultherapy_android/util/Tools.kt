@@ -1,6 +1,7 @@
 package com.aimyskin.ultherapy_android.util
 
 import android.graphics.drawable.Drawable
+import android.provider.ContactsContract.Data
 import android.util.TypedValue
 import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.MyApplication
@@ -19,13 +20,19 @@ import com.aimyskin.ultherapy_android.pojo.Command
 import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.DistanceLength
 import com.aimyskin.ultherapy_android.pojo.FrameBean
+import com.aimyskin.ultherapy_android.pojo.OperatingSource
 import com.aimyskin.ultherapy_android.pojo.Pitch
+import com.aimyskin.ultherapy_android.pojo.PointOrLine
 import com.aimyskin.ultherapy_android.pojo.Position
+import com.aimyskin.ultherapy_android.pojo.RepeatTime
+import com.aimyskin.ultherapy_android.pojo.SingleOrRepeat
+import com.aimyskin.ultherapy_android.pojo.StandbyOrReady
 import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.pojo.User
 import com.blankj.utilcode.util.LogUtils
 import java.io.File
 import java.util.Calendar
+import java.util.Date
 
 /**
  * 保存一些全局变量
@@ -319,4 +326,72 @@ fun getCurrentDateStr(): String {
     val month = calendar.get(Calendar.MONTH) + 1
     val day = calendar.get(Calendar.DAY_OF_MONTH)
     return "$year/$month/$day"
+}
+
+/**
+ * 从DataBean打印8个有关设置的数据
+ */
+fun printSettingDataFromDataBean() {
+    val distanceLength = when (DataBean.distanceLength) {
+        DistanceLength.MM25 -> "长度 25mm"
+        DistanceLength.MM20 -> "长度 20mm"
+        DistanceLength.MM15 -> "长度 15mm"
+        DistanceLength.MM10 -> "长度 10mm"
+        DistanceLength.MM5 -> "长度 5mm"
+        else -> "长度数据错误"
+    }
+    val pointOrLine = when (DataBean.pointOrLine) {
+        PointOrLine.POINT -> "打点"
+        PointOrLine.LINE -> "打直线"
+        else -> "点/直线数据错误"
+    }
+    val singleOrRepeat = when (DataBean.singleOrRepeat) {
+        SingleOrRepeat.SINGLE -> "单向"
+        SingleOrRepeat.REPEAT -> "重复"
+        else -> "单向/重复数据错误"
+    }
+    val pitch = when (DataBean.pitch) {
+        Pitch.MM1_5 -> "间隔1.5mm"
+        Pitch.MM1_6 -> "间隔1.6mm"
+        Pitch.MM1_7 -> "间隔1.7mm"
+        Pitch.MM1_8 -> "间隔1.8mm"
+        Pitch.MM1_9 -> "间隔1.9mm"
+        Pitch.MM2_0 -> "间隔2.0mm"
+        else -> "间隔数据错误"
+    }
+    val repeatTime = when (DataBean.repeatTime) {
+        RepeatTime.S0_0 -> "重复停顿0.0mm"
+        RepeatTime.S0_1 -> "重复停顿0.1mm"
+        RepeatTime.S0_2 -> "重复停顿0.2mm"
+        RepeatTime.S0_3 -> "重复停顿0.3mm"
+        RepeatTime.S0_4 -> "重复停顿0.4mm"
+        RepeatTime.S0_5 -> "重复停顿0.5mm"
+        RepeatTime.S0_6 -> "重复停顿0.6mm"
+        RepeatTime.S0_7 -> "重复停顿0.7mm"
+        RepeatTime.S0_8 -> "重复停顿0.8mm"
+        RepeatTime.S0_9 -> "重复停顿0.9mm"
+        RepeatTime.S1_0 -> "重复停顿1.0mm"
+    }
+    val energy = "能量值 ${DataBean.energy}"
+
+    val operatingSource = when (DataBean.operatingSource) {
+        OperatingSource.BOTH -> "操作源 手+脚踏"
+        OperatingSource.HAND -> "操作源 手"
+        OperatingSource.FOOT -> "操作源 脚踏"
+        else -> "操作源数据错误"
+    }
+
+    val standbyOrReady = when (DataBean.standbyOrReady) {
+        StandbyOrReady.STANDBY -> "待机"
+        StandbyOrReady.READY -> "准备"
+        else -> "待机/准备数据错误"
+    }
+    LogUtils.d("$distanceLength | $pointOrLine | $singleOrRepeat | $pitch | $repeatTime | $energy | $operatingSource | $standbyOrReady")
+}
+
+/**
+ * 从DataBean打印刀头数据
+ */
+fun printKnifeDataFromDataBean(): String {
+    return "左侧手柄【${DataBean.leftHIFU.printData()}】\n中间手柄【${DataBean.middleHIFU.printData()}】\n右侧手柄【${DataBean.rightHIFU.printData()}】"
 }

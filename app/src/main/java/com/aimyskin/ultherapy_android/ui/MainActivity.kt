@@ -21,7 +21,10 @@ import com.aimyskin.ultherapy_android.DEFAULT_NEED_POINT_NUMBER
 import com.aimyskin.ultherapy_android.DEFAULT_PART
 import com.aimyskin.ultherapy_android.DEFAULT_THERAPIST
 import com.aimyskin.ultherapy_android.KEY_FROM_WHERE_TO_SETUP
+import com.aimyskin.ultherapy_android.KEY_NO_CARTIDGE_TYPE
 import com.aimyskin.ultherapy_android.LIMIT_DIFFERENCE_POINT
+import com.aimyskin.ultherapy_android.NO_CARTIDGE_BOOSTER
+import com.aimyskin.ultherapy_android.NO_CARTIDGE_HIFU
 import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.REMINDER_CAN_NOT_CLICK
@@ -61,6 +64,7 @@ import com.aimyskin.ultherapy_android.util.getKnifeTypeStr
 import com.aimyskin.ultherapy_android.util.getLengthValue
 import com.aimyskin.ultherapy_android.util.getPitchValue
 import com.aimyskin.ultherapy_android.util.getTotalusedByType
+import com.aimyskin.ultherapy_android.util.printKnifeDataFromDataBean
 import com.aimyskin.ultherapy_android.viewmodel.AddGuestRecordViewModel
 import com.aimyskin.ultherapy_android.viewmodel.AddRecordViewModel
 import com.aimyskin.ultherapy_android.viewmodel.AddUserViewModel
@@ -195,11 +199,11 @@ class MainActivity : BaseActivity() {
                 DataBean.rightHIFU.remain
             }
         }
+        //保存本次打点显示的剩余数
+        previousRemainNum = remainValue
         binding.tvMainRemain.text = remainValue.toString()
         binding.tvMainStart.text = GlobalVariable.startNum.toString()
         binding.tvMainNeed.text = GlobalVariable.needNum.toString()
-        //每次进到MainActivity currentNum都清0
-        GlobalVariable.currentNum = 0
         binding.tvMainCurrent.text = GlobalVariable.currentNum.toString()
         binding.tvMainTotalused.text = getTotalusedByType(GlobalVariable.currentUseKnife).toString()
         //设置进度条
@@ -211,8 +215,10 @@ class MainActivity : BaseActivity() {
     private fun registerReceiver() {
         receiver = DataReceiver(object : ReceiveDataCallback {
             override fun parseSuccess(frameBean: FrameBean) {
-                LogUtils.d("frameBean ... $frameBean")
+//                LogUtils.d("frameBean ... $frameBean")
                 if (frameBean.frameId and 0x7fff == 0x7fff) {
+                    //打印刀头数据
+                    LogUtils.i("frameBean[${frameBean}]\n${printKnifeDataFromDataBean()}")
                     //设置手柄图标是否点亮
                     if (DataBean.leftHIFU.press == PRESS.TRUE ||
                         DataBean.middleHIFU.press == PRESS.TRUE ||
@@ -535,7 +541,6 @@ class MainActivity : BaseActivity() {
                         addTotalusedByType(differenceValue)
                         setNumber()
                     }
-                    previousRemainNum = hifuBean.remain
                     //如果剩余打点数是0 或者 进度条是100% 则强制设置Standby状态 且给下位机发送数据
                     if (hifuBean.remain == 0 || GlobalVariable.startNum == GlobalVariable.needNum) {
                         isCanClickBtn = false
@@ -578,6 +583,15 @@ class MainActivity : BaseActivity() {
 
     private fun jumpToNocartidge() {
         val intent = Intent(this@MainActivity, NoCartidgeActivity::class.java)
+        when (GlobalVariable.currentUseKnifePosition) {
+            Position.LEFT -> {
+                intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_BOOSTER)
+            }
+
+            else -> {
+                intent.putExtra(KEY_NO_CARTIDGE_TYPE, NO_CARTIDGE_HIFU)
+            }
+        }
         startActivity(intent)
         finish()
     }

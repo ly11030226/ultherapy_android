@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'com.aimyskin.resourcemodule'
+    compileSdk 34
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 34
+        multiDexEnabled true  //true 开启多dex，解除65k限制 Excel
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    buildTypes {
+        release {
+//            if (rootProject.ext.appMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+        debug {
+//            if (rootProject.ext.appDebugMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api project(path: ':MiscModule')
+    api 'com.github.javadev:underscore:1.81'
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+}

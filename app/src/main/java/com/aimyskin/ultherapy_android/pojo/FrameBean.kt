@@ -46,7 +46,7 @@ fun getFrameDataString(frameBean: FrameBean): String {
 //    LogUtils.d("deviceAddressSTr ... $deviceAddressStr")
 //    LogUtils.d("functionAddressStr ... $functionAddressStr")
 //    LogUtils.d("dataStr ... $dataStr")
-    LogUtils.d("result ... $result")
+//    LogUtils.d("result ... $result")
     return result
 }
 

@@ -28,6 +28,7 @@ import com.aimyskin.ultherapy_android.pojo.KnifeState
 import com.aimyskin.ultherapy_android.pojo.KnifeUsable
 import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.pojo.getFrameDataString
+import com.aimyskin.ultherapy_android.util.GlobalVariable
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnife
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnifePosition
 import com.aimyskin.ultherapy_android.util.createFrameData
@@ -107,6 +108,9 @@ class AwaitActivity : BaseActivity() {
     }
 
     private fun initData() {
+        //到了此页面让currNum清0
+        GlobalVariable.currentNum = 0
+
         if (Profile.isAutoRecognition) {
             DataBean.isAutoRecognition = AutoRecognition.OPEN
         } else {

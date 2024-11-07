@@ -24,6 +24,106 @@ data class HIFUBean(
         }
         return result
     }
+
+    override fun toString(): String {
+        return "HIFUBean[$position | $type | $remain | $knifeState | $knifeUsable | $press |$clientId]"
+    }
+
+    fun printData(): String {
+        val pos = when (position) {
+            Position.LEFT -> {
+                "左侧"
+            }
+
+            Position.MIDDLE -> {
+                "中间"
+            }
+
+            else -> {
+                "右侧"
+            }
+        }
+        val t = when (type) {
+            Type.KNIFE_15 -> {
+                "刀头15mm"
+            }
+
+            Type.KNIFE_20 -> {
+                "刀头20mm"
+            }
+
+            Type.KNIFE_30 -> {
+                "刀头30mm"
+            }
+
+            Type.KNIFE_45 -> {
+                "刀头45mm"
+            }
+
+            Type.KNIFE_60 -> {
+                "刀头60mm"
+            }
+
+            Type.KNIFE_90 -> {
+                "刀头90mm"
+            }
+
+            Type.KNIFE_130 -> {
+                "刀头15mm"
+            }
+
+            Type.CIRCLE_15 -> {
+                "炮头15mm"
+            }
+
+            Type.CIRCLE_30 -> {
+                "炮头30mm"
+            }
+
+            Type.CIRCLE_45 -> {
+                "炮头45mm"
+            }
+
+            else -> {
+                "空刀头"
+            }
+        }
+
+        val r = "剩余数 $remain"
+        val state = when (knifeState) {
+            KnifeState.UP -> {
+                "摘"
+            }
+
+            KnifeState.DOWN -> {
+                "挂"
+            }
+        }
+        val usable = when (knifeUsable) {
+            KnifeUsable.UNUSABLE -> {
+                "不可用"
+            }
+
+            KnifeUsable.USABLE -> {
+                "可用"
+            }
+        }
+        val p = when (press) {
+            PRESS.EMPTY -> {
+                "无状态"
+            }
+
+            PRESS.TRUE -> {
+                "手按下"
+            }
+
+            PRESS.FALSE -> {
+                "手抬起"
+            }
+        }
+        val client = "客户Id $clientId"
+        return "$pos | $t | $r | $state | $usable | $p | $client"
+    }
 }
 
 

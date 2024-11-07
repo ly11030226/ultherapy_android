@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    namespace 'com.aimyskin.udiskupgrademodule'
+
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
+    buildFeatures {
+        buildConfig  true
+    }
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 100
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "String","packageName","\"com.aimyskin.udiskupgrademodule\""
+//            if (rootProject.ext.appMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+        debug {
+            buildConfigField "String","packageName","\"com.aimyskin.udiskupgrademodule\""
+//            if (rootProject.ext.appDebugMinifyEnabled){
+//                consumerProguardFiles "consumer-rules.pro"
+//            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation project(path: ':MiscModule')
+    implementation project(path: ':ResourceModule')
+}

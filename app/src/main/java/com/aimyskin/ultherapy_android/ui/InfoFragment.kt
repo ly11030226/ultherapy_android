@@ -69,8 +69,8 @@ class InfoFragment : BaseFragment() {
                         knife60 = 0
                         knife90 = 0
                         knife130 = 0
-                        binding.tvInfoUltrafTotalusedValue.text = hifuTotal().toString()
-                        refreshTotalUsed()
+
+                        initView()
                     }
                     negativeButton(R.string.dialog_cancel)
                 }

@@ -163,8 +163,8 @@ class UserRecordFragment : BaseFragment(), ShowRecordListClickCallback, ClickRef
     override fun clickJump(position: Int) {
         GlobalVariable.currentUser?.let {
             GlobalVariable.startNum = dataList[position].point
-            GlobalVariable.needNum = dataList[position].currentPoint
-        } ?: {
+            GlobalVariable.needNum = dataList[position].needPoint
+        } ?: run {
             GlobalVariable.startNum = guestList[position].point
             GlobalVariable.needNum = guestList[position].needPoint
         }

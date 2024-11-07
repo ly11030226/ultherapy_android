@@ -76,7 +76,6 @@ public class LaserSerialService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        LogUtils.i("onBind");
         int deviceClassify = intent.getIntExtra("deviceClassify", -1);
         if (deviceClassify == DeviceType.DEVICE_808.getValue()) {
             startSerialPort(DeviceType.DEVICE_808);

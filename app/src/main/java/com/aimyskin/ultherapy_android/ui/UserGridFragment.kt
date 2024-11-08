@@ -39,6 +39,8 @@ class UserGridFragment : BaseFragment() {
     private val adapter: UserManagerGridAdapter = UserManagerGridAdapter()
     private val dataList = mutableListOf<User>()
     private var isFirstPage = true
+    private var dataOffset = 0
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -53,10 +55,15 @@ class UserGridFragment : BaseFragment() {
         binding.srlGridUsers.setRefreshHeader(ClassicsHeader(activity))
         binding.srlGridUsers.setRefreshFooter(ClassicsFooter(activity))
         binding.srlGridUsers.setOnRefreshListener(OnRefreshListener { refreshlayout ->
+            isFirstPage = true
+            dataOffset = 0
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
             //传入false表示刷新失败
             refreshlayout.finishRefresh(2000 /*,false*/)
         })
         binding.srlGridUsers.setOnLoadMoreListener(OnLoadMoreListener { refreshlayout ->
+            isFirstPage = false
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, ++dataOffset)
             //传入false表示加载失败
             refreshlayout.finishLoadMore(2000 /*,false*/)
         })
@@ -89,10 +96,11 @@ class UserGridFragment : BaseFragment() {
                     //%用于执行模糊查询
                     val phone = "%" + etPhone.text.toString() + "%"
                     isFirstPage = true
+                    dataOffset = 0
                     if (phone.isNotEmpty()) {
                         searchUserViewModel.searchUserByTelephone(phone)
                     } else {
-                        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+                        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
                     }
                 }
                 btnCancel.setOnClickListener { v ->
@@ -129,7 +137,6 @@ class UserGridFragment : BaseFragment() {
                 searchUserLiveData.observe(a, Observer {
                     if (it.isSuccess) {
                         it.userList?.let { list ->
-//                            LogUtils.d("search result ... $list")
                             dataList.clear()
                             dataList.addAll(list)
                             adapter.submitList(dataList)
@@ -143,6 +150,6 @@ class UserGridFragment : BaseFragment() {
     }
 
     override fun initData() {
-        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
     }
 }

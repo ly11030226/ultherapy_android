@@ -50,6 +50,7 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
     private val userListAdapter: UserListAdapter = UserListAdapter(this)
     private val dataList = mutableListOf<User>()
     private var isFirstPage = true
+    private var dataOffset = 0
 
     private val startRegisterActivity =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -57,7 +58,8 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
             if (it.resultCode == Activity.RESULT_OK) {
                 //注册成功刷新数据
                 isFirstPage = true
-                getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+                dataOffset = 0
+                getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
             }
         }
 
@@ -69,7 +71,7 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
             initRefreshLayout()
             addListener()
             initObserver()
-            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -98,7 +100,8 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
                 if (it.isSuccess) {
                     Toasty.success(this@ShowUsersActivity, it.message).show()
                     isFirstPage = true
-                    getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+                    dataOffset = 0
+                    getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
                 } else {
                     Toasty.error(this@ShowUsersActivity, it.message).show()
                 }
@@ -125,10 +128,16 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
         binding.srlUsers.setRefreshHeader(ClassicsHeader(this))
         binding.srlUsers.setRefreshFooter(ClassicsFooter(this))
         binding.srlUsers.setOnRefreshListener(OnRefreshListener { refreshlayout ->
+            isFirstPage = true
+            dataOffset = 0
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
             //传入false表示刷新失败
             refreshlayout.finishRefresh(2000 /*,false*/)
         })
         binding.srlUsers.setOnLoadMoreListener(OnLoadMoreListener { refreshlayout ->
+            isFirstPage = false
+            //这里传的参数offset带表偏移量，跟currentPage差1
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, ++dataOffset)
             //传入false表示加载失败
             refreshlayout.finishLoadMore(2000 /*,false*/)
         })
@@ -158,10 +167,11 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
                 //%用于执行模糊查询
                 val phone = "%" + etPhone.text.toString() + "%"
                 isFirstPage = true
+                dataOffset = 0
                 if (phone.isNotEmpty()) {
                     searchUserViewModel.searchUserByTelephone(phone)
                 } else {
-                    getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+                    getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
                 }
             }
             btnCancel.setOnClickListener {

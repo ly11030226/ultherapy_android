@@ -42,6 +42,7 @@ class UserListFragment : BaseFragment() {
     private val adapter: UserManagerListAdapter = UserManagerListAdapter()
     private val dataList = mutableListOf<User>()
     private var isFirstPage = true
+    private var dataOffset = 0
     private var _binding: FragmentUserListBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -56,10 +57,15 @@ class UserListFragment : BaseFragment() {
         binding.srlListUsers.setRefreshHeader(ClassicsHeader(activity))
         binding.srlListUsers.setRefreshFooter(ClassicsFooter(activity))
         binding.srlListUsers.setOnRefreshListener(OnRefreshListener { refreshlayout ->
+            isFirstPage = true
+            dataOffset = 0
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
             //传入false表示刷新失败
             refreshlayout.finishRefresh(2000 /*,false*/)
         })
         binding.srlListUsers.setOnLoadMoreListener(OnLoadMoreListener { refreshlayout ->
+            isFirstPage = false
+            getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, ++dataOffset)
             //传入false表示加载失败
             refreshlayout.finishLoadMore(2000 /*,false*/)
         })
@@ -92,10 +98,11 @@ class UserListFragment : BaseFragment() {
                     //%用于执行模糊查询
                     val phone = "%" + etPhone.text.toString() + "%"
                     isFirstPage = true
+                    dataOffset = 0
                     if (phone.isNotEmpty()) {
                         searchUserViewModel.searchUserByTelephone(phone)
                     } else {
-                        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+                        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
                     }
                 }
                 btnCancel.setOnClickListener { v ->
@@ -132,7 +139,6 @@ class UserListFragment : BaseFragment() {
                 searchUserLiveData.observe(activity, Observer {
                     if (it.isSuccess) {
                         it.userList?.let { list ->
-                            LogUtils.d("search result ... $list")
                             dataList.clear()
                             dataList.addAll(list)
                             adapter.submitList(dataList)
@@ -146,6 +152,6 @@ class UserListFragment : BaseFragment() {
     }
 
     override fun initData() {
-        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, 0)
+        getUserListViewModel.getUserListFromLocal(DATA_NUMBER_PER_PAGE, dataOffset)
     }
 }

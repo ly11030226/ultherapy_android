@@ -15,3 +15,6 @@
 local.properties
 .idea/
 /app/schemas/com.aimyskin.ultherapy_android.database.AppDatabase/1.json
+/apks/
+/app/release/
+/app/lint-baseline.xml

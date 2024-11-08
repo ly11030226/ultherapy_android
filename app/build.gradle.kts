@@ -129,5 +129,5 @@ dependencies {
     implementation("io.github.scwang90:refresh-footer-classics:2.1.0")     //经典加载
     //
     implementation("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
-
+    implementation("com.github.Jay-Goo:RangeSeekBar:3.0.0")
 }

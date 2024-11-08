@@ -13,6 +13,9 @@ import com.aimyskin.ultherapy_android.databinding.FragmentSetupBinding
 import com.aimyskin.ultherapy_android.pojo.AutoRecognition
 import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.OperatingSource
+import com.blankj.utilcode.util.LogUtils
+import com.jaygoo.widget.OnRangeChangedListener
+import com.jaygoo.widget.RangeSeekBar
 
 
 class SetupFragment : BaseFragment() {
@@ -63,6 +66,21 @@ class SetupFragment : BaseFragment() {
         } else {
             binding.ivSetupAnimationBtn.setBackgroundResource(R.drawable.icon_off)
         }
+
+        //音量设置回调
+        binding.rsbSetup.setOnRangeChangedListener(object : OnRangeChangedListener {
+            override fun onRangeChanged(view: RangeSeekBar?, leftValue: Float, rightValue: Float, isFromUser: Boolean) {
+                //leftValue is left seekbar value, rightValue is right seekbar value
+                LogUtils.d("leftValue ... $leftValue | rightValue ... $rightValue")
+            }
+
+            override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
+            }
+
+            override fun onStopTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
+            }
+
+        })
     }
 
     override fun addListener() {

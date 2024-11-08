@@ -75,6 +75,7 @@
     <string name="label_list_fragment">UserListFragment</string>
     <string name="label_grid_fragment">UserGridFragment</string>
     <string name="label_record_fragment">UserRecordFragment</string>
+    <string name="label_energy_fragment">EnergyFragment</string>
     <string name="str_back">Back</string>
     <string name="str_volume">Volume</string>
     <string name="str_operate">H.P Cperating Source</string>
@@ -144,4 +145,9 @@
     <string name="user_information">User Information</string>
     <string name="unbind_user">Unbind User</string>
     <string name="current_user">"Current User: %s</string>
+    <string name="str_complete">Complete</string>
+    <string name="str_instrument_title">Instrument Settings</string>
+    <string name="str_energy">Energy</string>
+    <string name="instrument_energy_reminder">Please set the tool head energy coefficient</string>
+    <string name="str_apply">Apply</string>
 </resources>

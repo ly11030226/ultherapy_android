@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_black"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.EnergyFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="@string/instrument_energy_reminder"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <com.jaygoo.widget.RangeSeekBar
+        android:id="@+id/rsb_energy"
+        android:layout_width="1400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:rsb_gravity="center"
+        app:rsb_indicator_background_color="@color/progressbar_tint"
+        app:rsb_indicator_height="40dp"
+        app:rsb_indicator_margin="10dp"
+        app:rsb_indicator_padding_bottom="16dp"
+        app:rsb_indicator_padding_left="16dp"
+        app:rsb_indicator_padding_right="16dp"
+        app:rsb_indicator_padding_top="16dp"
+        app:rsb_indicator_radius="10dp"
+        app:rsb_indicator_show_mode="alwaysShow"
+        app:rsb_indicator_text_color="@color/white"
+        app:rsb_indicator_text_size="30sp"
+        app:rsb_indicator_width="40dp"
+        app:rsb_max="200"
+        app:rsb_min="10"
+        app:rsb_min_interval="10"
+        app:rsb_mode="single"
+        app:rsb_progress_color="@color/progressbar_tint"
+        app:rsb_progress_default_color="@color/white"
+        app:rsb_progress_height="8dp"
+        app:rsb_progress_radius="20dp"
+        app:rsb_step_auto_bonding="true"
+        app:rsb_step_color="@color/user_manager_text"
+        app:rsb_step_height="10dp"
+        app:rsb_step_radius="30dp"
+        app:rsb_step_width="5dp"
+        app:rsb_steps="19" />
+
+
+    <Button
+        android:id="@+id/btn_energy_apply"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/shape_energy_btn"
+        android:text="@string/str_apply"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
+
+</LinearLayout>

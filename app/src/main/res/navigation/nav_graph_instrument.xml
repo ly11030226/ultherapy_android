@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/EnergyFragment">
+
+    <fragment
+        android:id="@+id/EnergyFragment"
+        android:name="com.aimyskin.ultherapy_android.ui.EnergyFragment"
+        android:label="@string/label_energy_fragment"
+        tools:layout="@layout/fragment_energy">
+    </fragment>
+
+</navigation>

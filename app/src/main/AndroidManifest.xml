@@ -49,6 +49,9 @@
         android:theme="@style/Theme.Ultherapy_Android"
         tools:targetApi="34">
         <activity
+            android:name=".ui.InstrumentSettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.UserManagerActivity"
             android:exported="false" />
         <activity

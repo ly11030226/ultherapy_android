@@ -23,4 +23,7 @@ object Profile : KotprefModel() {
     var circle15: Int by intPref(0)
     var circle30: Int by intPref(0)
     var circle45: Int by intPref(0)
+
+    //保存修改后的能量系数
+    var energy: Int by intPref(100)
 }

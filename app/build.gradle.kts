@@ -1,8 +1,16 @@
+import java.util.Date
+import java.text.SimpleDateFormat
+import kotlin.io.print
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.room")
     id("com.google.devtools.ksp")
+}
+
+fun getTime(): String {
+    return SimpleDateFormat("yyyyMMddHHmmss").format(Date())
 }
 
 android {
@@ -22,20 +30,65 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            isPseudoLocalesEnabled = true
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-
-        debug {
-            isPseudoLocalesEnabled = true
+    signingConfigs {
+        create("packJKS") {
+            keyAlias = "ultherapy_android"
+            keyPassword = "2024110817"
+            storeFile = file("${rootDir.absolutePath}/ultherapy_android.jks")
+            storePassword = "2024110817"
         }
     }
+
+    buildTypes {
+        val mySignConfig = signingConfigs.getByName("packJKS")
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            )
+            applicationIdSuffix = ".release"
+            signingConfig = mySignConfig
+        }
+        debug {
+            applicationIdSuffix = ".debug"
+            signingConfig = mySignConfig
+
+        }
+    }
+
+    android.buildTypes.forEach { buildType ->
+        // release 或 debug
+        val typeName = buildType.name
+        //版本号
+        val versionName = defaultConfig.versionName
+        val date = getTime()
+        android.productFlavors.map { it.name }.ifEmpty { listOf("") }
+            .forEach { flavorName ->
+                // 将获取到的名称首字母变为大写，比如：release变为Release
+                val combineName = "${flavorName.capitalize()}${typeName.capitalize()}"
+                // 为我们的任务命名：比如叫nodeParserRelease
+                val taskName = "ultherapy_android$combineName"
+                // 找到打包的任务，比如ultherapy_androidrelease就是assembleRelease任务
+                val originName = "assemble$combineName"
+                // 创建一个任务专门做我们的自定义打包任务
+                project.task(taskName) {
+                    // 为任务分组
+                    group = "UltherapyAndroid apk"
+                    // 执行我们的任务之前会先执行的任务，比如，打release包时会先执行assembleRelease任务
+                    dependsOn(originName)
+                    // 执行完任务后，我们将得到的APK 重命名并输出到根目录下的apks文件夹下
+                    doLast {
+                        copy {
+                            from(File(project.buildDir, "outputs/apk/$typeName"))
+                            into(File(rootDir, "apks"))
+                            rename { "UltherapyAndroid_${typeName}_V${versionName}_$date.apk" }
+                            include("*.apk")
+                        }
+                    }
+                }
+            }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

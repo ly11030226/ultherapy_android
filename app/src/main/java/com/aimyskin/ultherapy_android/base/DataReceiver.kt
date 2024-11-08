@@ -29,7 +29,7 @@ import java.util.Date
 /**
  * 串口数据广播接受类
  */
-class DataReceiver(private val callback: ReceiveDataCallback) : BroadcastReceiver() {
+class DataReceiver constructor(private val callback: ReceiveDataCallback) : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent!!.action == "ACTION_SEND_DATA") {
             val dataArray = intent.getByteArrayExtra("KEY_SEND_DATA")

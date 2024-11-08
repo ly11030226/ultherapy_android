@@ -14,6 +14,7 @@ import com.aimyskin.ultherapy_android.ui.ErrorActivity
 import com.aimyskin.ultherapy_android.ui.MainActivity
 import com.blankj.utilcode.util.LogUtils
 import com.chibatching.kotpref.Kotpref
+import com.elvishew.xlog.XLog
 import org.greenrobot.eventbus.EventBus
 
 class MyApplication : Application() {
@@ -26,6 +27,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
+        XLog.init()
         //初始化SharePreference工具类
         Kotpref.init(this)
         LogUtils.getConfig().globalTag = GLOBAL_TAG

@@ -1,11 +1,18 @@
 package com.aimyskin.ultherapy_android.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.media.AudioManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import com.aimyskin.miscmodule.utils.ClickSoundPoolUtils
+import com.aimyskin.resourcemodule.ReadFileUtils
 import com.aimyskin.ultherapy_android.Profile
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseFragment
@@ -19,11 +26,22 @@ import com.jaygoo.widget.RangeSeekBar
 
 
 class SetupFragment : BaseFragment() {
+    private lateinit var audioManager: AudioManager
+    private var progressAudio = 0
+    private var maxAudio = 100
+
     private var _binding: FragmentSetupBinding? = null
     private val binding get() = _binding!!
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
+    private val startActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            //此处是跳转的result回调方法
+            if (it.resultCode == Activity.RESULT_OK) {
+                LogUtils.d("ok")
+            } else {
+                LogUtils.d("no ok")
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,8 +88,8 @@ class SetupFragment : BaseFragment() {
         //音量设置回调
         binding.rsbSetup.setOnRangeChangedListener(object : OnRangeChangedListener {
             override fun onRangeChanged(view: RangeSeekBar?, leftValue: Float, rightValue: Float, isFromUser: Boolean) {
-                //leftValue is left seekbar value, rightValue is right seekbar value
-                LogUtils.d("leftValue ... $leftValue | rightValue ... $rightValue")
+//                LogUtils.d("leftValue ... $leftValue ")
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, leftValue.toInt(), AudioManager.FLAG_PLAY_SOUND)
             }
 
             override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
@@ -81,6 +99,29 @@ class SetupFragment : BaseFragment() {
             }
 
         })
+
+        // 音量控制
+        audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        if (Settings.System.canWrite(activity)) {
+            //获取最大音量
+            maxAudio = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+            //获取当前音量
+            progressAudio = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+            //设置一遍当前音量
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progressAudio, AudioManager.FLAG_PLAY_SOUND)
+            //显示进度条
+            val minInterval = maxAudio / 5
+            binding.rsbSetup.setRange(0f, maxAudio.toFloat(), minInterval.toFloat());
+            binding.rsbSetup.setProgress(progressAudio.toFloat())
+//            LogUtils.d("maxAudio ... $maxAudio | progressAudio ... $progressAudio | minInterval ... $minInterval")
+        } else {
+            val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+            intent.data = Uri.parse("package:${activity?.packageName}")
+            intent.putExtra("extra_prefs_show_button_bar", true)
+            intent.putExtra("extra_prefs_set_back_text", null as String?)
+            intent.putExtra("extra_prefs_set_next_text", activity?.getString(R.string.str_complete))
+            startActivity.launch(intent)
+        }
     }
 
     override fun addListener() {

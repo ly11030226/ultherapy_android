@@ -154,7 +154,6 @@ class ShowUsersActivity : BaseActivity(), ShowUserListClickCallback {
             ClickSoundPoolUtils.play(it.context, R.raw.click)
             // REFACTOR: 这里用的自定义主题show_users_theme，不能更改背景颜色，后面会研究
             val dialog = MaterialDialog(this).show {
-                setTheme(R.style.show_users_theme)
                 customView(R.layout.dialog_search_user)
             }
             val customView = dialog.getCustomView()

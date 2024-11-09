@@ -25,9 +25,7 @@ class MaterialDialogFactory {
      */
     fun openReminderDialog(activity: Activity, reminder: String, callback: ReminderDialogClickApplyCallback) {
         val dialog = MaterialDialog(activity).show {
-            activity.setTheme(R.style.show_users_theme)
             customView(R.layout.dialog_normal_reminder)
-            cornerRadius(res = R.dimen.dialog_reminder_radius)
         }
         val customView = dialog.getCustomView()
         val btnApply = customView.findViewById<Button>(R.id.btn_dialog_reminder_apply)

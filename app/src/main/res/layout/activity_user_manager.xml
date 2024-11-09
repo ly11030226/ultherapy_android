@@ -43,34 +43,9 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_user_manager_back">
 
         <LinearLayout
-            android:id="@+id/ll_user_manager_record"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_user_manager_check"
-            android:gravity="center_vertical"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/iv_user_manager_record"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:background="@drawable/icon_record_check" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:text="@string/str_user_manager_increase"
-                android:textColor="@color/user_manager_text"
-                android:textSize="30sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
             android:id="@+id/ll_user_manager_remake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:background="@drawable/shape_user_manager_uncheck"
             android:gravity="center_vertical"
             android:padding="8dp">
@@ -86,6 +61,30 @@
                 android:layout_height="wrap_content"
                 android:paddingStart="16dp"
                 android:text="@string/str_remake"
+                android:textColor="@color/user_manager_text"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_user_manager_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/shape_user_manager_check"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_user_manager_record"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:background="@drawable/icon_record_check" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:text="@string/str_user_manager_increase"
                 android:textColor="@color/user_manager_text"
                 android:textSize="30sp" />
         </LinearLayout>

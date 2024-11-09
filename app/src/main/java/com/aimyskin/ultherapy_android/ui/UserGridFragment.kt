@@ -83,7 +83,6 @@ class UserGridFragment : BaseFragment() {
             ClickSoundPoolUtils.play(it.context, R.raw.click)
             activity?.let { activity ->
                 val dialog = MaterialDialog(activity).show {
-                    activity.setTheme(R.style.show_users_theme)
                     customView(R.layout.dialog_search_user)
                 }
                 val customView = dialog.getCustomView()

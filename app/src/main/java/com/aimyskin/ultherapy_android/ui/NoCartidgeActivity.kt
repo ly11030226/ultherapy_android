@@ -167,11 +167,13 @@ class NoCartidgeActivity : BaseActivity() {
     }
 
     private fun jumpToPickupOrMainActivity() {
-        if (Profile.isHaveAnimation) {
-            startActivity(Intent(this@NoCartidgeActivity, PickupActivity::class.java))
-        } else {
-            startActivity(Intent(this@NoCartidgeActivity, MainActivity::class.java))
-        }
+        // FIXME: 2024/11/9 如果是有动画效果这里有bug
+//        if (Profile.isHaveAnimation) {
+//            startActivity(Intent(this@NoCartidgeActivity, PickupActivity::class.java))
+//        } else {
+//            startActivity(Intent(this@NoCartidgeActivity, MainActivity::class.java))
+//        }
+        startActivity(Intent(this@NoCartidgeActivity, PickupActivity::class.java))
         finish()
     }
 }

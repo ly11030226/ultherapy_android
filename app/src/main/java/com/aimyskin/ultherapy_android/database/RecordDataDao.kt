@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RecordDataDao {
     @Transaction
-    @Query("SELECT * FROM record  WHERE user_id=:userId ORDER BY user_id DESC")
+    @Query("SELECT * FROM record  WHERE user_id=:userId ORDER BY record_id DESC")
     fun getRecordList(userId: Long): Flow<List<Record>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

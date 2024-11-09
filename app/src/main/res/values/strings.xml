@@ -150,4 +150,5 @@
     <string name="str_energy">Energy</string>
     <string name="instrument_energy_reminder">Please set the tool head energy coefficient</string>
     <string name="str_apply">Apply</string>
+    <string name="version_content">Version: %s</string>
 </resources>

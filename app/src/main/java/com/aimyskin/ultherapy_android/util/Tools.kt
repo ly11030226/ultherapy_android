@@ -1,5 +1,6 @@
 package com.aimyskin.ultherapy_android.util
 
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.provider.ContactsContract.Data
 import android.util.TypedValue
@@ -401,4 +402,14 @@ fun printSettingDataFromDataBean() {
  */
 fun printKnifeDataFromDataBean(): String {
     return "左侧手柄【${DataBean.leftHIFU.printData()}】\n中间手柄【${DataBean.middleHIFU.printData()}】\n右侧手柄【${DataBean.rightHIFU.printData()}】"
+}
+
+// 获取versionName
+fun getAppVersionName(): String {
+    return try {
+        val packageInfo = MyApplication.INSTANCE.packageManager.getPackageInfo(MyApplication.INSTANCE.packageName, 0)
+        packageInfo.versionName
+    } catch (e: PackageManager.NameNotFoundException) {
+        "Unknown"
+    }
 }

@@ -9,6 +9,7 @@
     tools:context=".ui.IndexActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_index_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/index_title"
@@ -91,6 +92,16 @@
             app:layout_constraintRight_toLeftOf="@+id/iv_index_ime"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_index_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="32dp"
+        android:textColor="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_index_title"
+        tools:text="Version:1.0.0" />
 
 
     <ImageView
@@ -246,14 +257,13 @@
         android:background="@drawable/icon_index_increase"
         app:layout_constraintLeft_toLeftOf="@+id/iv_index_browser"
         app:layout_constraintTop_toBottomOf="@+id/iv_index_browser" />
+
     <TextView
         style="@style/style_index_text"
         android:text="@string/str_increase"
         app:layout_constraintLeft_toLeftOf="@+id/iv_index_increase"
         app:layout_constraintRight_toRightOf="@+id/iv_index_increase"
         app:layout_constraintTop_toBottomOf="@+id/iv_index_increase" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

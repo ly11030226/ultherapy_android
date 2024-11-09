@@ -1,5 +1,6 @@
 package com.aimyskin.ultherapy_android.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ import com.aimyskin.resourcemodule.ReadFileUtils
 import com.aimyskin.ultherapy_android.R
 import com.aimyskin.ultherapy_android.base.BaseActivity
 import com.aimyskin.ultherapy_android.databinding.ActivityIndexBinding
+import com.aimyskin.ultherapy_android.util.getAppVersionName
 import com.blankj.utilcode.util.AppUtils
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -34,6 +36,8 @@ class IndexActivity : BaseActivity() {
     private fun initView() {
         //开始更新时间
         getCurrentTime()
+        //显示版本号
+        binding.tvIndexVersion.text = String.format(getString(R.string.version_content), getAppVersionName())
     }
 
     private fun getCurrentTime() {

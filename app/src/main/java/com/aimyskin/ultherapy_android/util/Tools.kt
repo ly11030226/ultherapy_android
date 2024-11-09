@@ -145,7 +145,7 @@ fun hexStringToByteArray(hexString: String): ByteArray {
     return byteArray
 }
 
-fun getDrawableIdByType(type: Type): Int {
+fun getDrawableIdByType(type: Type, position: Position): Int {
     return when (type) {
         Type.KNIFE_15 -> {
             R.drawable.knife_15
@@ -185,6 +185,18 @@ fun getDrawableIdByType(type: Type): Int {
 
         Type.CIRCLE_45 -> {
             R.drawable.circle_45
+        }
+
+        else -> {
+            getEmptyDrawableByPosition(position)
+        }
+    }
+}
+
+fun getEmptyDrawableByPosition(position: Position): Int {
+    return when (position) {
+        Position.LEFT -> {
+            R.drawable.circle_no_cartidge
         }
 
         else -> {

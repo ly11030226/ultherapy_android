@@ -89,38 +89,39 @@ class DataReceiver constructor(private val callback: ReceiveDataCallback) : Broa
         checkRepeat(byteArray[36])
         //能量: 1~30  --> 0.1~3.0
         checkEnergy(byteArray[37])
-        //00: both 01: hand 02: foot
+        //00: both 01: handT 02: foot
         checkOperatingSource(byteArray[38])
         //00: 待机 01:准备
         checkStandbyOrReady(byteArray[39])
         //获取三个手柄的数据
-        DataBean.leftHIFU.remain = getIntFromTwoByte(byteArray[40], byteArray[41])
-        DataBean.leftHIFU.type = getHIFUType(byteArray[42])
-        DataBean.middleHIFU.remain = getIntFromTwoByte(byteArray[43], byteArray[44])
-        DataBean.middleHIFU.type = getHIFUType(byteArray[45])
-        DataBean.rightHIFU.remain = getIntFromTwoByte(byteArray[46], byteArray[47])
-        DataBean.rightHIFU.type = getHIFUType(byteArray[48])
+        //NOTE: 上位机用left表示炮头 middle|right 表示刀头，下位机返回的前三个字节和中间三个字节是刀头，最后三个字节是炮头，因此这里left应该是最后三个字节
+        DataBean.middleHIFU.remain = getIntFromTwoByte(byteArray[40], byteArray[41])
+        DataBean.middleHIFU.type = getHIFUType(byteArray[42])
+        DataBean.rightHIFU.remain = getIntFromTwoByte(byteArray[43], byteArray[44])
+        DataBean.rightHIFU.type = getHIFUType(byteArray[45])
+        DataBean.leftHIFU.remain = getIntFromTwoByte(byteArray[46], byteArray[47])
+        DataBean.leftHIFU.type = getHIFUType(byteArray[48])
         //手柄摘挂机状态
-        DataBean.leftHIFU.knifeState = checkKnifeState(byteArray[49])
-        DataBean.middleHIFU.knifeState = checkKnifeState(byteArray[50])
-        DataBean.rightHIFU.knifeState = checkKnifeState(byteArray[51])
+        DataBean.middleHIFU.knifeState = checkKnifeState(byteArray[49])
+        DataBean.rightHIFU.knifeState = checkKnifeState(byteArray[50])
+        DataBean.leftHIFU.knifeState = checkKnifeState(byteArray[51])
         //手柄是否插入
-        DataBean.leftHIFU.knifeUsable = checkKnifeUsable(byteArray[52])
-        DataBean.middleHIFU.knifeUsable = checkKnifeUsable(byteArray[53])
-        DataBean.rightHIFU.knifeUsable = checkKnifeUsable(byteArray[54])
+        DataBean.middleHIFU.knifeUsable = checkKnifeUsable(byteArray[52])
+        DataBean.rightHIFU.knifeUsable = checkKnifeUsable(byteArray[53])
+        DataBean.leftHIFU.knifeUsable = checkKnifeUsable(byteArray[54])
         //按键脚踏状态 01:按下  02:松开
-        DataBean.leftHIFU.press = checkPressState(byteArray[55])
-        DataBean.middleHIFU.press = checkPressState(byteArray[56])
-        DataBean.rightHIFU.press = checkPressState(byteArray[57])
+        DataBean.middleHIFU.press = checkPressState(byteArray[55])
+        DataBean.rightHIFU.press = checkPressState(byteArray[56])
+        DataBean.leftHIFU.press = checkPressState(byteArray[57])
         //脚踏状态
         DataBean.footPress = checkFootPressState(byteArray[58])
         //自动识别 00:自动识别关,01自动识别开
         DataBean.isAutoRecognition = checkAutoRecognitionState(byteArray[59])
         //能量系数 0 默认值 不设置 10-200 表示能量值的10%-200% 修改成功返回1,否则返回0
         DataBean.energyCoefficient = byteArray[60]
-        DataBean.leftHIFU.clientId = byteArray[61]
-        DataBean.middleHIFU.clientId = byteArray[62]
-        DataBean.rightHIFU.clientId = byteArray[63]
+        DataBean.middleHIFU.clientId = byteArray[61]
+        DataBean.rightHIFU.clientId = byteArray[62]
+        DataBean.leftHIFU.clientId = byteArray[63]
 //        LogUtils.d("************* end parser data *************")
         return FrameBean(header, length, frameId, command, deviceAddress, functionAddress, DataBean)
     }

@@ -28,6 +28,7 @@ import com.aimyskin.ultherapy_android.pojo.DataBean
 import com.aimyskin.ultherapy_android.pojo.FrameBean
 import com.aimyskin.ultherapy_android.pojo.KnifeState
 import com.aimyskin.ultherapy_android.pojo.KnifeUsable
+import com.aimyskin.ultherapy_android.pojo.Position
 import com.aimyskin.ultherapy_android.pojo.Type
 import com.aimyskin.ultherapy_android.util.GlobalVariable
 import com.aimyskin.ultherapy_android.util.GlobalVariable.currentUseKnife
@@ -143,7 +144,7 @@ class AwaitActivity : BaseActivity() {
                 currentUseKnifePosition = DataBean.leftHIFU.position
                 jumpToNext()
             }
-            val leftDrawableId = getDrawableIdByType(DataBean.leftHIFU.type)
+            val leftDrawableId = getDrawableIdByType(DataBean.leftHIFU.type, Position.LEFT)
             Glide.with(this).asGif().load(leftDrawableId).skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivLeft)
         } else {
@@ -159,7 +160,7 @@ class AwaitActivity : BaseActivity() {
                 currentUseKnifePosition = DataBean.middleHIFU.position
                 jumpToNext()
             }
-            val middleDrawableId = getDrawableIdByType(DataBean.middleHIFU.type)
+            val middleDrawableId = getDrawableIdByType(DataBean.middleHIFU.type,Position.MIDDLE)
             Glide.with(this).asGif().load(middleDrawableId).skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivMiddle)
         } else {
@@ -175,7 +176,7 @@ class AwaitActivity : BaseActivity() {
                 currentUseKnifePosition = DataBean.rightHIFU.position
                 jumpToNext()
             }
-            val rightDrawableId = getDrawableIdByType(DataBean.rightHIFU.type)
+            val rightDrawableId = getDrawableIdByType(DataBean.rightHIFU.type,Position.RIGHT)
             Glide.with(this).asGif().load(rightDrawableId).skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE).into(binding.ivRight)
         } else {

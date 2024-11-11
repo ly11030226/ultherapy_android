@@ -73,36 +73,37 @@ object DataBean {
                 byteArrayOf(operatingSource.byteValue) +
                 byteArrayOf(standbyOrReady.byteValue) +
 
-                byteArrayOf(leftHIFU.getByteArrayFromRemainNumber()[0])+
-                byteArrayOf(leftHIFU.getByteArrayFromRemainNumber()[1])+
-                byteArrayOf(leftHIFU.type.byteValue) +
                 byteArrayOf(middleHIFU.getByteArrayFromRemainNumber()[0])+
                 byteArrayOf(middleHIFU.getByteArrayFromRemainNumber()[1])+
                 byteArrayOf(middleHIFU.type.byteValue) +
                 byteArrayOf(rightHIFU.getByteArrayFromRemainNumber()[0])+
                 byteArrayOf(rightHIFU.getByteArrayFromRemainNumber()[1])+
                 byteArrayOf(rightHIFU.type.byteValue) +
+                byteArrayOf(leftHIFU.getByteArrayFromRemainNumber()[0])+
+                byteArrayOf(leftHIFU.getByteArrayFromRemainNumber()[1])+
+                byteArrayOf(leftHIFU.type.byteValue) +
 
-                byteArrayOf(leftHIFU.knifeState.byteValue) +
                 byteArrayOf(middleHIFU.knifeState.byteValue) +
                 byteArrayOf(rightHIFU.knifeState.byteValue) +
+                byteArrayOf(leftHIFU.knifeState.byteValue) +
 
-                byteArrayOf(leftHIFU.knifeUsable.byteValue) +
                 byteArrayOf(middleHIFU.knifeUsable.byteValue) +
                 byteArrayOf(rightHIFU.knifeUsable.byteValue) +
+                byteArrayOf(leftHIFU.knifeUsable.byteValue) +
 
-                byteArrayOf(leftHIFU.press.byteValue) +
                 byteArrayOf(middleHIFU.press.byteValue) +
                 byteArrayOf(rightHIFU.press.byteValue) +
+                byteArrayOf(leftHIFU.press.byteValue) +
                 byteArrayOf(footPress.byteValue) +
 
                 byteArrayOf(isAutoRecognition.byteValue) +
                 byteArrayOf(energyCoefficient) +
 
-                byteArrayOf(leftHIFU.clientId) +
                 byteArrayOf(middleHIFU.clientId) +
-                byteArrayOf(rightHIFU.clientId)
-        return data
+                byteArrayOf(rightHIFU.clientId) +
+                byteArrayOf(leftHIFU.clientId)
+
+                return data
     }
 }
 

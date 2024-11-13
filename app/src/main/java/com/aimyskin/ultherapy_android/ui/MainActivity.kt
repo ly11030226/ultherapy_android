@@ -170,6 +170,7 @@ class MainActivity : BaseActivity() {
         binding.tvLengthNum.text = getLengthValue().toString()
         //设置打点模式
         DataBean.pointOrLine = PointOrLine.POINT
+        binding.tvMainPointOrLine.text = getString(R.string.default_normal)
         binding.ivMainPointOrLine.setBackgroundResource(R.drawable.icon_point)
         //设置间隔距离
         DataBean.pitch = Pitch.MM1_5
@@ -338,12 +339,14 @@ class MainActivity : BaseActivity() {
                 if (DataBean.pointOrLine == PointOrLine.POINT) {
                     binding.ivMainPointOrLine.setBackgroundResource(R.drawable.icon_line)
                     DataBean.pointOrLine = PointOrLine.LINE
+                    binding.tvMainPointOrLine.text = getString(R.string.str_mp)
                     binding.tvChoicePitch.text = "-"
                 }
                 //当前打直线，改成打点
                 else {
                     binding.ivMainPointOrLine.setBackgroundResource(R.drawable.icon_point)
                     DataBean.pointOrLine = PointOrLine.POINT
+                    binding.tvMainPointOrLine.text = getString(R.string.default_normal)
                     binding.tvChoicePitch.text = getPitchValue().toString()
                 }
                 sendData()

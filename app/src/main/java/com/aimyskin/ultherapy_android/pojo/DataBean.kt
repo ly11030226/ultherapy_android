@@ -1,5 +1,7 @@
 package com.aimyskin.ultherapy_android.pojo
 
+import android.annotation.SuppressLint
+
 
 /**
  * 串口通信数据实体类
@@ -59,6 +61,7 @@ object DataBean {
     /**
      * 将数据包装成data
      */
+    @SuppressLint("SuspiciousIndentation")
     fun packageAsData(): ByteArray {
         val data = version +
                 byteArrayOf(writeProtect.byteValue) +

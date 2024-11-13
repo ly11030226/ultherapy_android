@@ -16,6 +16,7 @@
     <string name="unit_mm">mm</string>
     <string name="str_memory">Memory 3</string>
     <string name="default_normal">Normal</string>
+    <string name="str_mp">MP</string>
     <string name="str_pitch">Pitch</string>
     <string name="default_pitch">1.5</string>
     <string name="str_setup">Setup/Info</string>
